@@ -1,0 +1,2 @@
+alias yocto-setup='source ~/Projects/QorIQ-SDK-V2.0-20160527-yocto/build_ls1021atwr/SOURCE_THIS'
+alias gd='git difftool --dir-diff'
