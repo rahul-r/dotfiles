@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 CWD=`pwd`
 
-# Setup vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+## Setup vim
+# Backup the existing vim conf
+mv ~/.vimrc ~/vimrc.old
+mv ~/.vim ~/vim.old
+# Create symlinks to the new files
 ln -s ${CWD}/vim/vimrc ~/.vimrc
+mkdir -p ~/.vim/
+ln -s ${CWD}/vim/colors ~/.vim/colors
+# Create the temporary directories required by the vimrc
+mkdir -p ~/.vim/tmp/undo
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Install the vim plugins using vundle
 vim +PluginInstall +qall
+

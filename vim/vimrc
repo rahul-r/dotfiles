@@ -31,11 +31,11 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" Force to be lazy
-nnoremap <Left> :echo "Use h"<CR>
-nnoremap <Down> :echo "Use j"<CR>
-nnoremap <Up> :echo "Use k"<CR>
-nnoremap <Right> :echo "Use l"<CR>
+" Enforce laziness
+nnoremap <Left> :echo "Don't be silly, use h"<CR>
+nnoremap <Down> :echo "Don't be silly, use j"<CR>
+nnoremap <Up> :echo "Don't be silly, use k"<CR>
+nnoremap <Right> :echo "Don't be silly, use l"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Colors and Fonts
@@ -68,7 +68,7 @@ set wrap "Wrap lines
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.vim/temp_dirs/undodir
+    set undodir=~/.vim/tmp/undo
     set undofile
 catch
 endtry
