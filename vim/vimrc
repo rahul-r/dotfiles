@@ -37,6 +37,12 @@ nnoremap <Down> :echo "Don't be silly, use j"<CR>
 nnoremap <Up> :echo "Don't be silly, use k"<CR>
 nnoremap <Right> :echo "Don't be silly, use l"<CR>
 
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -101,6 +107,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
 
 " stop - all plugins above
 call vundle#end()
