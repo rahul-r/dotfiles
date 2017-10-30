@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 CWD=`pwd`
+BAK_DIR=~/dotfiles.backup
+
+mkdir ${BAK_DIR}
 
 ## Setup vim
 # Backup the existing vim conf
-mv ~/.vimrc ~/vimrc.old
-mv ~/.vim ~/vim.old
+mv ~/.vimrc ${BAK_DIR}/vimrc
+mv ~/.vim ${BAK_DIR}/vim
 # Create symlinks to the new files
 ln -s ${CWD}/vim/vimrc ~/.vimrc
 mkdir -p ~/.vim/
@@ -15,3 +18,12 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Install the vim plugins using vundle
 vim +PluginInstall +qall
 
+## Install bash conf
+mv ~/.bashrc ${BAK_DIR}/bashrc
+mv ~/.bash_aliases ${BAK_DIR}/bash_aliases
+ln -s ${CWD}/shell/bashrc ~/.bashrc
+ln -s ${CWD}/shell/bash_aliases ~/.bash_aliases
+
+## Install tmux conf
+mv ~/.tmux.conf ${BAK_DIR}/tmux.conf
+ln -s ${CWD}/shell/tmux.conf ~/.tmux.conf
