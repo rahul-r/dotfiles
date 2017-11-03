@@ -2,6 +2,11 @@
 CWD=`pwd`
 BAK_DIR=~/dotfiles.backup
 
+if [ -d "$BAK_DIR" ]; then
+	echo -n "The directory '$BAK_DIR' exists. Press ENTER to delete the directory and continue or Ctrl+C to cancel."
+	read
+	rm -rf ${BAK_DIR}
+fi
 mkdir ${BAK_DIR}
 
 ## Setup vim
@@ -10,8 +15,6 @@ mv ~/.vimrc ${BAK_DIR}/vimrc
 mv ~/.vim ${BAK_DIR}/vim
 # Create symlinks to the new files
 ln -s ${CWD}/vim/vimrc ~/.vimrc
-mkdir -p ~/.vim/
-ln -s ${CWD}/vim/colors ~/.vim/colors
 # Create the temporary directories required by the vimrc
 mkdir -p ~/.vim/tmp/undo
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -27,3 +30,8 @@ ln -s ${CWD}/shell/bash_aliases ~/.bash_aliases
 ## Install tmux conf
 mv ~/.tmux.conf ${BAK_DIR}/tmux.conf
 ln -s ${CWD}/shell/tmux.conf ~/.tmux.conf
+
+## neovim configuration
+mv  ~/.config/nvim ${BAK_DIR}/nvim 2>/dev/null || true # Silently move without throwing error if the file doesnt exist
+ln -s ${CWD}/nvim ~/.config/nvim
+

@@ -51,9 +51,6 @@ syntax enable
 " Enable 256 colors
 set t_Co=256
 
-colorscheme peaksea
-set background=dark
-
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
@@ -103,14 +100,20 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " start- all plugins below
 
+Plugin 'crucerucalin/peaksea.vim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'davidhalter/jedi-vim'
 
 " stop - all plugins above
 call vundle#end()
+
+" Set the color theme
+silent! colorscheme peaksea
+set background=dark
 
 " Always show the statusbar	
 set laststatus=2
@@ -118,3 +121,7 @@ set laststatus=2
 set encoding=utf-8
 " Tell airline to use powerline fonts
 let g:airline_powerline_fonts = 1
+
+" Gvim settings
+set guioptions-=T  "remove toolbar
+set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
