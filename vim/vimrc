@@ -64,6 +64,7 @@ filetype plugin indent on
 
 set ai "Auto indent
 set si "Smart indent
+au! FileType python setl nosmartindent " Disable smart indent for Python
 set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
