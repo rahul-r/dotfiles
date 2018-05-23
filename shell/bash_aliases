@@ -1,4 +1,2 @@
-alias yocto-setup='source ~/Projects/QorIQ-SDK-V2.0-20160527-yocto/build_ls1021atwr/SOURCE_THIS'
 alias gd='git difftool --dir-diff'
-
 alias rm="printf \"Use 'trash' to move files to trash or use the full path '/bin/rm' to use the 'rm' command\nsudo apt install trash-cli\n\""
