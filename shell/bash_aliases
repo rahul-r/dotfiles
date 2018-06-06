@@ -1,2 +1,3 @@
 alias gd='git difftool --dir-diff'
+alias git-graph='git log --graph --pretty=oneline --abbrev-commit'
 alias rm="printf \"Use 'trash' to move files to trash or use the full path '/bin/rm' to use the 'rm' command\nsudo apt install trash-cli\n\""
