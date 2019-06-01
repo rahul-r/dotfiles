@@ -67,6 +67,9 @@ set si "Smart indent
 au! FileType python setl nosmartindent " Disable smart indent for Python
 set wrap "Wrap lines
 
+" Prevent some terminals from overriding vim theme
+set highlight Normal ctermbg=none
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "    Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM
