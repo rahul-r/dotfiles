@@ -31,6 +31,10 @@ ln -s ${CWD}/shell/bash_aliases ~/.bash_aliases
 mv ~/.tmux.conf ${BAK_DIR}/tmux.conf
 ln -s ${CWD}/shell/tmux.conf ~/.tmux.conf
 
+## Install screen conf
+mv ~/.screenrc ${BAK_DIR}/screenrc
+ln -s ${CWD}/screen/screenrc ~/.screenrc
+
 ## neovim configuration
 mv  ~/.config/nvim ${BAK_DIR}/nvim 2>/dev/null || true # Silently move without throwing error if the file doesnt exist
 ln -s ${CWD}/nvim ~/.config/nvim

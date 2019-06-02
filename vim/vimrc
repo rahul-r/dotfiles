@@ -32,10 +32,10 @@ set showmatch
 set mat=2
 
 " Enforce laziness
-nnoremap <Left> :echo "Don't be silly, use h"<CR>
-nnoremap <Down> :echo "Don't be silly, use j"<CR>
-nnoremap <Up> :echo "Don't be silly, use k"<CR>
-nnoremap <Right> :echo "Don't be silly, use l"<CR>
+"nnoremap <Left> :echo "Don't be silly, use h"<CR>
+"nnoremap <Down> :echo "Don't be silly, use j"<CR>
+"nnoremap <Up> :echo "Don't be silly, use k"<CR>
+"nnoremap <Right> :echo "Don't be silly, use l"<CR>
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -122,9 +122,6 @@ set laststatus=2
 set encoding=utf-8
 " Tell airline to use powerline fonts
 let g:airline_powerline_fonts = 1
-
-" Prevent some terminals from overriding vim theme
-highlight Normal guibg=NONE ctermbg=NONE
 
 " Gvim settings
 set guioptions-=T  "remove toolbar
