@@ -30,11 +30,13 @@ ZSH_DIR=~/.zsh
 
 mkdir -p ${BAK_DIR}/zsh/
 mv ~/.zshrc ${BAK_DIR}/zsh/zshrc
+mv ~/.zprofile ${BAK_DIR}/zsh/zprofile
 mv $ZSH_DIR ${BAK_DIR}/zsh/zsh
 
 mkdir -p $ZSH_DIR
 
 ln -s ${CWD}/shell/zsh/zshrc ~/.zshrc
+ln -s ${CWD}/shell/zsh/zprofile ~/.zprofile
 
 for config_file in ${CWD}/shell/zsh/*.zsh; do
     ln -s $config_file ${ZSH_DIR}/`basename $config_file`
