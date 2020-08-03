@@ -26,8 +26,21 @@ mv ~/.profile ${BAK_DIR}/profile
 ln -s ${CWD}/shell/profile ~/.profile
 
 ## Install bash conf
-mv ~/.bashrc ${BAK_DIR}/bashrc
-ln -s ${CWD}/shell/bashrc ~/.bashrc
+ZSH_DIR=~/.zsh
+
+mkdir -p ${BAK_DIR}/zsh/
+mv ~/.zshrc ${BAK_DIR}/zsh/zshrc
+mv $ZSH_DIR ${BAK_DIR}/zsh/zsh
+
+mkdir -p $ZSH_DIR
+
+ln -s ${CWD}/shell/zsh/zshrc ~/.zshrc
+
+for config_file in ${CWD}/shell/zsh/*.zsh; do
+    ln -s $config_file ${ZSH_DIR}/`basename $config_file`
+done
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_DIR/syntax-highlighting
 
 ## Install tmux conf
 mv ~/.tmux.conf ${BAK_DIR}/tmux.conf
@@ -40,4 +53,3 @@ ln -s ${CWD}/screen/screenrc ~/.screenrc
 ## neovim configuration
 mv  ~/.config/nvim ${BAK_DIR}/nvim 2>/dev/null || true # Silently move without throwing error if the file doesnt exist
 ln -s ${CWD}/nvim ~/.config/nvim
-
