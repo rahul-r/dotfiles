@@ -21,11 +21,13 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Install the vim plugins using vundle
 vim +PluginInstall +qall
 
+## Install .profile
+mv ~/.profile ${BAK_DIR}/profile
+ln -s ${CWD}/shell/profile ~/.profile
+
 ## Install bash conf
 mv ~/.bashrc ${BAK_DIR}/bashrc
-mv ~/.bash_aliases ${BAK_DIR}/bash_aliases
 ln -s ${CWD}/shell/bashrc ~/.bashrc
-ln -s ${CWD}/shell/bash_aliases ~/.bash_aliases
 
 ## Install tmux conf
 mv ~/.tmux.conf ${BAK_DIR}/tmux.conf

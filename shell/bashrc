@@ -102,10 +102,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 if [ -f ~/.bash_other ]; then
     . ~/.bash_other
 fi
@@ -121,15 +117,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=${PATH}:${HOME}/bin
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
-
 # Set bash in vi mode
 set -o vi
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
 set_title() {
 	ORIG=$PS1
