@@ -1,5 +1,6 @@
 " Line numbering
 set relativenumber
+set number
 
 " set to auto read when a file is changed from the outside
 set autoread
@@ -59,9 +60,6 @@ set tabstop=4
 set linebreak
 set textwidth=500
 
-" Indent commants with code in languages like Python, Perl
-filetype plugin indent on
-
 set ai "Auto indent
 set si "Smart indent
 au! FileType python setl nosmartindent " Disable smart indent for Python
@@ -109,9 +107,15 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'leafgarland/typescript-vim'
+" Plugins for rust
+Plugin 'rust-lang/rust.vim'
+Plugin 'rust-lang/rls'
 
 " stop - all plugins above
 call vundle#end()
+
+" Indent commants with code in languages like Python, Perl
+filetype plugin indent on
 
 " Set the color theme
 silent! colorscheme peaksea
