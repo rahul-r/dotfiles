@@ -125,3 +125,5 @@ set_title() {
 	TITLE="\e]2;$*\a"
 	PS1=${ORIG}${TITLE}
 }
+
+source ~/.aliases

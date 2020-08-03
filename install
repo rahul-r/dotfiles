@@ -21,9 +21,11 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Install the vim plugins using vundle
 vim +PluginInstall +qall
 
-## Install .profile
+## Install .profile and .aliases
 mv ~/.profile ${BAK_DIR}/profile
 ln -s ${CWD}/shell/profile ~/.profile
+[ -f ~/.aliases ] && mv ~/.aliases ${BAK_DIR}/aliases
+ln -s ${CWD}/shell/aliases ~/.aliases
 
 ## Install bash conf
 ZSH_DIR=~/.zsh

@@ -19,6 +19,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+source ~/.aliases
+
 source ~/.zsh/completion.zsh
 source ~/.zsh/git.zsh
 
