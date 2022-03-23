@@ -48,6 +48,9 @@ done
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_DIR/syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_DIR/zsh-autosuggestions
 
+## Install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 ## Install tmux conf
 mv ~/.tmux.conf ${BAK_DIR}/tmux.conf
 ln -s ${CWD}/shell/tmux.conf ~/.tmux.conf
