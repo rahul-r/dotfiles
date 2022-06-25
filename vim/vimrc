@@ -44,6 +44,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -102,7 +106,7 @@ call vundle#begin()
 Plugin 'crucerucalin/peaksea.vim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'davidhalter/jedi-vim'
@@ -110,6 +114,11 @@ Plugin 'leafgarland/typescript-vim'
 " Plugins for rust
 Plugin 'rust-lang/rust.vim'
 Plugin 'rust-lang/rls'
+
+Plugin 'preservim/nerdtree'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " stop - all plugins above
 call vundle#end()
