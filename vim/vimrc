@@ -103,7 +103,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " start- all plugins below
 
+" Themes
 Plugin 'crucerucalin/peaksea.vim'
+Plugin 'EdenEast/nightfox.nvim'
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 " Plugin 'tpope/vim-fugitive'
@@ -127,7 +130,7 @@ call vundle#end()
 filetype plugin indent on
 
 " Set the color theme
-silent! colorscheme peaksea
+colorscheme nightfox
 set background=dark
 
 " Always show the statusbar	
