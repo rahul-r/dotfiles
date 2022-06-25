@@ -133,6 +133,8 @@ filetype plugin indent on
 colorscheme nightfox
 set background=dark
 
+set mouse=a
+
 " Always show the statusbar	
 set laststatus=2
 
