@@ -9,6 +9,8 @@ if [ -d "$BAK_DIR" ]; then
 fi
 mkdir ${BAK_DIR}
 
+sudo snap install nvim --classic
+
 ## Setup vim
 # Backup the existing vim conf
 mv ~/.vimrc ${BAK_DIR}/vimrc
@@ -20,6 +22,7 @@ mkdir -p ~/.vim/tmp/undo
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Install the vim plugins using vundle
 vim +PluginInstall +qall
+nvim +PluginInstall +qall
 
 ## Install .profile and .aliases
 mv ~/.profile ${BAK_DIR}/profile
