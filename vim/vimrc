@@ -97,34 +97,30 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-" initialize vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-" start- all plugins below
+call plug#begin('~/.vim/plugged')
 
 " Themes
-Plugin 'crucerucalin/peaksea.vim'
-Plugin 'EdenEast/nightfox.nvim'
+Plug 'crucerucalin/peaksea.vim'
+Plug 'EdenEast/nightfox.nvim'
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-" Plugin 'tpope/vim-fugitive'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'leafgarland/typescript-vim'
+Plug 'VundleVim/Vundle.vim'
+Plug 'vim-airline/vim-airline'
+" Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'davidhalter/jedi-vim'
+Plug 'leafgarland/typescript-vim'
 " Plugins for rust
-Plugin 'rust-lang/rust.vim'
-Plugin 'rust-lang/rls'
+Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rls'
 
-Plugin 'preservim/nerdtree'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+" nerdtree
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" stop - all plugins above
-call vundle#end()
+call plug#end()
 
 " Indent commants with code in languages like Python, Perl
 filetype plugin indent on

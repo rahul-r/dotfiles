@@ -19,10 +19,13 @@ mv ~/.vim ${BAK_DIR}/vim
 ln -s ${CWD}/vim/vimrc ~/.vimrc
 # Create the temporary directories required by the vimrc
 mkdir -p ~/.vim/tmp/undo
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# Install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # Install the vim plugins using vundle
-vim +PluginInstall +qall
-nvim +PluginInstall +qall
+vim +PlugInstall +qall
+nvim +PlugInstall +qall
 
 ## Install .profile and .aliases
 mv ~/.profile ${BAK_DIR}/profile
@@ -52,6 +55,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_DIR/synt
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_DIR/zsh-autosuggestions
 
 ## Install tmux plugin manager
+rm -rf ~/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ## Install tmux conf
