@@ -10,6 +10,11 @@ fi
 mkdir ${BAK_DIR}
 
 sudo snap install nvim --classic
+# Install providers for nvim
+python3 -m pip install --user --upgrade pynvim
+yarn global add neovim
+# Use nvim as default editor for git
+git config --global core.editor "nvim"
 
 ## Setup vim
 # Backup the existing vim conf
