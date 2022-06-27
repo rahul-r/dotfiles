@@ -112,7 +112,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 "Plug 'davidhalter/jedi-vim'
-Plug 'leafgarland/typescript-vim'
 " Plugins for rust
 Plug 'rust-lang/rust.vim'
 Plug 'rust-lang/rls'
@@ -125,7 +124,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 call plug#end()
+
+lua require('treesitter')
 
 let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-css', 'coc-diagnostic', 'coc-docker', 'coc-eslint', 'coc-highlight', 'coc-json', 'coc-markdownlint', '@yaegassy/coc-pylsp', 'coc-sh', 'coc-tsserver', 'coc-yaml']
 
