@@ -1,0 +1,29 @@
+{
+	"codeLens.enable": true,
+	"codeLens.position": "eol",
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.enableMessageDialog": true,
+	"coc.preferences.formatOnType": true,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"c",
+		"go",
+		"python",
+		"rust",
+		"markdown",
+		"javascript",
+		"typescript",
+		"json",
+		"jsonc"
+	],
+	"coc.source.file.ignoreHidden": false,
+	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd",
+	"diagnostic.virtualText": true,
+	"diagnostic.checkCurrentLine": true,
+	"eslint.autoFixOnSave": true,
+	"eslint.format.enable": true,
+	"eslint.packageManager": "yarn",
+	"git.addGBlameToVirtualText": true,
+	"hover.floatConfig": {
+		"border": true
+	}
+}

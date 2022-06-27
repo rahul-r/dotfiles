@@ -15,7 +15,7 @@ set wildmode=list:longest,full
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -70,7 +70,7 @@ au! FileType python setl nosmartindent " Disable smart indent for Python
 set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"    Turn persistent undo on 
+"    Turn persistent undo on
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
@@ -95,12 +95,15 @@ endfun
 
 if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+	" set filetypes as typescriptreact
+	autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 endif
 
+" Start Vim-Plug
 call plug#begin('~/.vim/plugged')
 
 " Themes
-Plug 'crucerucalin/peaksea.vim'
+" Plug 'crucerucalin/peaksea.vim'
 Plug 'EdenEast/nightfox.nvim'
 
 Plug 'VundleVim/Vundle.vim'
@@ -108,7 +111,7 @@ Plug 'vim-airline/vim-airline'
 " Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 Plug 'leafgarland/typescript-vim'
 " Plugins for rust
 Plug 'rust-lang/rust.vim'
@@ -120,19 +123,25 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
+
+let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-css', 'coc-diagnostic', 'coc-docker', 'coc-eslint', 'coc-highlight', 'coc-json', 'coc-markdownlint', '@yaegassy/coc-pylsp', 'coc-sh', 'coc-tsserver', 'coc-yaml']
 
 " Indent commants with code in languages like Python, Perl
 filetype plugin indent on
 
 " Set the color theme
 colorscheme nightfox
-set background=dark
+"set background=dark
 
 set mouse=a
 
-" Always show the statusbar	
+" Always show the statusbar
 set laststatus=2
+
+let NERDTreeShowHidden=1
 
 set encoding=utf-8
 " Tell airline to use powerline fonts
