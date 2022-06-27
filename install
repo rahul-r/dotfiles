@@ -9,7 +9,10 @@ if [ -d "$BAK_DIR" ]; then
 fi
 mkdir ${BAK_DIR}
 
-sudo snap install nvim --classic
+# Install nvim
+sudo wget -P /usr/local/bin https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x /usr/local/bin/nvim.appimage
+
 # Install providers for nvim
 python3 -m pip install --user --upgrade pynvim
 yarn global add neovim
