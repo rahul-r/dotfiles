@@ -10,8 +10,9 @@ fi
 mkdir ${BAK_DIR}
 
 # Install nvim
-sudo wget -P /usr/local/bin https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x /usr/local/bin/nvim.appimage
+sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /usr/local/bin/nvim.appimage
+sudo chmod ugo+x /usr/local/bin/nvim.appimage
+sudo ln -s /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 
 # Install providers for nvim
 python3 -m pip install --user --upgrade pynvim
