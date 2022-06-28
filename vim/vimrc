@@ -132,6 +132,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'p00f/nvim-ts-rainbow'
 
 call plug#end()
 
