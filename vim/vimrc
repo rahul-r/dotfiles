@@ -99,6 +99,11 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 endif
 
+let g:ctrlp_custom_ignore = {
+	\ 'dir': '\v[\/]\.(git|hg|svn)|node_modules|venv|build|dist$',
+	\ 'file': '\v\.(DS_Store|exe|so|dll)$',
+	\}
+
 " Start Vim-Plug
 call plug#begin('~/.vim/plugged')
 
