@@ -121,7 +121,11 @@ Plug 'EdenEast/nightfox.nvim'
 
 Plug 'VundleVim/Vundle.vim'
 Plug 'vim-airline/vim-airline'
-" Plug 'tpope/vim-fugitive'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'f-person/git-blame.nvim'
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 "Plug 'davidhalter/jedi-vim'
