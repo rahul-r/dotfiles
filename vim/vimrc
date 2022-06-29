@@ -121,29 +121,29 @@ Plug 'EdenEast/nightfox.nvim'
 
 Plug 'VundleVim/Vundle.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
 
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'f-person/git-blame.nvim'
-
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
+
 "Plug 'davidhalter/jedi-vim'
 " Plugins for rust
 Plug 'rust-lang/rust.vim'
 Plug 'rust-lang/rls'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " nerdtree
 Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 
+Plug 'ctrlpvim/ctrlp.vim'
 " Telescope and dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
