@@ -32,6 +32,9 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+" Change the leader key
+let mapleader = " "
+
 " Enforce laziness
 "nnoremap <Left> :echo "Don't be silly, use h"<CR>
 "nnoremap <Down> :echo "Don't be silly, use j"<CR>
