@@ -125,7 +125,7 @@ Plug 'ryanoasis/vim-devicons'
 
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'f-person/git-blame.nvim'
+Plug 'APZelos/blamer.nvim'
 Plug 'airblade/vim-gitgutter'
 
 "Plug 'davidhalter/jedi-vim'
@@ -197,3 +197,8 @@ require('telescope').setup {
 	},
 }
 EOF
+
+" blamer.nvim configuration
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+
