@@ -148,6 +148,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'folke/which-key.nvim'
+
 call plug#end()
 
 lua require('treesitter')
@@ -194,7 +196,7 @@ require('telescope').setup {
 			width = .7,
 			preview_width = .7,
 		},
-		file_ignore_patterns = { "^./.git/", "^node_modules/", "^build/", "^dist/" },
+		file_ignore_patterns = { "^./.git/", ".cache", "node_modules/", "build/", "build_.*/", "dist/", "%.o", "%.a" }
 	},
 }
 EOF
@@ -203,3 +205,11 @@ EOF
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
 
+" which-key configuration
+lua << EOF
+  require("which-key").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
