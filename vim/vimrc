@@ -50,6 +50,12 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 nnoremap <C-p><C-p> :CtrlPBuffer<CR>
 
+" Telescope keys
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,6 +140,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 
+" Telescope and dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 call plug#end()
 
 lua require('treesitter')
@@ -169,3 +179,17 @@ let g:airline_powerline_fonts = 1
 " Gvim settings
 set guioptions-=T  "remove toolbar
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+
+" Telescope
+lua << EOF
+require('telescope').setup {
+	defaults = {
+		layout_config = { 
+			preview_cutoff = 1,
+			--layout_strategy = "flex",
+			width = .7,
+			preview_width = .7,
+		},
+	},
+}
+EOF
