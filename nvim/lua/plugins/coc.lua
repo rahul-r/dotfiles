@@ -1,3 +1,6 @@
+vim.g.coc_global_extensions = { 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-diagnostic', 'coc-docker', 'coc-eslint', 'coc-highlight', 'coc-json', 'coc-markdownlint', '@yaegassy/coc-pylsp', 'coc-sh', 'coc-tsserver', 'coc-yaml' }
+
+vim.cmd([[
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -160,3 +163,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+]])
