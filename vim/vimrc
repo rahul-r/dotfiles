@@ -53,12 +53,6 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 nnoremap <C-p><C-p> :CtrlPBuffer<CR>
 
-" Telescope keys
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -119,8 +113,7 @@ let g:ctrlp_custom_ignore = {
 call plug#begin('~/.vim/plugged')
 
 " Themes
-" Plug 'crucerucalin/peaksea.vim'
-Plug 'EdenEast/nightfox.nvim'
+Plug 'crucerucalin/peaksea.vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
@@ -135,35 +128,21 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
 Plug 'rust-lang/rls'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " nerdtree
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'p00f/nvim-ts-rainbow'
-
 Plug 'ctrlpvim/ctrlp.vim'
-" Telescope and dependencies
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-Plug 'folke/which-key.nvim'
 
 call plug#end()
-
-lua require('treesitter')
-
-let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-css', 'coc-diagnostic', 'coc-docker', 'coc-eslint', 'coc-highlight', 'coc-json', 'coc-markdownlint', '@yaegassy/coc-pylsp', 'coc-sh', 'coc-tsserver', 'coc-yaml']
 
 " Indent commants with code in languages like Python, Perl
 filetype plugin indent on
 
 " Set the color theme
-colorscheme nightfox
-"set background=dark
+colorscheme peaksea
+set background=dark
 
 set mouse=a
 
@@ -188,30 +167,6 @@ let g:airline_powerline_fonts = 1
 set guioptions-=T  "remove toolbar
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
 
-" Telescope
-lua << EOF
-require('telescope').setup {
-	defaults = {
-		layout_config = { 
-			preview_cutoff = 1,
-			--layout_strategy = "flex",
-			width = .7,
-			preview_width = .7,
-		},
-		file_ignore_patterns = { "^./.git/", ".cache", "node_modules/", "build/", "build_.*/", "dist/", "%.o", "%.a" }
-	},
-}
-EOF
-
 " blamer.nvim configuration
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
-
-" which-key configuration
-lua << EOF
-  require("which-key").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-EOF
