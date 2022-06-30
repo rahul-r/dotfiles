@@ -1,5 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 
+require("plugins.ctrlp")
 require("plugins.treesitter")
 require("plugins.coc")
 require("plugins.telescope")

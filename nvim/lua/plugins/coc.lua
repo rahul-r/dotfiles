@@ -1,16 +1,30 @@
-vim.g.coc_global_extensions = { 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-diagnostic', 'coc-docker', 'coc-eslint', 'coc-highlight', 'coc-json', 'coc-markdownlint', '@yaegassy/coc-pylsp', 'coc-sh', 'coc-tsserver', 'coc-yaml' }
+vim.g.coc_global_extensions = {
+	'coc-clangd',
+	'coc-cmake',
+	'coc-css',
+	'coc-diagnostic',
+	'coc-docker',
+	'coc-eslint',
+	'coc-highlight',
+	'coc-json',
+	'coc-markdownlint',
+	'@yaegassy/coc-pylsp',
+	'coc-sh',
+	'coc-tsserver',
+	'coc-yaml'
+}
+
+-- TextEdit might fail if hidden is not set.
+vim.g.hidden = true
+
+-- Some servers have issues with backup files, see #649.
+vim.g.nobackup = true
+vim.g.nowritebackup = true
+
+-- Give more space for displaying messages.
+vim.g.cmdheight = 2
 
 vim.cmd([[
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300

@@ -13,14 +13,9 @@ vim.cmd([[
   nnoremap <C-K> <C-W><C-K>
   nnoremap <C-L> <C-W><C-L>
   nnoremap <C-H> <C-W><C-H>
+]])
 
-  "nnoremap <C-n> :NERDTree<CR>
-  "nnoremap <C-t> :NERDTreeToggle<CR>
-  "nnoremap <C-f> :NERDTreeFind<CR>
-
-  nnoremap <C-p><C-p> :CtrlPBuffer<CR>
-
-  " Telescope keys
+vim.cmd([[
   nnoremap <leader>ff <cmd>Telescope find_files<cr>
   nnoremap <leader>fg <cmd>Telescope live_grep<cr>
   nnoremap <leader>fb <cmd>Telescope buffers<cr>
