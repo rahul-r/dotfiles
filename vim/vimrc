@@ -122,7 +122,6 @@ call plug#begin('~/.vim/plugged')
 " Plug 'crucerucalin/peaksea.vim'
 Plug 'EdenEast/nightfox.nvim'
 
-Plug 'VundleVim/Vundle.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 
