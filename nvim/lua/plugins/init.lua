@@ -32,6 +32,10 @@ return require('packer').startup(function()
 	use 'lukas-reineke/indent-blankline.nvim'
 	-- Highlight color codes with actual color
 	use 'norcalli/nvim-colorizer.lua'
+	-- Smooth scrolling
+	use 'psliwka/vim-smoothie'
+	--- Automatically adjust 'shiftwidth' and 'expandtab' based on the current file
+	use 'tpope/vim-sleuth'
 
 	-- Git
 	use 'tpope/vim-fugitive'
