@@ -25,7 +25,12 @@ return require('packer').startup(function()
 	-- Status bar
 	use "vim-airline/vim-airline"
 	-- Sidebar
-	use 'kyazdani42/nvim-tree.lua'
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons',
+		}
+	}
 	-- Key binding helper
 	use 'folke/which-key.nvim'
 	-- Indent visualizer
