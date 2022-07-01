@@ -41,8 +41,8 @@ vim.opt.expandtab = true
 vim.opt.linebreak = true
 vim.opt.textwidth=500
 
-vim.opt.ai = true --Auto indent
-vim.opt.si = true --Smart indent
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 vim.opt.wrap = true --Wrap lines
 
 -- Prevent some plugins from hiding line numbers

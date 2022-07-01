@@ -35,7 +35,6 @@ return require('packer').startup(function()
 
 	-- Git
 	use 'tpope/vim-fugitive'
-	--use 'airblade/vim-gitgutter'
 	use 'lewis6991/gitsigns.nvim'
 
 	use { 'neoclide/coc.nvim', branch = 'release' }
