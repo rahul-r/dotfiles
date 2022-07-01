@@ -5,13 +5,12 @@ require("plugins.treesitter")
 require("plugins.coc")
 require("plugins.telescope")
 require("plugins.airline")
-require("plugins.blamer")
+require("plugins.gitsigns")
 require("plugins.which-key")
 require("plugins.nvim-tree")
 require("plugins.indent-blankline")
 
 require('colorizer').setup()
-require('gitsigns').setup()
 require('Comment').setup()
 require("nvim-autopairs").setup()
 
@@ -36,7 +35,6 @@ return require('packer').startup(function()
 
 	-- Git
 	use 'tpope/vim-fugitive'
-	use 'APZelos/blamer.nvim'
 	--use 'airblade/vim-gitgutter'
 	use 'lewis6991/gitsigns.nvim'
 
