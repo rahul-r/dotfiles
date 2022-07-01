@@ -35,6 +35,7 @@ vim.opt.mat = 2
 -- 1 tab == 4 spaces
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+vim.opt.expandtab = true
 
 -- Linebreak on 500 characters
 vim.opt.linebreak = true
@@ -43,6 +44,9 @@ vim.opt.textwidth=500
 vim.opt.ai = true --Auto indent
 vim.opt.si = true --Smart indent
 vim.opt.wrap = true --Wrap lines
+
+-- Prevent some plugins from hiding line numbers
+vim.opt.signcolumn = "auto"
 
 -- Turn persistent undo on, means that you can undo even when you close a buffer/vim
 local pathprefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
