@@ -31,8 +31,8 @@
 	"typescript.referencesCodeLens.enable": true,
 	"typescript.preferences.useAliasesForRenames": false,
 	"javascript.preferences.useAliasesForRenames": false,
-	"git.addGBlameToVirtualText": true,
 	"hover.floatConfig": {
 		"border": true
-	}
+  },
+  "Lua.telemetry.enable": false
 }

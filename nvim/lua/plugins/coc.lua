@@ -11,7 +11,8 @@ vim.g.coc_global_extensions = {
 	'@yaegassy/coc-pylsp',
 	'coc-sh',
 	'coc-tsserver',
-	'coc-yaml'
+	'coc-yaml',
+	'coc-sumneko-lua'
 }
 
 -- TextEdit might fail if hidden is not set.
