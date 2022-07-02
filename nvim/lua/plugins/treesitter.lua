@@ -1,29 +1,35 @@
-require'nvim-treesitter.configs'.setup {
+local present, treesitter = pcall(require, "nvim-treesitter.configs")
+
+if not present then
+  return
+end
+
+treesitter.setup {
   ensure_installed = {
-	"c",
+    "c",
     "cpp", 
     "lua", 
     "rust", 
     "go", 
     "javascript", 
     "typescript",
-	"tsx",
-	"html",
-	"css",
-	"http",
-	"json",
-	"yaml",
-	"bash",
-	"python",
-	"cmake",
-	"make",
-	"dockerfile",
-	"regex",
+    "tsx",
+    "html",
+    "css",
+    "http",
+    "json",
+    "yaml",
+    "bash",
+    "python",
+    "cmake",
+    "make",
+    "dockerfile",
+    "regex",
   },
   sync_install = false,
   highlight = {
     enable = true,
-	disable = {},
+    disable = {},
   },
   rainbow = {
     enable = true,

@@ -69,7 +69,12 @@ vim.cmd([[
 vim.cmd('filetype plugin indent on')
 
 -- Set the color theme
-vim.cmd("colorscheme nightfox")
+vim.cmd([[
+    try
+	colorscheme nightfox
+    catch
+    endtry
+]])
 --set background=dark
 
 vim.cmd('set mouse=a')
