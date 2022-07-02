@@ -10,9 +10,20 @@ require("plugins.which-key")
 require("plugins.nvim-tree")
 require("plugins.indent-blankline")
 
-require('colorizer').setup()
-require('Comment').setup()
-require("nvim-autopairs").setup()
+local present, colorizer = pcall(require, "colorizer")
+if  present then
+	colorizer.setup()
+end
+
+local present, Comment = pcall(require, "Comment")
+if  present then
+	Comment.setup()
+end
+
+local present, autopairs = pcall(require, "nvim-autopairs")
+if  present then
+	autopairs.setup()
+end
 
 return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
