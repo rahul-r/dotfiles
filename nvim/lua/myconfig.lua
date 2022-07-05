@@ -77,6 +77,9 @@ vim.cmd([[
 ]])
 --set background=dark
 
+vim.opt.termguicolors = true
+vim.opt.cursorline = true  -- highlight current line
+
 vim.cmd('set mouse=a')
 
 -- Always show the statusbar

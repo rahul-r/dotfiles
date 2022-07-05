@@ -6,14 +6,14 @@ end
 
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
+--vim.opt.listchars:append("eol:↴")
 
 indent_blankline.setup({
 	indentLine_enabled = 1,
 	use_treesitter = true,
 	use_treesitter_scope = true,
-	char = "▏",
-	char_blankline = "▏",
+	--char = "▏",
+	--char_blankline = "▏",
 	filetype_exclude = {
 		"help",
 		"terminal",
