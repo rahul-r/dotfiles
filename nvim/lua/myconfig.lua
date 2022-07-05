@@ -69,12 +69,14 @@ vim.cmd([[
 vim.cmd('filetype plugin indent on')
 
 -- Set the color theme
-vim.cmd([[
+vim.cmd [[
     try
       colorscheme nightfox
-    catch
+    catch /^Vim\%((\a\+)\)\=:E185/
+      colorscheme default
+      set background=dark
     endtry
-]])
+]]
 --set background=dark
 
 vim.opt.termguicolors = true

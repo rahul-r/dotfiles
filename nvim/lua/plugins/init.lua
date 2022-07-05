@@ -47,19 +47,20 @@ require("plugins.gitsigns")
 require("plugins.which-key")
 require("plugins.nvim-tree")
 require("plugins.indent-blankline")
+--require("plugins.cmp")
 
 local colorizer_ok, colorizer = pcall(require, "colorizer")
-if  colorizer_ok then
+if colorizer_ok then
   colorizer.setup()
 end
 
 local Comment_ok, Comment = pcall(require, "Comment")
-if  Comment_ok then
+if Comment_ok then
   Comment.setup()
 end
 
 local autopairs_ok, autopairs = pcall(require, "nvim-autopairs")
-if  autopairs_ok then
+if autopairs_ok then
   autopairs.setup()
 end
 
@@ -103,6 +104,23 @@ return packer.startup(function(use)
 
   use 'ctrlpvim/ctrlp.vim'
 
+  -- cmp plugins
+  --use("hrsh7th/nvim-cmp") -- The completion plugin
+  --use("hrsh7th/cmp-buffer") -- buffer completions
+  --use("hrsh7th/cmp-path") -- path completions
+  --use("saadparwaiz1/cmp_luasnip") -- snippet completions
+  --use("hrsh7th/cmp-nvim-lsp")
+  --use("hrsh7th/cmp-nvim-lua")
+
+  -- snippets
+  --use("L3MON4D3/LuaSnip") --snippet engine
+  --use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+
+  -- LSP
+  --use("neovim/nvim-lspconfig") -- enable LSP
+  --use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+  --use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+
   -- Telescope and dependencies
   use 'nvim-lua/plenary.nvim'
   use {
@@ -111,7 +129,7 @@ return packer.startup(function(use)
   }
 
   -- Helpers
-  use "windwp/nvim-autopairs" 
+  use "windwp/nvim-autopairs"
   use 'numToStr/Comment.nvim'
 
   -- Automatically set up configuration after cloning packer.nvim
