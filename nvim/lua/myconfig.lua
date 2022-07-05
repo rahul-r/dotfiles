@@ -71,7 +71,7 @@ vim.cmd('filetype plugin indent on')
 -- Set the color theme
 vim.cmd([[
     try
-	colorscheme nightfox
+      colorscheme nightfox
     catch
     endtry
 ]])

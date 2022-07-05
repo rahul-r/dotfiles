@@ -69,6 +69,7 @@ return packer.startup(function(use)
   -- User interface
   -- Themes
   use "EdenEast/nightfox.nvim"
+  use "lunarvim/darkplus.nvim"
   -- Icons
   use 'ryanoasis/vim-devicons'
   -- Status bar
