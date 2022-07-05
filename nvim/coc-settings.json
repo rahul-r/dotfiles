@@ -33,6 +33,7 @@
 	"javascript.preferences.useAliasesForRenames": false,
 	"hover.floatConfig": {
 		"border": true
-  },
-  "Lua.telemetry.enable": false
+	},
+	"Lua.telemetry.enable": false,
+	"sumneko-lua.enableNvimLuaDev": true
 }
