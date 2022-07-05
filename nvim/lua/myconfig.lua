@@ -59,9 +59,9 @@ vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
 
 vim.cmd([[
   if has("autocmd")
-      autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-	  " set filetypes as typescriptreact
-	  autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+      "autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+      " set filetypes as typescriptreact
+      autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
   endif
 ]])
 
