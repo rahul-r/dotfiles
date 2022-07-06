@@ -34,9 +34,9 @@ vim.opt.mat = 2
 
 -- 1 tab == 4 spaces
 -- 'tpope/vim-sleuth' plugin will automatically select space/tab based on the current file
---vim.opt.shiftwidth = 4
---vim.opt.tabstop = 4
---vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
 
 -- Linebreak on 500 characters
 vim.opt.linebreak = true
