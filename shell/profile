@@ -21,7 +21,9 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export PATH=$PATH:${HOME}/.local/bin
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH=$PATH:${HOME}/.local/bin
+fi
 
 # Environment for Android
 export ANDROID_HOME=/opt/dev/android-sdk
@@ -48,4 +50,7 @@ export LESS=' -R'
 
 # Remove pagination of systemctl and journalctl outputs
 export SYSTEMD_PAGER=''
-. "$HOME/.cargo/env"
+
+if [ -d "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi

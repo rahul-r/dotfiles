@@ -55,7 +55,7 @@ vim.opt.undodir = { pathprefix .. "/nvim/undo//"}
 vim.opt.undofile = true
 
 -- Return to last edit position when opening files
-vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
+vim.cmd([[ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]])
 
 vim.cmd([[
   if has("autocmd")
@@ -65,6 +65,9 @@ vim.cmd([[
   endif
 ]])
 
+-- Automaticlly format JavaScript and TypeScript files on save
+vim.cmd([[ autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll ]])
+
 -- Indent commants with code in languages like Python, Perl
 vim.cmd('filetype plugin indent on')
 
@@ -72,14 +75,15 @@ vim.cmd('filetype plugin indent on')
 vim.cmd [[
     try
       colorscheme nightfox
+      let g:airline_theme = 'selenized' " ouo, night_owl, paperclor
     catch /^Vim\%((\a\+)\)\=:E185/
       colorscheme default
       set background=dark
     endtry
 ]]
---set background=dark
-
+vim.opt.background = "dark"
 vim.opt.termguicolors = true
+
 vim.opt.cursorline = true  -- highlight current line
 
 vim.cmd('set mouse=a')

@@ -78,10 +78,13 @@ return packer.startup(function(use)
   -- Themes
   use "EdenEast/nightfox.nvim"
   use "lunarvim/darkplus.nvim"
+  use "ellisonleao/gruvbox.nvim"
+
   -- Icons
   use 'ryanoasis/vim-devicons'
   -- Status bar
   use "vim-airline/vim-airline"
+  use "vim-airline/vim-airline-themes"
   -- Sidebar
   use {
     'kyazdani42/nvim-tree.lua',
