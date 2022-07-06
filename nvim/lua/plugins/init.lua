@@ -40,7 +40,7 @@ packer.init({
 
 local use_lsp = true
 
-require("plugins.ctrlp")
+--require("plugins.ctrlp")
 require("plugins.treesitter")
 require("plugins.telescope")
 require("plugins.airline")
@@ -110,7 +110,7 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'p00f/nvim-ts-rainbow'
 
-  use 'ctrlpvim/ctrlp.vim'
+  --use 'ctrlpvim/ctrlp.vim'
 
   if use_lsp then
     -- cmp plugins
