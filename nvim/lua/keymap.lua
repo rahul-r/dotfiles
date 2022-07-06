@@ -21,7 +21,7 @@ vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', { noremap = tr
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fhh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fhb', '<cmd>Telescope builtins<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>fr', '<cmd>Telescope reloader<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fl', '<cmd>Telescope reloader<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fw', '<cmd>Telescope grep_string<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>th', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fr', '<cmd>Telescope registers<CR>', { noremap = true, silent = true })
@@ -35,3 +35,6 @@ vim.keymap.set('n', '<leader>gt', '<cmd>Telescope git_stash<CR>', { noremap = tr
 -- nvim-tree keymaps
 vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>nc', '<cmd>NvimTreeCollapse<CR>', { noremap = true, silent = true })
+
+-- symbols-outline keymaps
+vim.keymap.set('n', '<space>m', '<cmd>SymbolsOutline<CR>', { noremap = true, silent = true })

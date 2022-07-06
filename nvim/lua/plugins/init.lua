@@ -52,6 +52,7 @@ if use_lsp then
   require("plugins.luasnip")
   require("plugins.cmp")
   require("plugins.lsp")
+  require("plugins.symbols-outline")
 else
   require("plugins.coc")
 end
@@ -120,6 +121,7 @@ return packer.startup(function(use)
     use("saadparwaiz1/cmp_luasnip") -- snippet completions
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-nvim-lua")
+    use('simrat39/symbols-outline.nvim')
 
     -- snippets
     use("L3MON4D3/LuaSnip") --snippet engine
