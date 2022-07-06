@@ -48,3 +48,4 @@ export LESS=' -R'
 
 # Remove pagination of systemctl and journalctl outputs
 export SYSTEMD_PAGER=''
+. "$HOME/.cargo/env"

@@ -127,3 +127,4 @@ set_title() {
 }
 
 source ~/.aliases
+. "$HOME/.cargo/env"
