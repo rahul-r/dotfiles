@@ -166,7 +166,3 @@ let g:airline_powerline_fonts = 1
 " Gvim settings
 set guioptions-=T  "remove toolbar
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
-
-" blamer.nvim configuration
-let g:blamer_enabled = 1
-let g:blamer_delay = 500
