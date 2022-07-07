@@ -88,5 +88,5 @@ vim.opt.cursorline = true  -- highlight current line
 
 vim.cmd('set mouse=a')
 
--- Always show the statusbar
-vim.opt.laststatus=2
+-- Show global status bar
+vim.opt.laststatus=3
