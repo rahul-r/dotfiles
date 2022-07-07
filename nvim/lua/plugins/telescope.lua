@@ -33,5 +33,10 @@ telescope.setup {
   }
 }
 
-telescope.load_extension('fzf') -- This require 'telescope-fzf-native.nvim' plugin
-telescope.load_extension('live_grep_args') -- This require 'telescope-live-grep-args.nvim' plugin
+
+local function load_extensions()
+  telescope.load_extension('fzf') -- This require 'telescope-fzf-native.nvim' plugin
+  telescope.load_extension('live_grep_args') -- This require 'telescope-live-grep-args.nvim' plugin
+end
+
+pcall(load_extensions)
