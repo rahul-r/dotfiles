@@ -66,7 +66,7 @@ vim.cmd([[
 ]])
 
 -- Automaticlly format JavaScript and TypeScript files on save
-vim.cmd([[ autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll ]])
+--vim.cmd([[ autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll ]])
 
 -- Indent commants with code in languages like Python, Perl
 vim.cmd('filetype plugin indent on')

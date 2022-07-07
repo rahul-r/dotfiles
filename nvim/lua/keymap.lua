@@ -14,6 +14,8 @@ vim.keymap.set('n', '<C-K>', '<C-W><C-K>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-L>', '<C-W><C-L>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-H>', '<C-W><C-H>', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<C-F>', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 4000)<CR>', { noremap = true, silent = true })
+
 -- Telescope keymaps
 vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope git_files<CR>', { noremap = true, silent = true })
