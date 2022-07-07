@@ -14,17 +14,33 @@ local servers = {
   "cssls",
   "dockerls",
   "eslint",
-  "golangci_lint_ls",
   "html",
   "tsserver",
   "marksman",
   "pyright",
   "rust_analyzer",
   "sqlls",
-  "taplo",
   "lemminx",
   "yamlls"
 }
+
+local function exists(name)
+  local handle = io.popen("which " .. name)
+  if handle ~= nil then
+    local result = handle:read("*a")
+    handle:close()
+    return result ~= ''
+  end
+  return false
+end
+
+if exists("go") then
+  table.insert(servers, "golangci_lint_ls")
+end
+
+if exists("cargo") then
+  table.insert(servers, "taplo")
+end
 
 lsp_installer.setup({
   ensure_installed = servers,
