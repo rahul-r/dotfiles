@@ -44,6 +44,7 @@ vim.cmd([[
 --  group = augroup,
 --  pattern = "*/plugins/init.lua",
 --  callback = function()
+--    source the file
 --    packer.sync()
 --  end
 -- })
