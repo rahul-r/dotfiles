@@ -83,6 +83,7 @@ vim.cmd [[
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 pcall(require, "onedarker")
+--pcall(require, "darkplus")
 
 vim.opt.guifont="DroidSansMono Nerd Font:h11"
 

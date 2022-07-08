@@ -83,15 +83,16 @@ end
 
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
+  -- Dependenciis
+  use 'nvim-lua/plenary.nvim'
 
   -- User interface
   -- Themes
   use "EdenEast/nightfox.nvim"
-  use "lunarvim/darkplus.nvim"
   use "ellisonleao/gruvbox.nvim"
+  use "LunarVim/darkplus.nvim"
   use "LunarVim/onedarker.nvim"
   use "olimorris/onedarkpro.nvim" -- has themes for telescope
-
   -- Icons
   use 'ryanoasis/vim-devicons'
   -- Status bar
@@ -112,15 +113,13 @@ return packer.startup(function(use)
   use 'norcalli/nvim-colorizer.lua'
   -- Smooth scrolling
   use 'psliwka/vim-smoothie'
-  --- Automatically adjust 'shiftwidth' and 'expandtab' based on the current file
-  use 'tpope/vim-sleuth'
+  -- Treesitter
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'p00f/nvim-ts-rainbow'
 
   -- Git
   use 'tpope/vim-fugitive'
   use 'lewis6991/gitsigns.nvim'
-
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'p00f/nvim-ts-rainbow'
 
   -- cmp plugins
   use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -140,8 +139,7 @@ return packer.startup(function(use)
   use("williamboman/nvim-lsp-installer") -- simple to use language server installer
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
-  -- Telescope and dependencies
-  use 'nvim-lua/plenary.nvim'
+  -- Telescope
   use "nvim-telescope/telescope-live-grep-args.nvim"
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -155,6 +153,8 @@ return packer.startup(function(use)
   -- Helpers
   use "windwp/nvim-autopairs"
   use 'numToStr/Comment.nvim'
+  --- Automatically adjust 'shiftwidth' and 'expandtab' based on the current file
+  use 'tpope/vim-sleuth'
 
   -- Automatically set up configuration after cloning packer.nvim
   -- Put this at the end after all plugins
