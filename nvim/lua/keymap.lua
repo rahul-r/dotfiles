@@ -20,7 +20,8 @@ vim.keymap.set('n', '<C-F>', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 4000)<CR
 vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action(nil, 4000)<CR>', options)
 
 -- Telescope keymaps
-vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<CR>', options)
+--vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<CR>', options)
+vim.keymap.set('n', '<C-p>', '<cmd>lua require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({previewer = false}))<CR>', options)
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope git_files<CR>', options)
 --vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', options)
 vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", options)
