@@ -49,8 +49,6 @@ vim.cmd([[
 --  end
 -- })
 
-local use_lsp = true
-
 require("plugins.treesitter")
 require("plugins.telescope")
 require("plugins.airline")
@@ -58,14 +56,10 @@ require("plugins.gitsigns")
 require("plugins.which-key")
 require("plugins.nvim-tree")
 require("plugins.indent-blankline")
-if use_lsp then
-  require("plugins.luasnip")
-  require("plugins.cmp")
-  require("plugins.lsp")
-  require("plugins.symbols-outline")
-else
-  require("plugins.coc")
-end
+require("plugins.luasnip")
+require("plugins.cmp")
+require("plugins.lsp")
+require("plugins.symbols-outline")
 
 local onedarkpro_ok, onedarkpro = pcall(require, "onedarkpro")
 if onedarkpro_ok then
@@ -128,27 +122,23 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'p00f/nvim-ts-rainbow'
 
-  if use_lsp then
-    -- cmp plugins
-    use("hrsh7th/nvim-cmp") -- The completion plugin
-    use("hrsh7th/cmp-buffer") -- buffer completions
-    use("hrsh7th/cmp-path") -- path completions
-    use("saadparwaiz1/cmp_luasnip") -- snippet completions
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-nvim-lua")
-    use('simrat39/symbols-outline.nvim')
+  -- cmp plugins
+  use("hrsh7th/nvim-cmp") -- The completion plugin
+  use("hrsh7th/cmp-buffer") -- buffer completions
+  use("hrsh7th/cmp-path") -- path completions
+  use("saadparwaiz1/cmp_luasnip") -- snippet completions
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-nvim-lua")
+  use('simrat39/symbols-outline.nvim')
 
-    -- snippets
-    use("L3MON4D3/LuaSnip") --snippet engine
-    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+  -- snippets
+  use("L3MON4D3/LuaSnip") --snippet engine
+  use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-    -- LSP
-    use("neovim/nvim-lspconfig") -- enable LSP
-    use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-    use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-  else
-    use { 'neoclide/coc.nvim', branch = 'release' }
-  end
+  -- LSP
+  use("neovim/nvim-lspconfig") -- enable LSP
+  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
   -- Telescope and dependencies
   use 'nvim-lua/plenary.nvim'
