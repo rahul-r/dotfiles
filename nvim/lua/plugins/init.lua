@@ -51,7 +51,6 @@ vim.cmd([[
 
 local use_lsp = true
 
---require("plugins.ctrlp")
 require("plugins.treesitter")
 require("plugins.telescope")
 require("plugins.airline")
@@ -66,6 +65,11 @@ if use_lsp then
   require("plugins.symbols-outline")
 else
   require("plugins.coc")
+end
+
+local onedarkpro_ok, onedarkpro = pcall(require, "onedarkpro")
+if onedarkpro_ok then
+  onedarkpro.setup()
 end
 
 local colorizer_ok, colorizer = pcall(require, "colorizer")
@@ -91,6 +95,8 @@ return packer.startup(function(use)
   use "EdenEast/nightfox.nvim"
   use "lunarvim/darkplus.nvim"
   use "ellisonleao/gruvbox.nvim"
+  use "LunarVim/onedarker.nvim"
+  use "olimorris/onedarkpro.nvim" -- has themes for telescope
 
   -- Icons
   use 'ryanoasis/vim-devicons'
@@ -121,8 +127,6 @@ return packer.startup(function(use)
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'p00f/nvim-ts-rainbow'
-
-  --use 'ctrlpvim/ctrlp.vim'
 
   if use_lsp then
     -- cmp plugins

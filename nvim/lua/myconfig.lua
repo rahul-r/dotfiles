@@ -74,15 +74,17 @@ vim.cmd('filetype plugin indent on')
 -- Set the color theme
 vim.cmd [[
     try
-      colorscheme nightfox
+      "colorscheme onedarkpro
       let g:airline_theme = 'selenized' " ouo, night_owl, paperclor
     catch /^Vim\%((\a\+)\)\=:E185/
-      colorscheme default
-      set background=dark
+      "colorscheme default
     endtry
 ]]
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
+pcall(require, "onedarker")
+
+vim.opt.guifont="DroidSansMono Nerd Font:h11"
 
 vim.opt.cursorline = true  -- highlight current line
 
