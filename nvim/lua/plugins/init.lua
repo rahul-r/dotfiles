@@ -61,11 +61,6 @@ require("plugins.cmp")
 require("plugins.lsp")
 require("plugins.symbols-outline")
 
-local onedarkpro_ok, onedarkpro = pcall(require, "onedarkpro")
-if onedarkpro_ok then
-  onedarkpro.setup()
-end
-
 local colorizer_ok, colorizer = pcall(require, "colorizer")
 if colorizer_ok then
   colorizer.setup()

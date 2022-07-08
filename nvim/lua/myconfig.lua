@@ -82,6 +82,7 @@ vim.cmd [[
 ]]
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
+
 pcall(require, "onedarker")
 --pcall(require, "darkplus")
 
