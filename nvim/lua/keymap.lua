@@ -48,8 +48,8 @@ vim.keymap.set('n', '<space>m', '<cmd>SymbolsOutline<CR>', options)
 
 -- Trouble keymaps
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", options)
-vim.keymap.set("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", options)
-vim.keymap.set("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", options)
-vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist<cr>", options)
-vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", options)
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", options)
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", options)
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", options)
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", options)
 vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references<cr>", options)
