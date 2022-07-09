@@ -85,6 +85,7 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   -- Dependenciis
   use 'nvim-lua/plenary.nvim'
+  use 'kyazdani42/nvim-web-devicons'
 
   -- User interface
   -- Themes
@@ -99,12 +100,7 @@ return packer.startup(function(use)
   use "vim-airline/vim-airline"
   use "vim-airline/vim-airline-themes"
   -- Sidebar
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    }
-  }
+  use 'kyazdani42/nvim-tree.lua'
   -- Key binding helper
   use 'folke/which-key.nvim'
   -- Indent visualizer
@@ -122,27 +118,24 @@ return packer.startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   -- cmp plugins
-  use("hrsh7th/nvim-cmp") -- The completion plugin
-  use("hrsh7th/cmp-buffer") -- buffer completions
-  use("hrsh7th/cmp-path") -- path completions
-  use("saadparwaiz1/cmp_luasnip") -- snippet completions
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-nvim-lua")
-  use('simrat39/symbols-outline.nvim')
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
+  use 'simrat39/symbols-outline.nvim'
 
   -- snippets
-  use("L3MON4D3/LuaSnip") --snippet engine
-  use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
-  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-  }
+  use "folke/trouble.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope-live-grep-args.nvim"
@@ -150,10 +143,7 @@ return packer.startup(function(use)
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   }
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  use 'nvim-telescope/telescope.nvim'
 
   -- Helpers
   use "windwp/nvim-autopairs"
