@@ -45,3 +45,11 @@ vim.keymap.set('n', '<leader>nc', '<cmd>NvimTreeCollapse<CR>', options)
 
 -- symbols-outline keymaps
 vim.keymap.set('n', '<space>m', '<cmd>SymbolsOutline<CR>', options)
+
+-- Trouble keymaps
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble<cr>", options)
+vim.keymap.set("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", options)
+vim.keymap.set("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", options)
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist<cr>", options)
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", options)
+vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references<cr>", options)

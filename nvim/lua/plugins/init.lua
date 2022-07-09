@@ -76,6 +76,11 @@ if autopairs_ok then
   autopairs.setup()
 end
 
+local trouble_ok, trouble = pcall(require, "trouble")
+if trouble_ok then
+  trouble.setup()
+end
+
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   -- Dependenciis
@@ -133,6 +138,11 @@ return packer.startup(function(use)
   use("neovim/nvim-lspconfig") -- enable LSP
   use("williamboman/nvim-lsp-installer") -- simple to use language server installer
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+  }
 
   -- Telescope
   use "nvim-telescope/telescope-live-grep-args.nvim"
