@@ -75,7 +75,6 @@ vim.cmd('filetype plugin indent on')
 vim.cmd [[
     try
       "colorscheme onedarkpro
-      let g:airline_theme = 'selenized' " ouo, night_owl, paperclor
     catch /^Vim\%((\a\+)\)\=:E185/
       "colorscheme default
     endtry

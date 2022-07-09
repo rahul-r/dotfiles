@@ -51,7 +51,6 @@ vim.cmd([[
 
 require("plugins.treesitter")
 require("plugins.telescope")
-require("plugins.airline")
 require("plugins.gitsigns")
 require("plugins.which-key")
 require("plugins.nvim-tree")
@@ -60,6 +59,7 @@ require("plugins.luasnip")
 require("plugins.cmp")
 require("plugins.lsp")
 require("plugins.symbols-outline")
+require("plugins.lualine")
 
 local colorizer_ok, colorizer = pcall(require, "colorizer")
 if colorizer_ok then
@@ -97,8 +97,7 @@ return packer.startup(function(use)
   -- Icons
   use 'ryanoasis/vim-devicons'
   -- Status bar
-  use "vim-airline/vim-airline"
-  use "vim-airline/vim-airline-themes"
+  use 'nvim-lualine/lualine.nvim'
   -- Sidebar
   use 'kyazdani42/nvim-tree.lua'
   -- Key binding helper
