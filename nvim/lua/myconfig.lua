@@ -49,6 +49,9 @@ vim.opt.wrap = true --Wrap lines
 -- Prevent some plugins from hiding line numbers
 vim.opt.signcolumn = "auto"
 
+-- Preserve the end of line situation (don't add to remove new line at the end of the file)
+vim.opt.fixendofline = false
+
 -- Turn persistent undo on, means that you can undo even when you close a buffer/vim
 local pathprefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
 vim.opt.undodir = { pathprefix .. "/nvim/undo//"}
