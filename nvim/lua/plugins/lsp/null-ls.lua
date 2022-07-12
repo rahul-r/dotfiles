@@ -24,7 +24,7 @@ null_ls.setup({
     formatting.gofmt, -- go
     formatting.goimports, -- go imports
     formatting.markdownlint,
-    formatting.mdformat, -- markdown
+    --formatting.mdformat, -- markdown -- This is messing up yaml frontmatter
     formatting.prettierd,
     formatting.qmlformat, -- qml
     formatting.rustfmt,
