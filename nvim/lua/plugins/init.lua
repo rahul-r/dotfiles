@@ -85,7 +85,6 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   -- Dependenciis
   use 'nvim-lua/plenary.nvim'
-  use 'kyazdani42/nvim-web-devicons'
 
   -- User interface
   -- Themes
@@ -96,6 +95,7 @@ return packer.startup(function(use)
   use "olimorris/onedarkpro.nvim" -- has themes for telescope
   -- Icons
   use 'ryanoasis/vim-devicons'
+  use 'kyazdani42/nvim-web-devicons'
   -- Status bar
   use 'nvim-lualine/lualine.nvim'
   -- Sidebar
