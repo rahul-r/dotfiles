@@ -33,6 +33,7 @@ vim.keymap.set('n', '<leader>fw', '<cmd>Telescope grep_string<CR>', options)
 vim.keymap.set('n', '<leader>th', '<cmd>Telescope colorscheme<CR>', options)
 vim.keymap.set('n', '<leader>fr', '<cmd>Telescope registers<CR>', options)
 vim.keymap.set('n', '<leader>fk', '<cmd>Telescope keymaps<CR>', options)
+vim.keymap.set('n', '<leader>fd', '<cmd>Telescope resume<CR>', options)
 --vim.keymap.set('n', '<leader>gcc', '<cmd>Telescope git_commits<CR>', options)
 --vim.keymap.set('n', '<leader>gcb', '<cmd>Telescope git_bcommits<CR>', options)
 --vim.keymap.set('n', '<leader>gb', '<cmd>Telescope git_branches<CR>', options) -- Lists buffer's git commits with diff preview and checks them out on <cr>
