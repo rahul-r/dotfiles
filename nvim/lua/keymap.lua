@@ -54,3 +54,6 @@ vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
 vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", options)
 vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", options)
 vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references<cr>", options)
+
+-- Toggleterm keymaps
+-- See lua/plugins/toggleterm.lua

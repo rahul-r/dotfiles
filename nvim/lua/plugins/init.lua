@@ -61,6 +61,7 @@ require("plugins.lsp")
 require("plugins.symbols-outline")
 require("plugins.lualine")
 require("plugins.bufferline")
+require("plugins.toggleterm")
 
 local colorizer_ok, colorizer = pcall(require, "colorizer")
 if colorizer_ok then
@@ -102,7 +103,13 @@ return packer.startup(function(use)
   -- Sidebar
   use 'kyazdani42/nvim-tree.lua'
   -- tab
-  use { 'akinsho/bufferline.nvim', tag = "v2.*" }
+  use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
+  use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
+  -- use {"akinsho/toggleterm.nvim", tag = 'v2.*',
+  --   config = function()
+  --     require("toggleterm").setup()
+  --   end
+  -- }
   -- Key binding helper
   use 'folke/which-key.nvim'
   -- Indent visualizer
