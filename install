@@ -44,6 +44,10 @@ ln -s ${CWD}/shell/profile ~/.profile
 ln -s ${CWD}/shell/aliases ~/.aliases
 
 ## Install bash conf
+mv ~/.bashrc ${BAK_DIR}/bashrc
+
+ln -s ${CWD}/shell/bashrc ~/.bashrc
+
 ZSH_DIR=~/.zsh
 
 mkdir -p ${BAK_DIR}/zsh/
