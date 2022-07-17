@@ -10,7 +10,7 @@ rm lemonade_linux_amd64.tar.gz
 # Language servers, linters, formetters, etc.
 sudo apt install clang-format cppcheck fd-find, ripgrep
 pip install yamllint black flake8 beautysh mdformat cmake-format pynvim
-yarn global add jsonlint tsc markdownlint-cli stylelint @fsouza/prettierd neovim
+yarn global add eslint jsonlint tsc markdownlint-cli stylelint @fsouza/prettierd neovim
 go install golang.org/x/tools/cmd/goimports@latest
 
 # Some plugins require unzip (e.g. lsp clangd)
