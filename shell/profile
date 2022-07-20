@@ -44,6 +44,8 @@ export PATH=${PATH}:${HOME}/.yarn/bin
 export PATH=${PATH}:${HOME}/.emacs.d/bin/
 # clang
 export PATH=${PATH}:/usr/lib/llvm-12/bin/
+# set default virsh connection URI
+export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 # Pretend to be KDE desktop to have the correct theme applied to KDE applications
 # See https://unix.stackexchange.com/questions/275777/kde5-breeze-dark-theme-and-kde-icons-not-working-in-i3wm
