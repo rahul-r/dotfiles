@@ -10,7 +10,7 @@ telescope.setup {
       preview_cutoff = 1,
       --layout_strategy = "flex",
       width = .7,
-      preview_width = .7,
+      --preview_width = .7,
     },
     file_ignore_patterns = {
       "^./.git/",

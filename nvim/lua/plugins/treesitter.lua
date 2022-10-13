@@ -7,11 +7,11 @@ end
 treesitter.setup {
   ensure_installed = {
     "c",
-    "cpp", 
-    "lua", 
-    "rust", 
-    "go", 
-    "javascript", 
+    "cpp",
+    "lua",
+    "rust",
+    "go",
+    "javascript",
     "typescript",
     "tsx",
     "html",

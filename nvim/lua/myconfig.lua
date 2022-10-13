@@ -78,15 +78,14 @@ vim.cmd('filetype plugin indent on')
 vim.cmd [[
     try
       "colorscheme onedarkpro
+      colorscheme onedarker
+      "colorscheme darkplus
     catch /^Vim\%((\a\+)\)\=:E185/
-      "colorscheme default
+      colorscheme default
     endtry
 ]]
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
-
-pcall(require, "onedarker")
---pcall(require, "darkplus")
 
 vim.opt.guifont="DroidSansMono Nerd Font:h11"
 
