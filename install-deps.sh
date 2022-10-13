@@ -3,7 +3,7 @@
 # Clipboard access
 sudo apt install xsel
 # Clipboard access when running ssh
-weget https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz
+wget https://github.com/lemonade-command/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz
 tar -xvf lemonade_linux_amd64.tar.gz -C ~/bin
 rm lemonade_linux_amd64.tar.gz
 
