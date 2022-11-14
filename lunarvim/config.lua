@@ -61,6 +61,15 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
+lvim.builtin.which_key.mappings["gh"] = {
+  name = "Diffview",
+  h = { "<cmd>DiffviewFileHistory %<cr>", "This file history" },
+  H = { "<cmd>DiffviewFileHistory<cr>", "All file history" },
+  c = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
+  t = { "<cmd>DiffviewToggleFiles<cr>", "Toggle file list" },
+  r = { "<cmd>DiffviewRefresh<cr>", "Refresh" },
+}
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -196,6 +205,11 @@ lvim.plugins = {
       vim.g.gitblame_message_template = "<author> • <date>"
       vim.g.gitblame_message_when_not_committed = "Not commited!"
     end,
+  },
+  -- git diff in a single tabpage
+  {
+    "sindrets/diffview.nvim",
+    event = "BufRead",
   },
   -- autoclose and autorename html tag
   {
