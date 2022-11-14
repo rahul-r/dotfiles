@@ -11,7 +11,8 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "nightfox"
+lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "nightfox"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -77,20 +78,33 @@ lvim.builtin.project.patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn" } -- {
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "cpp",
+  "cmake",
+  "comment",
+  "css",
+  "dockerfile",
+  "go",
+  "html",
   "javascript",
   "json",
   "lua",
+  "make",
+  "markdown",
   "python",
+  "regex",
   "typescript",
   "tsx",
   "css",
   "rust",
+  "toml",
+  "vim",
   "java",
   "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.rainbow.enable = true
 
 -- generic LSP settings
 
