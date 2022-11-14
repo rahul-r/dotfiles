@@ -287,3 +287,4 @@ lvim.plugins = {
 
 -- Prevent adding new line at end of files
 vim.cmd('set nofixeol')
+vim.cmd('set rnu')
