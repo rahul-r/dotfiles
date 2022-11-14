@@ -20,6 +20,7 @@ lvim.colorscheme = "onedarker"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<C-p>"] = "<cmd>Telescope git_files<CR>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -288,3 +289,12 @@ lvim.plugins = {
 -- Prevent adding new line at end of files
 vim.cmd('set nofixeol')
 vim.cmd('set rnu')
+
+function COPY()
+  vim.opt.number = false
+  vim.opt.relativenumber = false
+  vim.cmd('set mouse=n')
+  vim.cmd('Gitsigns detach_all')
+  vim.cmd('startinsert')
+end
+
