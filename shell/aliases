@@ -12,6 +12,6 @@ alias la='ls -lAh'
 
 alias grep='grep --color=auto'
 
-alias vi='nvim'
-alias vim='nvim'
-alias neovim='nvim'
+alias vi='lvim'
+alias vim='lvim'
+alias neovim='lvim'
