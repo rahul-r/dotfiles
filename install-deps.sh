@@ -45,6 +45,12 @@ pip install yamllint black flake8 beautysh mdformat cmake-format pynvim
 yarn global add eslint jsonlint tsc markdownlint-cli stylelint @fsouza/prettierd neovim
 ~/bin/go/bin/go install golang.org/x/tools/cmd/goimports@latest
 
+# Lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+rm lazygit.tar.gz
+
 # Install patched font
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf

@@ -75,7 +75,7 @@ lvim.builtin.which_key.mappings["gh"] = {
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.alpha.dashboard.section.header.val = "SA Photonics"
+lvim.builtin.alpha.dashboard.section.header.val = "Lunar Vim"
 lvim.builtin.alpha.dashboard.section.footer.val = require("lvim.utils.git").get_lvim_version()
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
