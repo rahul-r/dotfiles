@@ -26,7 +26,7 @@ sudo $INSTALL unzip tmux
 # Install nvm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 . ~/.bashrc
-nvm install node
+npm install node
 npm install -g yarn
 
 # Install rust
