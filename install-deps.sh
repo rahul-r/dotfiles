@@ -2,6 +2,8 @@
 
 set -e
 
+mkdir -p ~/bin
+
 . /etc/os-release
 
 INSTALL="apt-get install -y"
@@ -18,15 +20,15 @@ elif [ "$ID" = "fedora" ]; then
 elif [ "$ID" = "ubuntu" ]; then
     sudo apt-get update
     INSTALL="apt-get install -y"
-    EXTRA_PACKAGES="fd-find"
+    EXTRA_PACKAGES="fd-find python3-pip"
 fi
 
-sudo $INSTALL unzip tmux
+sudo $INSTALL unzip tmux libfuse2 zfs
 
 # Install nvm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 . ~/.bashrc
-npm install node
+nvm install node
 npm install -g yarn
 
 # Install rust
@@ -43,7 +45,6 @@ rm lemonade_linux_amd64.tar.gz
 sudo $INSTALL clang-tools cppcheck ripgrep $EXTRA_PACKAGES
 pip install yamllint black flake8 beautysh mdformat cmake-format pynvim
 yarn global add eslint jsonlint tsc markdownlint-cli stylelint @fsouza/prettierd neovim
-~/bin/go/bin/go install golang.org/x/tools/cmd/goimports@latest
 
 # Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
