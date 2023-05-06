@@ -11,8 +11,11 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "nightfox"
+-- lvim.colorscheme = "onedarker"
+lvim.colorscheme = "nightfox"
+-- lvim.colorscheme = "tetrafox"
+-- lvim.colorscheme = "material"
+-- vim.g.material_style = "deep ocean"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -232,14 +235,14 @@ lvim.plugins = {
         -- All these keys will be mapped to their corresponding default scrolling animation
         mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
           '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        hide_cursor = true, -- Hide cursor while scrolling
-        stop_eof = true, -- Stop at <EOF> when scrolling downwards
+        hide_cursor = true,          -- Hide cursor while scrolling
+        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
         use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing_function = nil, -- Default easing function
-        pre_hook = nil, -- Function to run before the scrolling animation starts
-        post_hook = nil, -- Function to run after the scrolling animation ends
+        easing_function = nil,       -- Default easing function
+        pre_hook = nil,              -- Function to run before the scrolling animation starts
+        post_hook = nil,             -- Function to run after the scrolling animation ends
       })
     end
   },
@@ -269,7 +272,39 @@ lvim.plugins = {
   { "olimorris/onedarkpro.nvim" },
   { "Th3Whit3Wolf/space-nvim" },
   { "tomasiser/vim-code-dark" },
-  { "EdenEast/nightfox.nvim" },
+  {
+    "EdenEast/nightfox.nvim",
+    config = require('nightfox').setup({
+      options = {
+        styles = {
+          comments = "italic",
+        }
+      },
+      groups = {
+        all = {
+          LineNr = { fg = "palette.bg4" },
+          CursorLineNr = { fg = "palette.fg2" },
+        }
+      }
+    })
+  },
+  { "marko-cerovac/material.nvim" },
+  {
+    "navarasu/onedark.nvim",
+    config = function()
+      require("material").setup({
+        plugins = {
+          "dashboard",
+          "gitsigns",
+          "nvim-tree",
+          "nvim-web-devicons",
+          "telescope",
+          "trouble",
+          "which-key"
+        }
+      })
+    end,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -297,4 +332,3 @@ function COPY()
   vim.cmd('Gitsigns detach_all')
   vim.cmd('startinsert')
 end
-
