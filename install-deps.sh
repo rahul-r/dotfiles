@@ -12,15 +12,15 @@ EXTRA_PACKAGES=""
 if [ "$ID" = "opensuse-tumbleweed" ]; then
     sudo zypper refresh
     INSTALL="zypper install -y"
-    EXTRA_PACKAGES="fd"
+    EXTRA_PACKAGES="fd clang-tools"
 elif [ "$ID" = "fedora" ]; then
     sudo dnf update
     INSTALL="dnf install -y"
-    EXTRA_PACKAGES="fd-find"
+    EXTRA_PACKAGES="fd-find clang-tools-extra"
 elif [ "$ID" = "ubuntu" ]; then
     sudo apt-get update
     INSTALL="apt-get install -y"
-    EXTRA_PACKAGES="fd-find python3-pip"
+    EXTRA_PACKAGES="fd-find clang-tools python3-pip"
 fi
 
 sudo $INSTALL unzip tmux libfuse2 zfs
@@ -42,7 +42,7 @@ tar -xvf lemonade_linux_amd64.tar.gz -C ~/bin
 rm lemonade_linux_amd64.tar.gz
 
 # Language servers, linters, formetters, etc.
-sudo $INSTALL clang-tools cppcheck ripgrep $EXTRA_PACKAGES
+sudo $INSTALL cppcheck ripgrep python3-pip $EXTRA_PACKAGES
 pip install yamllint black flake8 beautysh mdformat cmake-format pynvim
 yarn global add eslint jsonlint tsc markdownlint-cli stylelint @fsouza/prettierd neovim
 
