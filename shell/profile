@@ -25,6 +25,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     export PATH=$PATH:${HOME}/.local/bin
 fi
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 # Environment for Android
 export ANDROID_HOME=/opt/dev/android-sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
