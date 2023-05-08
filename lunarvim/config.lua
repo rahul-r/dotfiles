@@ -123,7 +123,7 @@ lvim.builtin.treesitter.rainbow.enable = true
 
 -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
-  "sumneko_lua",
+  "lua_ls",
   "jsonls",
 }
 -- -- change UI setting of `LspInstallInfo`
@@ -274,19 +274,21 @@ lvim.plugins = {
   { "tomasiser/vim-code-dark" },
   {
     "EdenEast/nightfox.nvim",
-    config = require('nightfox').setup({
-      options = {
-        styles = {
-          comments = "italic",
+    config = function()
+      require('nightfox').setup({
+        options = {
+          styles = {
+            comments = "italic",
+          }
+        },
+        groups = {
+          all = {
+            LineNr = { fg = "palette.bg4" },
+            CursorLineNr = { fg = "palette.fg2" },
+          }
         }
-      },
-      groups = {
-        all = {
-          LineNr = { fg = "palette.bg4" },
-          CursorLineNr = { fg = "palette.fg2" },
-        }
-      }
-    })
+      })
+    end,
   },
   { "marko-cerovac/material.nvim" },
   {
@@ -305,7 +307,24 @@ lvim.plugins = {
       })
     end,
   },
+  {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        -- auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+        auto_save_enabled = true,
+        auto_restore_enabled = true,
+      }
+    end
+  },
+  {
+    'nmac427/guess-indent.nvim',
+    config = function() require('guess-indent').setup {} end,
+  },
 }
+
+vim.opt.wrap = true
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
