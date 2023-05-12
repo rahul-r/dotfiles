@@ -310,6 +310,7 @@ lvim.plugins = {
   {
     "rmagatti/auto-session",
     config = function()
+      -- Couldn't get auto save working; as a workaround, run ":SaveSession" in neovim to save the current session
       require("auto-session").setup {
         log_level = "error",
         auto_save_enabled = true,
@@ -349,4 +350,8 @@ function COPY()
   vim.cmd('set mouse=n')
   vim.cmd('Gitsigns detach_all')
   vim.cmd('startinsert')
+end
+
+if vim.g.neovide then
+    vim.o.guifont = "UbuntuMono Nerd Font:h13"
 end

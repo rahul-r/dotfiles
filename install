@@ -75,7 +75,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_DIR/synt
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_DIR/zsh-autosuggestions
 
 ## Install tmux conf
-mv $XDG_CONFIG_HOME/tmux/tmux.conf ${BAK_DIR}/tmux
+[ -f $XDG_CONFIG_HOME/tmux/tmux.conf ] && mv $XDG_CONFIG_HOME/tmux/tmux.conf ${BAK_DIR}/tmux
 mkdir -p $XDG_CONFIG_HOME/tmux
 ln -s ${CWD}/shell/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/tmux.conf
 
