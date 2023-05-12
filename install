@@ -87,6 +87,10 @@ rm -rf $XDG_CONFIG_HOME/tmux/plugins/tpm
 mkdir -p $XDG_CONFIG_HOME/tmux/plugins
 git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
 
+## alacritty
+rm -rf $XDG_CONFIG_HOME/alacritty
+ln -s $CWD/shell/alacritty $XDG_CONFIG_HOME/alacritty
+
 ## Install screen conf
 mv ~/.screenrc ${BAK_DIR}/screenrc
 ln -s ${CWD}/screen/screenrc ~/.screenrc
