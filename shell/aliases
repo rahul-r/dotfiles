@@ -15,3 +15,5 @@ alias grep='grep --color=auto'
 alias vi='lvim'
 alias vim='lvim'
 alias neovim='lvim'
+
+alias fedora='distrobox enter fedora'
