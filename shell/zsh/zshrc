@@ -85,3 +85,5 @@ PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 # Enable plugins
 source ~/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -129,3 +129,5 @@ set_title() {
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source ~/.aliases
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
