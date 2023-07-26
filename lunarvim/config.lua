@@ -12,7 +12,7 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = false
 -- lvim.colorscheme = "onedarker"
-lvim.colorscheme = "nightfox"
+lvim.colorscheme = "carbonfox"
 -- lvim.colorscheme = "tetrafox"
 -- lvim.colorscheme = "material"
 -- vim.g.material_style = "deep ocean"
@@ -307,6 +307,7 @@ lvim.plugins = {
       })
     end,
   },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 },
   {
     "rmagatti/auto-session",
     config = function()
@@ -351,6 +352,10 @@ function COPY()
   vim.cmd('Gitsigns detach_all')
   vim.cmd('startinsert')
 end
+
+-- Remove the "How-to disable mouse" menu item and the separator above it
+vim.cmd('aunmenu PopUp.How-to\\ disable\\ mouse')
+vim.cmd('aunmenu PopUp.-1-')
 
 if vim.g.neovide then
     vim.o.guifont = "UbuntuMono Nerd Font:h13"
