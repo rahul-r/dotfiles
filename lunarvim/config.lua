@@ -323,6 +323,23 @@ lvim.plugins = {
     'nmac427/guess-indent.nvim',
     config = function() require('guess-indent').setup {} end,
   },
+  {
+    "zbirenbaum/copilot-cmp",
+    event = "InsertEnter",
+    dependencies = { "zbirenbaum/copilot.lua" },
+    config = function()
+      vim.defer_fn(function()
+        -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+        require("copilot").setup({
+          suggestion = {
+            auto_trigger = true,
+          }
+        })
+        -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+        require("copilot_cmp").setup()
+      end, 100)
+    end,
+},
 }
 
 vim.opt.wrap = true

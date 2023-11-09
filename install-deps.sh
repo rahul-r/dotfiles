@@ -23,13 +23,13 @@ elif [ "$ID" = "ubuntu" ]; then
     EXTRA_PACKAGES="fd-find clang-tools python3-pip"
 fi
 
-sudo $INSTALL unzip tmux libfuse2 zfs
+sudo $INSTALL unzip tmux libfuse2 zfs || true
 
 # Install nvm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 . ~/.bashrc
-nvm install node
-npm install -g yarn
+nvm install node || true
+npm install -g yarn || true
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
