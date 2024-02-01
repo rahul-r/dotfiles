@@ -19,7 +19,7 @@ sudo ln -s /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Install providers for nvim
-python3 -m pip install --user --upgrade pynvim
+python3 -m pip install --break-system-packages --user --upgrade pynvim
 yarn global add neovim
 # Use nvim as default editor for git
 git config --global core.editor "nvim"

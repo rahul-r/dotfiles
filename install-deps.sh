@@ -43,7 +43,7 @@ rm lemonade_linux_amd64.tar.gz
 
 # Language servers, linters, formetters, etc.
 sudo $INSTALL cppcheck ripgrep python3-pip $EXTRA_PACKAGES
-pip install yamllint black flake8 beautysh mdformat cmake-format pynvim
+pip install --break-system-packages yamllint black flake8 beautysh mdformat cmake-format pynvim
 yarn global add eslint jsonlint tsc markdownlint-cli stylelint @fsouza/prettierd neovim
 
 # Lazygit
