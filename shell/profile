@@ -49,6 +49,9 @@ export PATH=${PATH}:/usr/lib/llvm-12/bin/
 # set default virsh connection URI
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
+export EDITOR='/usr/bin/vi'
+export VISUAL='/usr/bin/vi'
+
 # Pretend to be KDE desktop to have the correct theme applied to KDE applications
 # See https://unix.stackexchange.com/questions/275777/kde5-breeze-dark-theme-and-kde-icons-not-working-in-i3wm
 export XDG_CURRENT_DESKTOP=KDE
