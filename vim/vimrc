@@ -113,7 +113,7 @@ let g:ctrlp_custom_ignore = {
 call plug#begin('~/.vim/plugged')
 
 " Themes
-Plug 'crucerucalin/peaksea.vim'
+Plug 'vim-scripts/peaksea.vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
