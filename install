@@ -98,3 +98,7 @@ ln -s ${CWD}/screen/screenrc ~/.screenrc
 ## neovim configuration
 mv  ~/.config/nvim ${BAK_DIR}/nvim 2>/dev/null || true # Silently move without throwing error if the file doesnt exist
 ln -s ${CWD}/nvim ~/.config/nvim
+
+## Install lf
+mv  ~/.config/lf ${BAK_DIR}/lf 2>/dev/null || true
+ln -s ${CWD}/lf ~/.config/lf
