@@ -23,7 +23,7 @@ lvim.colorscheme = "carbonfox"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<C-p>"] = "<cmd>Telescope git_files<CR>"
+lvim.keys.normal_mode["<C-p>"] = "<cmd>Telescope fd<CR>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
