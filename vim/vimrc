@@ -113,7 +113,7 @@ let g:ctrlp_custom_ignore = {
 call plug#begin('~/.vim/plugged')
 
 " Themes
-Plug 'vim-scripts/peaksea.vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
@@ -141,7 +141,7 @@ call plug#end()
 filetype plugin indent on
 
 " Set the color theme
-colorscheme peaksea
+colorscheme gruvbox
 set background=dark
 
 set mouse=a
