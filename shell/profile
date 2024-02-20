@@ -73,3 +73,23 @@ export NVM_DIR="$HOME/.nvm"
 if [ -e "$HOME/.profile_local" ] ; then
     . "$HOME/.profile_local"
 fi
+
+find_files() {
+    selected=$(fzf)
+
+    if [ -d "$selected" ]
+    then
+        cd "$selected"
+    elif [ -f "$selected" ]
+    then
+        # Check if the file is a text file
+        if file --mime-type "$selected" | grep -q text/
+        then
+            lvim "$selected"
+        else
+            # If it's not a text file, open it with the default program
+            xdg-open "$selected"
+        fi
+    fi
+}
+bindkey -s "^P" 'find_files^M'
