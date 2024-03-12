@@ -11,6 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
+vim.o.termguicolors = true
 -- lvim.colorscheme = "onedarker"
 lvim.colorscheme = "nightfox"
 -- lvim.colorscheme = "tetrafox"
