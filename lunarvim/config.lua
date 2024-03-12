@@ -12,7 +12,7 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = false
 -- lvim.colorscheme = "onedarker"
-lvim.colorscheme = "carbonfox"
+lvim.colorscheme = "nightfox"
 -- lvim.colorscheme = "tetrafox"
 -- lvim.colorscheme = "material"
 -- vim.g.material_style = "deep ocean"
@@ -69,7 +69,7 @@ lvim.builtin.which_key.mappings["gh"] = {
   name = "Diffview",
   h = { "<cmd>DiffviewFileHistory %<cr>", "This file history" },
   H = { "<cmd>DiffviewFileHistory<cr>", "All file history" },
-  c = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
+  q = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
   t = { "<cmd>DiffviewToggleFiles<cr>", "Toggle file list" },
   r = { "<cmd>DiffviewRefresh<cr>", "Refresh" },
 }
