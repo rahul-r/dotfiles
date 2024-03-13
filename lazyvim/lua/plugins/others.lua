@@ -10,14 +10,6 @@ return {
   {
     "p00f/nvim-ts-rainbow",
   },
-  -- require("nvim-treesitter.configs").setup({
-  --   rainbow = {
-  --     enable = true,
-  --     extended_mode = true,
-  --     max_file_lines = nil,
-  --   },
-  -- }),
-  -- smooth scrolling
   {
     "karb94/neoscroll.nvim",
     event = "WinScrolled",
@@ -53,14 +45,14 @@ return {
       })
     end,
   },
-  -- highlight and search for todo comments
-  {
-    "folke/todo-comments.nvim",
-    event = "BufRead",
-    config = function()
-      require("todo-comments").setup()
-    end,
-  },
+  -- -- highlight and search for todo comments
+  -- {
+  --   "folke/todo-comments.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("todo-comments").setup()
+  --   end,
+  -- },
   {
     "rmagatti/auto-session",
     config = function()
@@ -78,23 +70,23 @@ return {
       require("guess-indent").setup({})
     end,
   },
-  {
-    "zbirenbaum/copilot-cmp",
-    event = "InsertEnter",
-    dependencies = { "zbirenbaum/copilot.lua" },
-    config = function()
-      vim.defer_fn(function()
-        -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-        require("copilot").setup({
-          suggestion = {
-            auto_trigger = true,
-          },
-        })
-        -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-        require("copilot_cmp").setup()
-      end, 100)
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   event = "InsertEnter",
+  --   dependencies = { "zbirenbaum/copilot.lua" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+  --       require("copilot").setup({
+  --         suggestion = {
+  --           auto_trigger = true,
+  --         },
+  --       })
+  --       -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+  --       require("copilot_cmp").setup()
+  --     end, 100)
+  --   end,
+  -- },
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
