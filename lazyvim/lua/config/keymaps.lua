@@ -4,6 +4,9 @@
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope fd<CR>", { desc = "File picker", remap = true })
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "Comment line", remap = true })
 vim.keymap.set("x", "<leader>/", "gc", { desc = "Comment selection", remap = true })
+vim.keymap.set("n", "<leader>qw", "<cmd>x<cr>", { desc = "Save file and quit" })
+vim.keymap.set("n", "<leader>ww", "<cmd>w<cr>", { desc = "Save file" })
+vim.keymap.set("n", "<leader>h", "<cmd>nohl<cr>", { desc = "No highlight" })
 
 vim.keymap.set("n", "<leader>tr", "<cmd>Trouble lsp_references<cr>", { desc = "References" })
 vim.keymap.set("n", "<leader>tf", "<cmd>Trouble lsp_definitions<cr>", { desc = "Definitions" })
