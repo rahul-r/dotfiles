@@ -33,7 +33,8 @@ log_level = "Warn"
 size = 12.0
 
 [font.normal]
-family = "UbuntuMono Nerd Font Mono"
+# family = "UbuntuMono Nerd Font Mono"
+family = "DroidSansM Nerd Font"
 style = "Regular"
 
 #[shell]

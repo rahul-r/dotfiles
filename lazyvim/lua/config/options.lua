@@ -22,5 +22,6 @@ vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
 vim.cmd("aunmenu PopUp.-1-")
 
 if vim.g.neovide then
-  vim.o.guifont = "UbuntuMono Nerd Font:h13"
+  -- vim.o.guifont = "UbuntuMono Nerd Font:h13"
+  vim.o.guifont = "DroidSansM Nerd Font"
 end
