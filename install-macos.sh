@@ -7,6 +7,7 @@ INSTALL="nix-env -i"
 EXTRA_PACKAGES=""
 
 $INSTALL neovim ripgrep fd lazygit tmux fzf podman podman-compose qemu neovide
+# brew install openssl
 
 # Install nvm
 if [ -d $HOME/.nvm ]; then
@@ -59,9 +60,6 @@ touch ~/.hushlogin
 ## Install tmux conf
 mkdir -p $XDG_CONFIG_HOME/tmux
 ln -s ${CWD}/shell/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/tmux.conf
-
-rm -rf $XDG_CONFIG_HOME/tmux-powerline
-ln -s ${CWD}/shell/tmux/tmux-powerline $XDG_CONFIG_HOME/tmux-powerline
 
 ## Install tmux plugin manager
 rm -rf $XDG_CONFIG_HOME/tmux/plugins/tpm
