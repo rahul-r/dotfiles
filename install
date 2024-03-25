@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CWD=`pwd`
+CWD=$(pwd)
 BAK_DIR=~/dotfiles.backup
 
 XDG_CONFIG_HOME=~/.config
@@ -39,7 +39,7 @@ mkdir -p ~/.vim/tmp/undo
 
 # Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # Install the vim plugins using vundle
 vim +PlugInstall +qall
 
@@ -67,7 +67,7 @@ ln -s ${CWD}/shell/zsh/zshrc ~/.zshrc
 ln -s ${CWD}/shell/zsh/zprofile ~/.zprofile
 
 for config_file in ${CWD}/shell/zsh/*.zsh; do
-    ln -s $config_file ${ZSH_DIR}/`basename $config_file`
+	ln -s $config_file ${ZSH_DIR}/$(basename $config_file)
 done
 
 # Install zsh plugins
@@ -78,9 +78,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_DIR/zsh-autosugg
 [ -f $XDG_CONFIG_HOME/tmux/tmux.conf ] && mv $XDG_CONFIG_HOME/tmux/tmux.conf ${BAK_DIR}/tmux
 mkdir -p $XDG_CONFIG_HOME/tmux
 ln -s ${CWD}/shell/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/tmux.conf
-
-rm -rf $XDG_CONFIG_HOME/tmux-powerline
-ln -s ${CWD}/shell/tmux/tmux-powerline $XDG_CONFIG_HOME/tmux-powerline
 
 ## Install tmux plugin manager
 rm -rf $XDG_CONFIG_HOME/tmux/plugins/tpm
@@ -96,9 +93,9 @@ mv ~/.screenrc ${BAK_DIR}/screenrc
 ln -s ${CWD}/screen/screenrc ~/.screenrc
 
 ## neovim configuration
-mv  ~/.config/nvim ${BAK_DIR}/nvim 2>/dev/null || true # Silently move without throwing error if the file doesnt exist
+mv ~/.config/nvim ${BAK_DIR}/nvim 2>/dev/null || true # Silently move without throwing error if the file doesnt exist
 ln -s ${CWD}/nvim ~/.config/nvim
 
 ## Install lf
-mv  ~/.config/lf ${BAK_DIR}/lf 2>/dev/null || true
+mv ~/.config/lf ${BAK_DIR}/lf 2>/dev/null || true
 ln -s ${CWD}/lf ~/.config/lf
