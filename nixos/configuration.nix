@@ -112,6 +112,9 @@
     kate
     thunderbird
     cudaPackages.cudatoolkit
+    btrfs-assistant
+    file
+    nodejs_21
   ];
 
   # User packages: node, yarn, rust, python, pip, 
