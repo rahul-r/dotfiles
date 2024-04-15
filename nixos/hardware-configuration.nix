@@ -14,25 +14,40 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0516ac88-08ec-4f5a-a9d6-7226ef5e2016";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/7f0ddf4e-cb0c-4881-8e97-dd85250c92e4";
+      fsType = "btrfs";
+      options = [ "subvol=root" ];
+    };
+
+  #fileSystems."/home" =
+  #  { device = "/dev/disk/by-uuid/7f0ddf4e-cb0c-4881-8e97-dd85250c92e4";
+  #    fsType = "btrfs";
+  #    options = [ "subvol=home" ];
+  #  };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/765b2210-df32-44d8-9ffd-c22fcd576ba7";
+      fsType = "btrfs";
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/7f0ddf4e-cb0c-4881-8e97-dd85250c92e4";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/AA33-B060";
+    { device = "/dev/disk/by-uuid/0F03-BFE2";
       fsType = "vfat";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/f778409e-5e5f-495c-bc3e-117b1f131e8c"; }
-    ];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

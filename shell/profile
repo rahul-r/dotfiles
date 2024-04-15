@@ -91,4 +91,3 @@ find_files() {
         fi
     fi
 }
-bindkey -s "^P" 'find_files^M'

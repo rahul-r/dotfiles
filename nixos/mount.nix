@@ -1,16 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/765b2210-df32-44d8-9ffd-c22fcd576ba7";
-      fsType = "btrfs";
-    };
-
-  fileSystems."/mnt/home_old" =
-    { device = "/dev/disk/by-uuid/809bed08-62de-4a77-8615-091837728d1b";
-      fsType = "btrfs";
-    };
-
   fileSystems."/mnt/games" =
     { device = "/dev/disk/by-uuid/902E501F2E5000A0";
       fsType = "ntfs";
