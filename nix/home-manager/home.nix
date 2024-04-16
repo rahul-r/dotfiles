@@ -77,6 +77,7 @@
   };
 
   xdg.configFile = {
+    #"nvim".source = ./home/config/nvim; # My custom neovim config
     "nvim".source = ./home/config/lazyvim;
     "lvim".source = ./home/config/lunarvim;
     "alacritty".source = ./home/config/alacritty;
