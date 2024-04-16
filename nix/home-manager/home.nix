@@ -45,6 +45,16 @@
     lf
     btrfs-assistant
   ];
+  
+  programs.git = {
+    enable = true;
+    userName  = "Rahul";
+    userEmail = "jossb6cw@duck.com";
+    lfs.enable = true;
+    extraConfig = {
+        core = { editor = "vi"; };
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -77,7 +87,7 @@
   #  /etc/profiles/per-user/rahul/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vi";
   };
 
   programs.man.enable = false;
