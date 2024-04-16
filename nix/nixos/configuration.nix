@@ -117,7 +117,7 @@
     nodejs_21
   ];
 
-  # User packages: node, yarn, rust, python, pip, 
+  # User packages: node, yarn, rust, python, pip
 
   programs.zsh.enable = true;
 
