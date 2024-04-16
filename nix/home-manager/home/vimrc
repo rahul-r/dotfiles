@@ -1,0 +1,168 @@
+" Line numbering
+set relativenumber
+set number
+
+" set to auto read when a file is changed from the outside
+set autoread
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Turn on the Wild menu (for filename completion)
+set wildmenu
+set wildmode=list:longest,full
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Highlight words while searching
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" the cursor will briefly jump to the matching brace when you insert one
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" Change the leader key
+let mapleader = " "
+
+" Enforce laziness
+"nnoremap <Left> :echo "Don't be silly, use h"<CR>
+"nnoremap <Down> :echo "Don't be silly, use j"<CR>
+"nnoremap <Up> :echo "Don't be silly, use k"<CR>
+"nnoremap <Right> :echo "Don't be silly, use l"<CR>
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+nnoremap <C-p><C-p> :CtrlPBuffer<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+" Enable 256 colors
+set t_Co=256
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set linebreak
+set textwidth=500
+
+set ai "Auto indent
+set si "Smart indent
+au! FileType python setl nosmartindent " Disable smart indent for Python
+set wrap "Wrap lines
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    Turn persistent undo on
+"    means that you can undo even when you close a buffer/VIM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    set undodir=~/.vim/tmp/undo
+    set undofile
+catch
+endtry
+""""""""""""""""""""""""""""""
+"       Opening/Closing
+""""""""""""""""""""""""""""""
+" Return to last edit position when opening files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+	" set filetypes as typescriptreact
+	autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+endif
+
+let g:ctrlp_custom_ignore = {
+	\ 'dir': '\v[\/]\.(git|hg|svn)|node_modules|venv|build|dist$',
+	\ 'file': '\v\.(DS_Store|exe|so|dll)$',
+	\}
+
+" Start Vim-Plug
+call plug#begin('~/.vim/plugged')
+
+" Themes
+Plug 'morhetz/gruvbox'
+
+Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'APZelos/blamer.nvim'
+Plug 'airblade/vim-gitgutter'
+
+"Plug 'davidhalter/jedi-vim'
+" Plugins for rust
+Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rls'
+
+" nerdtree
+Plug 'preservim/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'ctrlpvim/ctrlp.vim'
+
+call plug#end()
+
+" Indent commants with code in languages like Python, Perl
+filetype plugin indent on
+
+" Set the color theme
+colorscheme gruvbox
+set background=dark
+
+set mouse=a
+
+" Always show the statusbar
+set laststatus=2
+
+let NERDTreeShowHidden=1
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Change automatically Vim's dir with NERDTree's
+let g:NERDTreeChDirMode = 2 
+let g:NERDTreeMapOpenSplit='$'
+
+set encoding=utf-8
+" Tell airline to use powerline fonts
+let g:airline_powerline_fonts = 1
+
+" Gvim settings
+set guioptions-=T  "remove toolbar
+"set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12

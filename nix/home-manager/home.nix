@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -61,13 +61,13 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".aliases".source = shell/aliases;
-    ".profile".source = shell/profile;
-    ".bashrc".source = shell/bashrc;
-    ".zshrc".source = shell/zsh/zshrc;
-    ".zprofile".source = shell/zsh/zprofile;
-    ".zsh/completion.zsh".source = shell/zsh/completion.zsh;
-    ".zsh/git.zsh".source = shell/zsh/git.zsh;
+    ".aliases".source = ./home/aliases;
+    ".profile".source = ./home/profile;
+    ".bashrc".source = ./home/bashrc;
+    ".zshrc".source = ./home/zsh/zshrc;
+    ".zprofile".source = ./home/zsh/zprofile;
+    ".zsh/completion.zsh".source = ./home/zsh/completion.zsh;
+    ".zsh/git.zsh".source = ./home/zsh/git.zsh;
     ".zsh/syntax-highlighting".source = builtins.fetchGit {
       url = "https://github.com/zsh-users/zsh-syntax-highlighting.git";
       rev = "e0165eaa730dd0fa321a6a6de74f092fe87630b0";
@@ -77,15 +77,27 @@
       rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
     };
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    ".screenrc".source = ./home/screenrc;
+
+    ".vimrc".source = ./home/vimrc;
+    ".vim/autoload/plug.vim".source = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
+      sha256 = "0llmchd6frnxkp2zqpbg8k5zq5jjbmln6g6ndfyy1nnxcf3gwm2y";
+    };
   };
 
   xdg.configFile = {
-    "nvim".source = ./lazyvim;
+    "nvim".source = ./home/config/lazyvim;
+    "lvim".source = ./home/config/lunarvim;
+    "alacritty".source = ./home/config/alacritty;
+    "tmux".source = ./home/config/tmux;
+    "lf".source = ./home/config/lf;
+  };
+
+  home.activation = {
+    setupVim = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      run mkdir -p ~/.vim/undo # && ~/.nix-profile/bin/vim +PlugInstall +qall
+    '';
   };
 
   # Home Manager can also manage your environment variables through
