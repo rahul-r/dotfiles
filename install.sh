@@ -30,7 +30,7 @@ fi
 home-manager switch -b nix_backup
 
 # Install the vim plugins using vundle
-vim +PlugInstall +qall
+# vim +PlugInstall +qall
 
 # Install lunarvim
 #bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
