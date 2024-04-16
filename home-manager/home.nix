@@ -36,6 +36,21 @@
     lf
     btrfs-assistant
     neovim
+    python311Packages.yamllint
+    python311Packages.black
+    python311Packages.flake8
+    python311Packages.beautysh
+    python311Packages.mdformat
+    python311Packages.pynvim
+    # Language servers, linters, formetters, etc.
+    cmake-format
+    typescript
+    markdownlint-cli
+    stylelint
+    prettierd
+    nodePackages.eslint
+    nodePackages.jsonlint
+    nodePackages.neovim
   ];
   
   programs.git = {
