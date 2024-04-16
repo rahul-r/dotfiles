@@ -22,7 +22,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    tmux
     alacritty
     htop
     vim
@@ -46,7 +45,7 @@
     lfs.enable = true;
     extraConfig = {
         core = { editor = "vi"; };
-	pull = { rebase = true; };
+        pull = { rebase = true; };
     };
   };
 
@@ -81,7 +80,6 @@
     "nvim".source = ./home/config/lazyvim;
     "lvim".source = ./home/config/lunarvim;
     "alacritty".source = ./home/config/alacritty;
-    "tmux".source = ./home/config/tmux;
     "lf".source = ./home/config/lf;
   };
 
@@ -89,6 +87,18 @@
     setupVim = lib.hm.dag.entryAfter ["writeBoundary"] ''
       run mkdir -p ~/.vim/undo # && ~/.nix-profile/bin/vim +PlugInstall +qall
     '';
+  };
+
+  programs.tmux = {
+      enable = true;
+      extraConfig = lib.fileContents ./home/config/tmux/tmux.conf;
+      plugins = with pkgs; [
+        tmuxPlugins.sensible
+        tmuxPlugins.resurrect
+        tmuxPlugins.continuum
+        tmuxPlugins.catppuccin
+        tmuxPlugins.vim-tmux-navigator
+      ];
   };
 
   home.sessionVariables = {
