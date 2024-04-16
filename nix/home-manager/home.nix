@@ -44,6 +44,7 @@
     lazygit
     lf
     btrfs-assistant
+    neovim
   ];
   
   programs.git = {
@@ -53,22 +54,38 @@
     lfs.enable = true;
     extraConfig = {
         core = { editor = "vi"; };
+	pull = { rebase = true; };
     };
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+    ".aliases".source = shell/aliases;
+    ".profile".source = shell/profile;
+    ".bashrc".source = shell/bashrc;
+    ".zshrc".source = shell/zsh/zshrc;
+    ".zprofile".source = shell/zsh/zprofile;
+    ".zsh/completion.zsh".source = shell/zsh/completion.zsh;
+    ".zsh/git.zsh".source = shell/zsh/git.zsh;
+    ".zsh/syntax-highlighting".source = builtins.fetchGit {
+      url = "https://github.com/zsh-users/zsh-syntax-highlighting.git";
+      rev = "e0165eaa730dd0fa321a6a6de74f092fe87630b0";
+    };
+    ".zsh/zsh-autosuggestions".source = builtins.fetchGit {
+      url = "https://github.com/zsh-users/zsh-autosuggestions";
+      rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
+    };
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+  };
+
+  xdg.configFile = {
+    "nvim".source = ./lazyvim;
   };
 
   # Home Manager can also manage your environment variables through

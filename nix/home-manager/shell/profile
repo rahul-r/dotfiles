@@ -1,0 +1,93 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH=$PATH:${HOME}/.local/bin
+fi
+
+export XDG_CONFIG_HOME=$HOME/.config
+
+# Environment for Android
+export ANDROID_HOME=/opt/dev/android-sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+# Qt
+export PATH=/opt/dev/Qt/6.3.0/gcc_64/bin:${PATH}
+# CUDA
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
+# Go
+export PATH=$PATH:${HOME}/bin/go/bin:${HOME}/go/bin
+# nodejs
+export PATH=${PATH}:${HOME}/.yarn/bin
+# emacs
+export PATH=${PATH}:${HOME}/.config/emacs/bin/
+# clang
+export PATH=${PATH}:/usr/lib/llvm-12/bin/
+# set default virsh connection URI
+export LIBVIRT_DEFAULT_URI="qemu:///system"
+
+export EDITOR='/usr/bin/vi'
+export VISUAL='/usr/bin/vi'
+
+# Pretend to be KDE desktop to have the correct theme applied to KDE applications
+# See https://unix.stackexchange.com/questions/275777/kde5-breeze-dark-theme-and-kde-icons-not-working-in-i3wm
+export XDG_CURRENT_DESKTOP=KDE
+
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R'
+
+# Remove pagination of systemctl and journalctl outputs
+export SYSTEMD_PAGER=''
+
+if [ -f "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Load device specific profile (excluded from git)
+if [ -e "$HOME/.profile_local" ] ; then
+    . "$HOME/.profile_local"
+fi
+
+find_files() {
+    selected=$(fzf)
+
+    if [ -d "$selected" ]
+    then
+        cd "$selected"
+    elif [ -f "$selected" ]
+    then
+        # Check if the file is a text file
+        if file --mime-type "$selected" | grep -q text/
+        then
+            lvim "$selected"
+        else
+            # If it's not a text file, open it with the default program
+            xdg-open "$selected"
+        fi
+    fi
+}
