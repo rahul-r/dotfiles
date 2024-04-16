@@ -88,6 +88,10 @@
       url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
       sha256 = "0llmchd6frnxkp2zqpbg8k5zq5jjbmln6g6ndfyy1nnxcf3gwm2y";
     };
+    ".local/share/nvim/site/pack/packer/start/packer.nvim".source = builtins.fetchGit {
+      url = "https://github.com/wbthomason/packer.nvim";
+      rev = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3";
+    };
   };
 
   xdg.configFile = {

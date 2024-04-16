@@ -13,7 +13,7 @@ if [ -z ${XDG_CONFIG_HOME+x} ]; then XDG_CONFIG_HOME=~/.config; fi
 ## Install Nix in multi-user mode
 sh <(curl -L https://nixos.org/nix/install) --daemon --yes
 # Add `experimental-features = nix-command flakes` to /etc/nix/nix.conf
-sudo grep -qxF 'experimental-features = nix-command flakes' /etc/nix/nix.conf || echo 'experimental-features = nix-command flakes'  | sudo tee -a /etc/nix/nix.conf
+sudo grep -qxF 'experimental-features = nix-command flakes' /etc/nix/nix.conf || echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf
 
 source /etc/profile
 source ~/profile
@@ -25,3 +25,12 @@ ln -s ${CWD}/home-manager $XDG_CONFIG_HOME/home-manager
 
 # Activate home-manager configuration
 home-manager switch -b nix_backup
+
+# Install the vim plugins using vundle
+vim +PlugInstall +qall
+
+# Install lunarvim
+#bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+# Install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
