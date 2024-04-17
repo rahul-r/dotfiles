@@ -17,5 +17,5 @@ tags
 # End of https://www.gitignore.io/api/vim
 
 nvim/undo
-# Pacler plugin directory
+# Packer plugin directory
 nvim/plugin
