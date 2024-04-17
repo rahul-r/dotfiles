@@ -36,15 +36,15 @@
     lf
     btrfs-assistant
     neovim
+    # Language servers, linters, formetters, etc.
     python311Packages.yamllint
     python311Packages.black
     python311Packages.flake8
     python311Packages.beautysh
     python311Packages.mdformat
     python311Packages.pynvim
-    # Language servers, linters, formetters, etc.
-    cmake-format
     typescript
+    cmake-format
     markdownlint-cli
     stylelint
     prettierd
