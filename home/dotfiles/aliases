@@ -16,4 +16,4 @@ alias vi='nvim'
 alias vim='nvim'
 alias neovim='nvim'
 
-alias fedora='distrobox enter fedora'
+alias cat='bat'

@@ -27,7 +27,7 @@ if ! [ -x "$(command -v home-manager)" ]; then
 fi
 
 # Activate home-manager configuration
-home-manager switch -b nix_backup
+home-manager switch -b nix_backup --flake .
 
 # Install the vim plugins using vundle
 # vim +PlugInstall +qall

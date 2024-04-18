@@ -120,6 +120,8 @@
       ];
   };
 
+  programs.bat.enable = true;
+
   home.sessionVariables = {
     EDITOR = "vi";
   };

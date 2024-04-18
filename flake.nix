@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of rahul";
+  description = "Nix configuration";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
