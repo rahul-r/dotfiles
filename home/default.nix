@@ -36,7 +36,6 @@
     lf
     btrfs-assistant
     neovim
-    moar
     # Language servers, linters, formetters, etc.
     python311Packages.yamllint
     python311Packages.black
