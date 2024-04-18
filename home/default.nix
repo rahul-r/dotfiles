@@ -65,13 +65,13 @@
   };
 
   home.file = {
-    ".aliases".source = ./home/aliases;
-    ".profile".source = ./home/profile;
-    ".bashrc".source = ./home/bashrc;
-    ".zshrc".source = ./home/zsh/zshrc;
-    ".zprofile".source = ./home/zsh/zprofile;
-    ".zsh/completion.zsh".source = ./home/zsh/completion.zsh;
-    ".zsh/git.zsh".source = ./home/zsh/git.zsh;
+    ".aliases".source = ./dotfiles/aliases;
+    ".profile".source = ./dotfiles/profile;
+    ".bashrc".source = ./dotfiles/bashrc;
+    ".zshrc".source = ./dotfiles/zsh/zshrc;
+    ".zprofile".source = ./dotfiles/zsh/zprofile;
+    ".zsh/completion.zsh".source = ./dotfiles/zsh/completion.zsh;
+    ".zsh/git.zsh".source = ./dotfiles/zsh/git.zsh;
     ".zsh/syntax-highlighting".source = builtins.fetchGit {
       url = "https://github.com/zsh-users/zsh-syntax-highlighting.git";
       rev = "e0165eaa730dd0fa321a6a6de74f092fe87630b0";
@@ -81,9 +81,9 @@
       rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
     };
 
-    ".screenrc".source = ./home/screenrc;
+    ".screenrc".source = ./dotfiles/screenrc;
 
-    ".vimrc".source = ./home/vimrc;
+    ".vimrc".source = ./dotfiles/vimrc;
     ".vim/autoload/plug.vim".source = builtins.fetchurl {
       url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
       sha256 = "0llmchd6frnxkp2zqpbg8k5zq5jjbmln6g6ndfyy1nnxcf3gwm2y";
@@ -95,11 +95,11 @@
   };
 
   xdg.configFile = {
-    #"nvim".source = ./home/config/nvim; # My custom neovim config
-    "nvim".source = ./home/config/lazyvim;
-    "lvim".source = ./home/config/lunarvim;
-    "alacritty".source = ./home/config/alacritty;
-    "lf".source = ./home/config/lf;
+    #"nvim".source = ./dotfiles/config/nvim; # My custom neovim config
+    "nvim".source = ./dotfiles/config/lazyvim;
+    "lvim".source = ./dotfiles/config/lunarvim;
+    "alacritty".source = ./dotfiles/config/alacritty;
+    "lf".source = ./dotfiles/config/lf;
   };
 
   home.activation = {
@@ -110,7 +110,7 @@
 
   programs.tmux = {
       enable = true;
-      extraConfig = lib.fileContents ./home/config/tmux/tmux.conf;
+      extraConfig = lib.fileContents ./dotfiles/config/tmux/tmux.conf;
       plugins = with pkgs; [
         tmuxPlugins.sensible
         tmuxPlugins.resurrect

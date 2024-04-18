@@ -23,7 +23,7 @@ source ~/.profile
 if ! [ -x "$(command -v home-manager)" ]; then
 	nix run home-manager/master -- init --switch
 	rm -rf $XDG_CONFIG_HOME/home-manager
-	ln -s ${CWD}/home-manager $XDG_CONFIG_HOME/home-manager
+	ln -s ${CWD} $XDG_CONFIG_HOME/home-manager
 fi
 
 # Activate home-manager configuration
