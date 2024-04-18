@@ -27,12 +27,6 @@ fi
 
 export XDG_CONFIG_HOME=$HOME/.config
 
-# Environment for Android
-export ANDROID_HOME=/opt/dev/android-sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-# Qt
-export PATH=/opt/dev/Qt/6.3.0/gcc_64/bin:${PATH}
 # CUDA
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 export CUDA_HOME=/usr/local/cuda
@@ -41,10 +35,18 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
 export PATH=$PATH:${HOME}/bin/go/bin:${HOME}/go/bin
 # nodejs
 export PATH=${PATH}:${HOME}/.yarn/bin
-# emacs
-export PATH=${PATH}:${HOME}/.config/emacs/bin/
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # clang
 export PATH=${PATH}:/usr/lib/llvm-12/bin/
+# rust
+if [ -f "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi
+# emacs
+export PATH=${PATH}:${HOME}/.config/emacs/bin/
+
 # set default virsh connection URI
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
@@ -55,23 +57,8 @@ export VISUAL='/usr/bin/vi'
 # See https://unix.stackexchange.com/questions/275777/kde5-breeze-dark-theme-and-kde-icons-not-working-in-i3wm
 export XDG_CURRENT_DESKTOP=KDE
 
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R'
-
 # Remove pagination of systemctl and journalctl outputs
 export SYSTEMD_PAGER=''
-
-if [ -f "$HOME/.cargo/env" ] ; then
-    . "$HOME/.cargo/env"
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Load device specific profile (excluded from git)
-if [ -e "$HOME/.profile_local" ] ; then
-    . "$HOME/.profile_local"
-fi
 
 find_files() {
     selected=$(fzf)
