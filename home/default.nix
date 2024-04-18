@@ -68,21 +68,14 @@
     ".aliases".source = ./dotfiles/aliases;
     ".profile".source = ./dotfiles/profile;
     ".bashrc".source = ./dotfiles/bashrc;
-    ".zshrc".source = ./dotfiles/zsh/zshrc;
-    ".zprofile".source = ./dotfiles/zsh/zprofile;
-    ".zsh/completion.zsh".source = ./dotfiles/zsh/completion.zsh;
-    ".zsh/git.zsh".source = ./dotfiles/zsh/git.zsh;
-    ".zsh/syntax-highlighting".source = builtins.fetchGit {
-      url = "https://github.com/zsh-users/zsh-syntax-highlighting.git";
-      rev = "e0165eaa730dd0fa321a6a6de74f092fe87630b0";
-    };
-    ".zsh/zsh-autosuggestions".source = builtins.fetchGit {
-      url = "https://github.com/zsh-users/zsh-autosuggestions";
-      rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
-    };
-
+    ".zshenv".text = ''
+      export XDG_CONFIG_HOME=$HOME/.config
+      export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+    '';
+    ".hushlogin".text = "";
     ".screenrc".source = ./dotfiles/screenrc;
 
+    # vim
     ".vimrc".source = ./dotfiles/vimrc;
     ".vim/autoload/plug.vim".source = builtins.fetchurl {
       url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
@@ -95,6 +88,19 @@
   };
 
   xdg.configFile = {
+    "zsh/.zshrc".source = ./dotfiles/config/zsh/zshrc;
+    "zsh/.zprofile".source = ./dotfiles/config/zsh/zprofile;
+    "zsh/completion.zsh".source = ./dotfiles/config/zsh/completion.zsh;
+    "zsh/git.zsh".source = ./dotfiles/config/zsh/git.zsh;
+    "zsh/syntax-highlighting".source = builtins.fetchGit {
+      url = "https://github.com/zsh-users/zsh-syntax-highlighting.git";
+      rev = "e0165eaa730dd0fa321a6a6de74f092fe87630b0";
+    };
+    "zsh/zsh-autosuggestions".source = builtins.fetchGit {
+      url = "https://github.com/zsh-users/zsh-autosuggestions";
+      rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
+    };
+
     #"nvim".source = ./dotfiles/config/nvim; # My custom neovim config
     "nvim".source = ./dotfiles/config/lazyvim;
     "lvim".source = ./dotfiles/config/lunarvim;
