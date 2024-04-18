@@ -73,7 +73,9 @@
       export ZDOTDIR=$XDG_CONFIG_HOME/zsh
     '';
     ".hushlogin".text = "";
-    ".screenrc".source = ./dotfiles/screenrc;
+    ".screenrc".text = ''
+      term "screen-256color"
+    '';
 
     # vim
     ".vimrc".source = ./dotfiles/vimrc;
