@@ -13,17 +13,26 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       homeConfigurations."rahul" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home ];
-        extraSpecialArgs = { inherit inputs outputs; };
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
       };
     };
 }

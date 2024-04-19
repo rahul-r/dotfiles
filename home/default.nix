@@ -1,4 +1,11 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  outputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.username = "rahul";
@@ -13,9 +20,7 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  imports = [
-    ./git.nix
-  ];
+  imports = [ ./git.nix ];
 
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" ]; })
@@ -58,18 +63,17 @@
     nodePackages.jsonlint
     nodePackages.neovim
   ];
-  
+
   programs.zoxide.enable = true;
 
   programs.firefox = {
     enable = true;
     profiles.default = {
-      bookmarks = {};
+      bookmarks = { };
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
         bitwarden
       ];
-      bookmarks = {};
       settings = {
         "browser.disableResetPrompt" = true;
         "browser.download.panel.shown" = true;
@@ -134,21 +138,21 @@
   };
 
   home.activation = {
-    setupVim = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    setupVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p ~/.vim/undo # && ~/.nix-profile/bin/vim +PlugInstall +qall
     '';
   };
 
   programs.tmux = {
-      enable = true;
-      extraConfig = lib.fileContents ./dotfiles/config/tmux/tmux.conf;
-      plugins = with pkgs; [
-        tmuxPlugins.sensible
-        tmuxPlugins.resurrect
-        tmuxPlugins.continuum
-        tmuxPlugins.catppuccin
-        tmuxPlugins.vim-tmux-navigator
-      ];
+    enable = true;
+    extraConfig = lib.fileContents ./dotfiles/config/tmux/tmux.conf;
+    plugins = with pkgs; [
+      tmuxPlugins.sensible
+      tmuxPlugins.resurrect
+      tmuxPlugins.continuum
+      tmuxPlugins.catppuccin
+      tmuxPlugins.vim-tmux-navigator
+    ];
   };
 
   programs.bat.enable = true;

@@ -1,11 +1,10 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    delta
-  ];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [ delta ];
 
   programs.git = {
     enable = true;
-    userName  = "Rahul";
+    userName = "Rahul";
     userEmail = "jossb6cw@duck.com";
     lfs.enable = true;
     extraConfig = {
@@ -18,7 +17,10 @@
       };
       delta = {
         navigate = true;
-        features = ["line-numbers" "side-by-side"];
+        features = [
+          "line-numbers"
+          "side-by-side"
+        ];
       };
       merge = {
         conflictstyle = "diff3";
@@ -26,7 +28,9 @@
       diff = {
         colorMoved = "default";
       };
-      pull = { rebase = true; };
+      pull = {
+        rebase = true;
+      };
     };
   };
 
@@ -41,5 +45,4 @@
       };
     };
   };
-
-    }
+}
