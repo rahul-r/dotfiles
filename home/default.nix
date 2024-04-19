@@ -13,6 +13,10 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  imports = [
+    ./git.nix
+  ];
+
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
@@ -34,7 +38,6 @@
     lemonade
     cppcheck
     ripgrep
-    delta
     lf
     ranger
     btrfs-assistant
@@ -56,45 +59,6 @@
     nodePackages.neovim
   ];
   
-  programs.git = {
-    enable = true;
-    userName  = "Rahul";
-    userEmail = "jossb6cw@duck.com";
-    lfs.enable = true;
-    extraConfig = {
-        core = {
-          editor = "vi";
-          pager = "delta";
-        };
-        interactive = {
-          diffFilter = "delta --color-only";
-        };
-        delta = {
-          navigate = true;
-          features = ["line-numbers" "side-by-side"];
-        };
-        merge = {
-          conflictstyle = "diff3";
-        };
-        diff = {
-          colorMoved = "default";
-        };
-        pull = { rebase = true; };
-    };
-  };
-
-  programs.lazygit = {
-    enable = true;
-    settings = {
-      "git" = {
-        "paging" = {
-            "colorArg" = "always";
-            "pager" = "delta --dark --paging=never";
-        };
-      };
-    };
-  };
-
   programs.zoxide.enable = true;
 
   programs.firefox = {
