@@ -27,6 +27,8 @@
     vim
     fd
     fzf
+    eza
+    duf
     clang-tools
     xsel
     lemonade
@@ -34,6 +36,7 @@
     ripgrep
     lazygit
     lf
+    ranger
     btrfs-assistant
     neovim
     # Language servers, linters, formetters, etc.
