@@ -95,6 +95,8 @@
     };
   };
 
+  programs.zoxide.enable = true;
+
   programs.firefox = {
     enable = true;
     profiles.default = {

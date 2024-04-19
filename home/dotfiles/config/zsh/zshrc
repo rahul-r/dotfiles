@@ -74,3 +74,6 @@ find_files() {
     fi
 }
 bindkey -s "^P" 'find_files^M'
+
+# Activate zoxide - this will replace the `cd` command
+eval "$(zoxide init zsh --cmd cd)"
