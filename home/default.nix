@@ -44,6 +44,8 @@
     lemonade
     cppcheck
     lf
+    lsix
+    chafa
     ranger
     btrfs-assistant
     typescript
