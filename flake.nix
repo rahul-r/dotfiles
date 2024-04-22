@@ -11,6 +11,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -18,13 +22,17 @@
       self,
       nixpkgs,
       home-manager,
+      nixgl,
       ...
     }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ nixgl.overlay ];
+      };
     in
     {
       homeConfigurations."rahul" = home-manager.lib.homeManagerConfiguration {

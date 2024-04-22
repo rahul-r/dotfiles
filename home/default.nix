@@ -6,7 +6,21 @@
   pkgs,
   ...
 }:
-
+let
+  nixGLWrap =
+    pkg:
+    pkgs.runCommand "${pkg.name}-nixgl-wrapper" { } ''
+      mkdir $out
+      ln -s ${pkg}/* $out
+      rm $out/bin
+      mkdir $out/bin
+      for bin in ${pkg}/bin/*; do
+       wrapped_bin=$out/bin/$(basename $bin)
+       echo "exec ${lib.getExe pkgs.nixgl.nixGLIntel} $bin \$@" > $wrapped_bin
+       chmod +x $wrapped_bin
+      done
+    '';
+in
 {
   home.username = "rahul";
   home.homeDirectory = "/home/rahul";
@@ -31,13 +45,15 @@
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
+    nixgl.nixGLIntel
+    (nixGLWrap pkgs.alacritty)
+
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    alacritty
     vim
     clang-tools
     xsel
