@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 CWD=$(pwd)
 
 if [ -z ${XDG_CONFIG_HOME+x} ]; then XDG_CONFIG_HOME=~/.config; fi

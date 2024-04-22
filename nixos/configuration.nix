@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./mount.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./mount.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -79,19 +79,24 @@
   users.users.pranavam = {
     isNormalUser = true;
     description = "Pranavam";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    packages = with pkgs; [ ];
   };
 
   users.users.rahul = {
     isNormalUser = true;
     description = "Rahul";
     uid = 1001;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
     ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [ ];
   };
 
   users.groups.rahul.gid = 1001;
@@ -107,7 +112,15 @@
     tmux
     alacritty
     git
-    fd fzf clang-tools xsel lemonade cppcheck ripgrep lazygit lf
+    fd
+    fzf
+    clang-tools
+    xsel
+    lemonade
+    cppcheck
+    ripgrep
+    lazygit
+    lf
     firefox
     kate
     thunderbird
@@ -132,7 +145,7 @@
   services.openssh.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     # Modesetting is required.
