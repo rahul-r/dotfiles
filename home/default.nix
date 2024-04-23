@@ -41,7 +41,7 @@ in
     ./neovim.nix
     ./firefox.nix
     ./helix.nix
-    ./hyprland.nix
+    ./hyprland
   ];
 
   home.packages = with pkgs; [
