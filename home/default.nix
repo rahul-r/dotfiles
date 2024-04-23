@@ -40,6 +40,7 @@ in
     ./git.nix
     ./neovim.nix
     ./firefox.nix
+    ./helix.nix
   ];
 
   home.packages = with pkgs; [
