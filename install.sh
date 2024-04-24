@@ -39,7 +39,7 @@ fi
 if [[ $OSTYPE == 'linux-gnu' ]]; then
 	home-manager switch -b nix_backup --flake .
 elif [[ $OSTYPE == 'darwin'* ]]; then
-	home-manager switch -b nix_backup --flake .#rahul-macbook
+	home-manager switch -b nix_backup --flake .#macbook
 fi
 
 # Install the vim plugins using vundle

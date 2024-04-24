@@ -4,6 +4,7 @@
   config,
   lib,
   pkgs,
+  specialArgs,
   ...
 }:
 let
@@ -22,8 +23,8 @@ let
     '';
 in
 {
-  home.username = "rahul";
-  home.homeDirectory = "/home/rahul";
+  home.username = specialArgs.username;
+  home.homeDirectory = "/home/${specialArgs.username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

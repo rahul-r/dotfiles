@@ -31,23 +31,29 @@
       system = "x86_64-linux";
     in
     {
-      homeConfigurations."rahul" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."blackhole" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
+          config.allowUnfree = true;
+          config.allowUnfreePredicate = (_: true);
           overlays = [ nixgl.overlay ];
         };
         modules = [ ./home/linux.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
+          username = "rahul";
         };
       };
-      homeConfigurations."rahul-macbook" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."macbook" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
+          config.allowUnfree = true;
+          config.allowUnfreePredicate = (_: true);
         };
         modules = [ ./home/darwin.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
+          username = "rahul";
         };
       };
     };
