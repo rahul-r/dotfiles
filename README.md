@@ -8,3 +8,7 @@ Run the following command to apply home-manager changes
 ```sh
 home-manager switch --flake ~/.dotfiles
 ```
+## On MacBook
+```sh
+home-manager switch --flake .#rahul-macbook
+```

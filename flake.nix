@@ -29,15 +29,23 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = [ nixgl.overlay ];
-      };
     in
     {
       homeConfigurations."rahul" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home ];
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = [ nixgl.overlay ];
+        };
+        modules = [ ./home/linux.nix ];
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      homeConfigurations."rahul-macbook" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+        };
+        modules = [ ./home/darwin.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
         };

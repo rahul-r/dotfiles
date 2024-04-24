@@ -4,24 +4,19 @@ alias git-graph='git log --graph --pretty=oneline --abbrev-commit'
 
 alias tree='tree -C'
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='eza'
-    # alias ls='ls --color=auto'
-    alias l='ls -F'
-    alias ll='ls -ahlF'
-    alias la='ls -A'
+alias ls='eza'
+alias l='ls -F'
+alias ll='ls -ahlF'
+alias la='ls -A'
 
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
-    alias df='duf'
-fi
+alias df='duf'
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
