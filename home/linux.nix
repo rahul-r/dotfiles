@@ -48,15 +48,13 @@ in
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
+    (pkgs.writeShellScriptBin "nix-switch" ''
+      home-manager switch --flake ${config.home.homeDirectory}/.dotfiles#blackhole
+    '')
+
     nixgl.nixGLIntel
     (nixGLWrap pkgs.alacritty)
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
     vim
     clang-tools
     xsel
