@@ -46,7 +46,8 @@ in
 
     nixgl.nixGLIntel
 
-    (utils.nixGLWrapIntel pkgs.alacritty)
+    (utils.nixGLWrapIntel alacritty)
+    (utils.nixGLWrapIntel wezterm)
 
     vim
     clang-tools

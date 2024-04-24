@@ -7,23 +7,14 @@
   ...
 }:
 let
-  nixGLWrap =
-    pkg:
-    pkgs.runCommand "${pkg.name}-nixgl-wrapper" { } ''
-      mkdir $out
-      ln -s ${pkg}/* $out
-      rm $out/bin
-      mkdir $out/bin
-      for bin in ${pkg}/bin/*; do
-       wrapped_bin=$out/bin/$(basename $bin)
-       echo "exec ${lib.getExe pkgs.nixgl.nixGLIntel} $bin \$@" > $wrapped_bin
-       chmod +x $wrapped_bin
-      done
-    '';
+  utils = import ../utils.nix {
+    inherit pkgs;
+    inherit lib;
+    inherit config;
+  };
 in
 {
   home.packages = with pkgs; [
-    #nixgl.nixGLIntel (nixGLWrap pkgs.hyprland)
     waybar
     swaybg
     rofi
@@ -31,12 +22,10 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    #finalPackage = pkgs.nixgl.nixGLIntel(nixGLWrap pkgs.hyprland);
-    #package = nixGLWrap pkgs.hyprland;
+    #package = (utils.nixGLWrapIntel pkgs.hyprland);
 
     extraConfig = ''
       monitor=,preferred,auto,auto
-
 
       # Execute your favorite apps at launch
       # exec-once = waybar & hyprpaper & firefox
