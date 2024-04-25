@@ -38,7 +38,7 @@ in
   ];
 
   home.packages = with pkgs; [
-    (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" "UbuntuMono" ]; })
 
     (pkgs.writeShellScriptBin "nix-switch" ''
       home-manager switch --flake ${config.home.homeDirectory}/.dotfiles#blackhole
