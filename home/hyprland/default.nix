@@ -14,11 +14,11 @@ let
   };
 in
 {
-  home.packages = with pkgs; [
-    waybar
-    swaybg
-    rofi
-  ];
+ # home.packages = with pkgs; [
+ #   waybar
+ #   swaybg
+ #   rofi
+ # ];
 
   home.activation = {
     setupHyprland = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -34,7 +34,6 @@ EOF
 
   wayland.windowManager.hyprland = {
     enable = true;
-    #package = (utils.nixGLWrapIntel pkgs.hyprland);
 
     extraConfig = ''
       monitor=,preferred,auto,auto
@@ -63,7 +62,7 @@ EOF
     settings = {
       "$terminal" = "alacritty";
       "$fileManager" = "nautilus";
-      "$webbrowser" = "firefox";
+      "$webbrowser" = "flatpak run com.brave.Browser";
       "$menu" = "rofi -show drun";
 
       "$mod" = "SUPER";
