@@ -72,6 +72,42 @@ in
 
   programs.zoxide.enable = true;
 
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+
+      line_break = {
+        disabled = true;
+      };
+
+      character = {
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
+
+      hostname = {
+        ssh = {
+          format = "[$hostname](bold yellow)";
+        };
+        format = "[$ssh_symbol](bold blue)[$hostname](bold red) ";
+        ssh_only = true;
+        disabled = true;
+        detect_env_vars = ["!TMUX" "SSH_CONNECTION"]; # Hide the hostname in remote tmux sessions
+      };
+      username = {
+        format = "[$user]($style)";
+        disabled = true;
+      };
+      directory = {
+        format = "[$path]($style)[$read_only]($read_only_style) ";
+      };
+      git_status = { disabled = true; };
+      git_commit = { disabled = true; };
+      git_branch = { format = "[$symbol$branch(:$remote_branch)]($style) "; };
+    };
+  };
+
   home.file = {
     ".aliases".source = ./dotfiles/aliases;
     ".profile".source = ./dotfiles/profile;
