@@ -20,6 +20,18 @@ in
     rofi
   ];
 
+  home.activation = {
+    setupHyprland = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+# Change the path to /usr/share/wayland-sessions/hyprland.desktop
+    cat >/tmp/hyprland.desktop <<EOF
+Name=Hyprland
+Comment=An intelligent dynamic tiling Wayland compositor
+Exec=${utils.nixGLWrapIntel pkgs.hyprland}/bin/Hyprland
+Type=Application
+EOF
+    '';
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     #package = (utils.nixGLWrapIntel pkgs.hyprland);
