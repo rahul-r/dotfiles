@@ -70,6 +70,8 @@ in
     duf
   ];
 
+  #programs.wezterm.enable = true;
+  #programs.wezterm.extraConfig = builtins.readFile ./dotfiles/config/wezterm/wezterm.lua;
   programs.zoxide.enable = true;
 
   programs.starship = {
@@ -131,12 +133,20 @@ in
 
   xdg.configFile = {
     "alacritty".source = ./dotfiles/config/alacritty;
+    # https://github.com/nix-community/home-manager/issues/4692
+    #"wezterm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/dotfiles/config/wezterm";
     "lf".source = ./dotfiles/config/lf;
   };
 
   home.activation = {
     setupVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p ~/.vim/undo # && ~/.nix-profile/bin/vim +PlugInstall +qall
+    '';
+    # This was using .config and mkOuOfStoreSymlink, but it is broken in recent nix
+    # see https://github.com/nix-community/home-manager/issues/4692
+    updateLinks = ''
+      export ROOT="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
+      ln -sf "$ROOT/wezterm" ~/.config/wezterm
     '';
   };
 
