@@ -27,7 +27,16 @@
 
   xdg.configFile = {
     #"nvim".source = ./dotfiles/config/nvim; # My custom neovim config
-    "nvim".source = ./dotfiles/config/lazyvim;
+    #"nvim".source = ./dotfiles/config/lazyvim;
     "lvim".source = ./dotfiles/config/lunarvim;
+  };
+
+  home.activation = {
+    # This was using .config and mkOuOfStoreSymlink, but it is broken in recent nix
+    # see https://github.com/nix-community/home-manager/issues/4692
+    updateNeovimLinks = ''
+      export ROOT="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
+      ln -sf "$ROOT/lazyvim" ~/.config/nvim
+    '';
   };
 }
