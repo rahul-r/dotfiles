@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, specialArgs, ... }:
 {
   home.packages = with pkgs; [ delta ];
 
   programs.git = {
     enable = true;
-    userName = "Rahul";
-    userEmail = "jossb6cw@duck.com";
+    userName = specialArgs.username;
+    userEmail = specialArgs.email;
     lfs.enable = true;
     extraConfig = {
       core = {
@@ -32,6 +32,9 @@
         rebase = true;
       };
     };
+    aliases = {
+        lg = "laztgit";
+      };
   };
 
   programs.lazygit = {

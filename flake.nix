@@ -30,6 +30,7 @@
       lib = nixpkgs.lib // home-manager.lib;
       system = "x86_64-linux";
       username = "rahul";
+      email = "jossb6cw@duck.com";
     in
     {
       homeConfigurations."blackhole" = home-manager.lib.homeManagerConfiguration {
@@ -43,6 +44,7 @@
         extraSpecialArgs = {
           inherit inputs outputs;
           username = username;
+          email = email;
           dotfiles_repo_path  = "/home/${username}/.dotfiles";
         };
       };
@@ -56,6 +58,7 @@
         extraSpecialArgs = {
           inherit inputs outputs;
           username = username;
+          email = email;
           dotfile_repo_path  = "/Users/${username}/.dotfiles";
         };
       };
