@@ -17,7 +17,7 @@ config.window_background_gradient = {
 	orientation = { Linear = { angle = -45.0 } },
 }
 
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
 	{
 		key = "F11",
