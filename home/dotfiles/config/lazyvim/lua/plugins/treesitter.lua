@@ -27,6 +27,7 @@ return {
       "vimdoc",
       "xml",
       "yaml",
+      "kdl",
     },
   },
 }

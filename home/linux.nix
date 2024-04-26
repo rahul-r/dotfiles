@@ -60,6 +60,7 @@ in
     ranger
     btrfs-assistant
     typescript
+    zellij
 
     # Alternatives to traditional tools
     htop
