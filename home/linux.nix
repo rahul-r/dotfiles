@@ -145,8 +145,9 @@ in
     # This was using .config and mkOuOfStoreSymlink, but it is broken in recent nix
     # see https://github.com/nix-community/home-manager/issues/4692
     updateLinks = ''
-      export ROOT="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
-      ln -sf "$ROOT/wezterm" ~/.config/wezterm
+      CONFIG_DIR="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
+      rm -f "''${XDG_CONFIG_HOME}/wezterm" && ln -sf "''${CONFIG_DIR}/wezterm" ''${XDG_CONFIG_HOME}/wezterm
+      rm -f "''${XDG_CONFIG_HOME}/zellij" && ln -sf "''${CONFIG_DIR}/zellij" ''${XDG_CONFIG_HOME}/zellij
     '';
   };
 

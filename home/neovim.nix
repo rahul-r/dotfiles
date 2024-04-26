@@ -35,8 +35,8 @@
     # This was using .config and mkOuOfStoreSymlink, but it is broken in recent nix
     # see https://github.com/nix-community/home-manager/issues/4692
     updateNeovimLinks = ''
-      export ROOT="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
-      ln -sf "$ROOT/lazyvim" ~/.config/nvim
+      CONFIG_DIR="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
+      rm -f "''${XDG_CONFIG_HOME}/nvim" && ln -sf "''${CONFIG_DIR}/lazyvim" ''${XDG_CONFIG_HOME}/nvim
     '';
   };
 }

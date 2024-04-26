@@ -3,7 +3,7 @@ local config = wezterm.config_builder()
 
 config.color_scheme = "Gruvbox Dark (Gogh)"
 
-config.font = wezterm.font("DroidSansMono NFM")
+config.font = wezterm.font("DroidSansMono Nerd Font")
 
 config.hide_tab_bar_if_only_one_tab = false
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"

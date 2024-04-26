@@ -29,6 +29,7 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       system = "x86_64-linux";
+      username = "rahul";
     in
     {
       homeConfigurations."blackhole" = home-manager.lib.homeManagerConfiguration {
@@ -41,7 +42,8 @@
         modules = [ ./home/linux.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
-          username = "rahul";
+          username = username;
+          dotfiles_repo_path  = "/home/${username}/.dotfiles";
         };
       };
       homeConfigurations."macbook" = home-manager.lib.homeManagerConfiguration {
@@ -53,7 +55,8 @@
         modules = [ ./home/darwin.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
-          username = "rahul";
+          username = username;
+          dotfile_repo_path  = "/Users/${username}/.dotfiles";
         };
       };
     };
