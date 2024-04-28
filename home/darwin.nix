@@ -19,7 +19,6 @@
     (pkgs.writeShellScriptBin "nix-switch" ''
       home-manager switch --flake ${config.home.homeDirectory}/.dotfiles#macbook
     '')
-    (pkgs.nerdfonts.override { fonts = [ "DroidSansMono" ]; })
 
     qemu
   ];
