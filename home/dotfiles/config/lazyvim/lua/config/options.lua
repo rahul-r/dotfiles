@@ -25,3 +25,6 @@ if vim.g.neovide then
   -- vim.o.guifont = "UbuntuMono Nerd Font:h13"
   vim.o.guifont = "DroidSansM Nerd Font"
 end
+
+-- Disable autoformat
+vim.g.autoformat = false
