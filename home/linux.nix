@@ -48,10 +48,6 @@ in
   };
 
   xdg.configFile = {
-    "alacritty".source = ./dotfiles/config/alacritty;
-    # https://github.com/nix-community/home-manager/issues/4692
-    #"wezterm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/dotfiles/config/wezterm";
-    "lf".source = ./dotfiles/config/lf;
   };
 
   home.activation = {
