@@ -181,6 +181,13 @@ keybinds {
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
+    shared_except "locked" {
+        bind "Ctrl y" {
+            LaunchOrFocusPlugin "file:~/.local/share/zellij/plugins/zellij_forgot.wasm"{
+                floating true
+            }
+        }
+    }
 }
 
 plugins {
