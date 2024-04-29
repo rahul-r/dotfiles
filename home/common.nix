@@ -30,6 +30,7 @@ in
     ./git.nix
     ./neovim.nix
     ./helix.nix
+    ./zellij.nix
   ];
 
   home.packages = with pkgs; [
@@ -39,7 +40,6 @@ in
     lsix
     chafa
     ranger
-    zellij
 
     podman
     podman-compose
@@ -130,7 +130,6 @@ in
     updateLinks = ''
       CONFIG_DIR="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
       rm -f "''${XDG_CONFIG_HOME}/wezterm" && ln -sf "''${CONFIG_DIR}/wezterm" ''${XDG_CONFIG_HOME}/wezterm
-      rm -f "''${XDG_CONFIG_HOME}/zellij" && ln -sf "''${CONFIG_DIR}/zellij" ''${XDG_CONFIG_HOME}/zellij
     '';
   };
 
