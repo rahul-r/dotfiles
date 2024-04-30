@@ -40,7 +40,7 @@
           config.allowUnfreePredicate = (_: true);
           overlays = [ nixgl.overlay ];
         };
-        modules = [ ./home/linux.nix ];
+        modules = [ ./machines/linux.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
           username = username;
@@ -54,7 +54,7 @@
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
         };
-        modules = [ ./home/darwin.nix ];
+        modules = [ ./machines/darwin.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
           username = username;
@@ -68,7 +68,7 @@
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
         };
-        modules = [ ./home/work-wsl.nix ];
+        modules = [ ./machines/work-wsl.nix ];
         extraSpecialArgs = {
           inherit inputs outputs;
           username = username;

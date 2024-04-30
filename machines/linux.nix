@@ -8,7 +8,7 @@
   ...
 }:
 let
-  utils = import ./utils.nix {
+  utils = import ../utils.nix {
     inherit pkgs;
     inherit lib;
     inherit config;
@@ -20,8 +20,8 @@ in
 
   imports = [
     ./common.nix
-    ./firefox.nix
-    ./hyprland
+    ../home/firefox.nix
+    ../home/hyprland
   ];
 
   home.packages = with pkgs; [

@@ -8,7 +8,7 @@
   ...
 }:
 let
-  utils = import ./utils.nix {
+  utils = import ../utils.nix {
     inherit pkgs;
     inherit lib;
     inherit config;
@@ -25,12 +25,12 @@ in
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   imports = [
-    ./zsh.nix
-    ./tmux.nix
-    ./git.nix
-    ./neovim.nix
-    ./helix.nix
-    ./zellij.nix
+    ../home/zsh.nix
+    ../home/tmux.nix
+    ../home/git.nix
+    ../home/neovim.nix
+    ../home/helix.nix
+    ../home/zellij.nix
   ];
 
   home.packages = with pkgs; [
@@ -97,13 +97,13 @@ in
   };
 
   home.file = {
-    ".aliases".source = ./dotfiles/aliases;
-    ".profile".source = ./dotfiles/profile;
-    ".bashrc".source = ./dotfiles/bashrc;
+    ".aliases".source = ../home/dotfiles/aliases;
+    ".profile".source = ../home/dotfiles/profile;
+    ".bashrc".source = ../home/dotfiles/bashrc;
     ".hushlogin".text = "";
 
     # vim
-    ".vimrc".source = ./dotfiles/vimrc;
+    ".vimrc".source = ../home/dotfiles/vimrc;
     ".vim/autoload/plug.vim".source = builtins.fetchurl {
       url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
       sha256 = "0llmchd6frnxkp2zqpbg8k5zq5jjbmln6g6ndfyy1nnxcf3gwm2y";
@@ -115,10 +115,10 @@ in
   };
 
   xdg.configFile = {
-    "alacritty".source = ./dotfiles/config/alacritty;
+    "alacritty".source = ../home/dotfiles/config/alacritty;
     # https://github.com/nix-community/home-manager/issues/4692
     #"wezterm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/dotfiles/config/wezterm";
-    "lf".source = ./dotfiles/config/lf;
+    "lf".source = ../home/dotfiles/config/lf;
   };
 
   home.activation = {

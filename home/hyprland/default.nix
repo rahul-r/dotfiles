@@ -7,7 +7,7 @@
   ...
 }:
 let
-  utils = import ../utils.nix {
+  utils = import ../../utils.nix {
     inherit pkgs;
     inherit lib;
     inherit config;
