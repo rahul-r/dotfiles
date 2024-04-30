@@ -62,5 +62,19 @@
           dotfile_repo_path  = "/Users/${username}/.dotfiles";
         };
       };
+      homeConfigurations."work-wsl" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+          config.allowUnfreePredicate = (_: true);
+        };
+        modules = [ ./home/work-wsl.nix ];
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          username = username;
+          email = '';
+          dotfiles_repo_path  = "/home/${username}/.dotfiles";
+        };
+      };
     };
 }
