@@ -97,11 +97,13 @@ set_title() {
 
 source ~/.aliases
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
 if command -v fzf-share >/dev/null; then
 	source "$(fzf-share)/key-bindings.bash"
 	source "$(fzf-share)/completion.bash"
 fi
 
+# Activate zoxide - this will replace the `cd` command
+eval "$(zoxide init bash --cmd cd)"
+
 eval "$(starship init bash)"
+

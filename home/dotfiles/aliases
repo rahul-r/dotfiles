@@ -1,30 +1,31 @@
-# Aliases
 alias gd='git difftool --dir-diff'
 alias git-graph='git log --graph --pretty=oneline --abbrev-commit'
 
 alias tree='tree -C'
 
-alias ls='eza'
+[ -x "$(command -v eza)" ] && alias ls='eza'
 alias l='ls -F'
 alias ll='ls -ahlF'
 alias la='ls -A'
 
 alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias df='duf'
+[ -x "$(command -v duf)" ] && alias df='duf'
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+if [ -x "$(command -v nvim)" ]; then
+  alias vi='nvim'
+  alias vim='nvim'
+  alias neovim='nvim'
+fi
 
-alias vi='nvim'
-alias vim='nvim'
-alias neovim='nvim'
+if [ -x "$(command -v bat)" ]; then
+  alias cat='bat --paging=never --style=plain'
+  alias less='bat --paging=always --style="full,changes"'
+  alias more='bat --paging=always --style="full,changes"'
+fi
 
-alias cat='bat --paging=never --style=plain'
-alias less='bat --paging=always --style="full,changes"'
-alias more='bat --paging=always --style="full,changes"'
+[ -x "$(command -v zellij)" ] && alias zj='zellij'
