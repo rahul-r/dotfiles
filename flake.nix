@@ -72,7 +72,7 @@
         extraSpecialArgs = {
           inherit inputs outputs;
           username = username;
-          email = '';
+          email = "";
           dotfiles_repo_path  = "/home/${username}/.dotfiles";
         };
       };
