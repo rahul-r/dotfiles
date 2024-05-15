@@ -26,5 +26,5 @@ if vim.g.neovide then
   vim.o.guifont = "DroidSansM Nerd Font"
 end
 
--- Disable autoformat
-vim.g.autoformat = false
+-- autoformat
+vim.g.autoformat = true

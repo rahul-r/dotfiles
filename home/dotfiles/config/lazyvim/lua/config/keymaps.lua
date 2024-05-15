@@ -20,3 +20,8 @@ vim.keymap.set("n", "<leader>ghH", "<cmd>DiffviewFileHistory<cr>", { desc = "All
 vim.keymap.set("n", "<leader>ghq", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
 vim.keymap.set("n", "<leader>ght", "<cmd>DiffviewToggleFiles<cr>", { desc = "Toggle file list" })
 vim.keymap.set("n", "<leader>ghr", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh" })
+
+vim.keymap.set("n", "<leader>cE", function() LazyVim.format.toggle() end, { desc = "Toggle Auto Format (Global)" })
+vim.keymap.set("n", "<leader>ce", function() LazyVim.format.toggle(true) end, { desc = "Toggle Auto Format (Buffer)" })
+
+vim.keymap.set("n", "<leader>ci", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(nil)) end, { desc = "Toggle inlay hints" })
