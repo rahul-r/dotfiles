@@ -20,7 +20,7 @@ in
 
   imports = [
     ./common.nix
-    ../home/neovim-nightly.nix
+    ../home/neovim.nix
     ../home/firefox.nix
     ../home/hyprland
   ];

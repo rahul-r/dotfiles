@@ -55,7 +55,6 @@
           system = "aarch64-darwin";
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
-          overlays = [ neovim-nightly-overlay.overlay ];
         };
         modules = [ ./machines/darwin.nix ];
         extraSpecialArgs = {
@@ -70,7 +69,6 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
-          overlays = [ neovim-nightly-overlay.overlay ];
         };
         modules = [ ./machines/work-wsl.nix ];
         extraSpecialArgs = {
