@@ -28,7 +28,6 @@ in
     ../home/zsh.nix
     ../home/tmux.nix
     ../home/git.nix
-    ../home/neovim.nix
     ../home/helix.nix
     ../home/zellij.nix
   ];

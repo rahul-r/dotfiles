@@ -15,6 +15,7 @@
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -23,6 +24,7 @@
       nixpkgs,
       home-manager,
       nixgl,
+      neovim-nightly-overlay,
       ...
     }@inputs:
     let
@@ -38,7 +40,7 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
-          overlays = [ nixgl.overlay ];
+          overlays = [ nixgl.overlay neovim-nightly-overlay.overlay ];
         };
         modules = [ ./machines/linux.nix ];
         extraSpecialArgs = {
@@ -53,6 +55,7 @@
           system = "aarch64-darwin";
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
+          overlays = [ neovim-nightly-overlay.overlay ];
         };
         modules = [ ./machines/darwin.nix ];
         extraSpecialArgs = {
@@ -67,6 +70,7 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
+          overlays = [ neovim-nightly-overlay.overlay ];
         };
         modules = [ ./machines/work-wsl.nix ];
         extraSpecialArgs = {

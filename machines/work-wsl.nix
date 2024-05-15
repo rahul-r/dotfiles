@@ -13,6 +13,7 @@
 
   imports = [
     ./common.nix
+    ../home/neovim.nix
   ];
 
   home.packages = with pkgs; [
