@@ -40,6 +40,8 @@ in
     chafa
     ranger
 
+    nodejs_20
+
     podman
     podman-compose
     neovide
