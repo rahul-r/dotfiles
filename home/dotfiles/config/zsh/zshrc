@@ -60,6 +60,8 @@ eval "$(zoxide init zsh --cmd cd)"
 
 eval "$(starship init zsh)"
 
+eval "$(direnv hook zsh)"
+
 find_files() {
     selected=$(fzf)
  

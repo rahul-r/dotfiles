@@ -97,6 +97,13 @@ in
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   home.file = {
     ".aliases".source = ../home/dotfiles/aliases;
     ".profile".source = ../home/dotfiles/profile;
