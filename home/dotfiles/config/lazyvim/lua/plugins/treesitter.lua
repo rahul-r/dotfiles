@@ -28,7 +28,6 @@ return {
       "xml",
       "yaml",
       "kdl",
-      "gleam",
     },
   },
 }
