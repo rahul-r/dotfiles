@@ -32,6 +32,14 @@ if [ -f "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
 fi
 
+# Go
+if [ -d "/usr/local/go/bin" ] ; then
+    export PATH=$PATH:/usr/local/go/bin
+fi
+if [ -d "${HOME}/go/bin" ] ; then
+    export PATH=$PATH:${HOME}/go/bin
+fi
+
 # set default virsh connection URI
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
@@ -45,7 +53,7 @@ fi
 
 # Pretend to be KDE desktop to have the correct theme applied to KDE applications
 # See https://unix.stackexchange.com/questions/275777/kde5-breeze-dark-theme-and-kde-icons-not-working-in-i3wm
-export XDG_CURRENT_DESKTOP=KDE
+#export XDG_CURRENT_DESKTOP=KDE
 
 # Remove pagination of systemctl and journalctl outputs
 export SYSTEMD_PAGER=''
