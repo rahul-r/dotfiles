@@ -3,7 +3,7 @@ return {
   event = "VimEnter",
 
   opts = function(_, opts)
-    opts.config.header = {}
+    --opts.config.header = {}
     return opts
   end,
 }
