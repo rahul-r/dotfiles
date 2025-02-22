@@ -15,7 +15,6 @@
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -24,7 +23,6 @@
       nixpkgs,
       home-manager,
       nixgl,
-      neovim-nightly-overlay,
       ...
     }@inputs:
     let
@@ -40,7 +38,7 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
           config.allowUnfreePredicate = (_: true);
-          overlays = [ nixgl.overlay neovim-nightly-overlay.overlay ];
+          overlays = [ nixgl.overlay ];
         };
         modules = [ ./machines/linux.nix ];
         extraSpecialArgs = {
