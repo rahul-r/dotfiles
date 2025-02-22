@@ -5,3 +5,10 @@ cd ~/.dotfiles
 ./install.sh
 ```
 Run `nix-switch` command to apply home-manager changes
+
+## Update nix packages
+
+```sh
+nix flake update
+nix-switch
+```
