@@ -27,6 +27,7 @@ in
 
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "nix-switch" ''
+      rm ~/.config/nvim
       home-manager switch --flake ${config.home.homeDirectory}/.dotfiles#blackhole
     '')
 

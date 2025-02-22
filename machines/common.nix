@@ -115,7 +115,7 @@ in
     ".vimrc".source = ../home/dotfiles/vimrc;
     ".vim/autoload/plug.vim".source = builtins.fetchurl {
       url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
-      sha256 = "1nywzjd9nfr7sqqbdi69wza305q3vp26i0390j1884wdz6awid10";
+      sha256 = "0llmchd6frnxkp2zqpbg8k5zq5jjbmln6g6ndfyy1nnxcf3gwm2y";
     };
     ".local/share/nvim/site/pack/packer/start/packer.nvim".source = builtins.fetchGit {
       url = "https://github.com/wbthomason/packer.nvim";
