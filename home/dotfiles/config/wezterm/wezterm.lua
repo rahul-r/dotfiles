@@ -10,7 +10,7 @@ config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 config.window_close_confirmation = "NeverPrompt"
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.text_background_opacity = 0.8
 config.window_background_gradient = {
 	colors = { "#000000", "#222222" },
