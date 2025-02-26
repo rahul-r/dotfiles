@@ -107,4 +107,5 @@ eval "$(zoxide init bash --cmd cd)"
 
 eval "$(starship init bash)"
 
+export DIRENV_LOG_FORMAT=
 eval "$(direnv hook bash)"

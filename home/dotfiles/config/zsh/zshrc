@@ -60,6 +60,7 @@ eval "$(zoxide init zsh --cmd cd)"
 
 eval "$(starship init zsh)"
 
+export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
 
 find_files() {
