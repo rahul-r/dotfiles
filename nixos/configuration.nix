@@ -120,6 +120,7 @@
     cppcheck
     ripgrep
     lazygit
+    lazydocker
     lf
     firefox
     kate
