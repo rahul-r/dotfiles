@@ -45,6 +45,7 @@ in
 
     podman
     podman-compose
+    lazydocker
     neovide
 
     # Alternatives to traditional tools
