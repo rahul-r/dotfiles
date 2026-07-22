@@ -2,9 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope fd<CR>", { desc = "File picker", remap = true })
+
+vim.keymap.set("n", "<leader>+/", "<Nop>", { desc = "Disabled default grep" })
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "Comment line", remap = true })
-vim.keymap.set("v", "<leader>/", "gcc", { desc = "Comment line", remap = true })
-vim.keymap.set("x", "<leader>/", "gc", { desc = "Comment selection", remap = true })
+-- vim.keymap.set("v", "<leader>/", "gcc", { desc = "Comment line", remap = true })
+vim.keymap.set("v", "<leader>/", "gc", { desc = "Comment selection", remap = true })
+
 vim.keymap.set("n", "<leader>qw", "<cmd>x<cr>", { desc = "Save file and quit" })
 vim.keymap.set("n", "<leader>ww", "<cmd>w<cr>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>h", "<cmd>nohl<cr>", { desc = "No highlight" })

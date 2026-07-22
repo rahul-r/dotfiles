@@ -26,7 +26,7 @@ fi
 sudo grep -qxF 'experimental-features = nix-command flakes' /etc/nix/nix.conf || echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf
 
 source /etc/profile
-source ~/.profile
+#source ~/.profile
 
 ## Install home-manager (install only if not already installed)
 if ! [ -x "$(command -v home-manager)" ]; then
@@ -37,7 +37,7 @@ fi
 
 # Activate home-manager configuration
 if [[ $OSTYPE == 'linux-gnu' ]]; then
-	home-manager switch -b nix_backup --flake .
+	home-manager switch -b nix_backup --flake .#blackhole
 elif [[ $OSTYPE == 'darwin'* ]]; then
 	home-manager switch -b nix_backup --flake .#macbook
 fi

@@ -10,18 +10,17 @@
   home.packages = with pkgs; [
     neovim
     # Language servers, linters, formetters, etc.
-    python311Packages.yamllint
-    python311Packages.black
-    python311Packages.flake8
-    python311Packages.beautysh
-    python311Packages.mdformat
-    python311Packages.pynvim
+    python312Packages.yamllint
+    python312Packages.black
+    python312Packages.flake8
+    python312Packages.beautysh
+    python312Packages.mdformat
+    python312Packages.pynvim
     cmake-format
     markdownlint-cli
     stylelint
     prettierd
     nodePackages.eslint
-    nodePackages.jsonlint
     nodePackages.neovim
   ];
 

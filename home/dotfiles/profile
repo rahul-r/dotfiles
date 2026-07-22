@@ -40,6 +40,8 @@ if [ -d "${HOME}/go/bin" ] ; then
     export PATH=$PATH:${HOME}/go/bin
 fi
 
+export PATH="${HOME}/.npm-global/bin:$PATH"
+
 # set default virsh connection URI
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 

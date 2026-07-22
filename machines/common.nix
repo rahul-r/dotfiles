@@ -41,7 +41,7 @@ in
     chafa
     ranger
 
-    nodejs_20
+    nodejs_24
 
     podman
     podman-compose
@@ -114,15 +114,15 @@ in
     ".hushlogin".text = "";
 
     # vim
-    ".vimrc".source = ../home/dotfiles/vimrc;
-    ".vim/autoload/plug.vim".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
-      sha256 = "sha256:01kkg3c05si97r4kkdhn5n17kcqp56hjh4d74l9aajd0d629kn62";
-    };
-    ".local/share/nvim/site/pack/packer/start/packer.nvim".source = builtins.fetchGit {
-      url = "https://github.com/wbthomason/packer.nvim";
-      rev = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3";
-    };
+    #".vimrc".source = ../home/dotfiles/vimrc;
+    #".vim/autoload/plug.vim".source = builtins.fetchurl {
+     # url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
+      #sha256 = "0llmchd6frnxkp2zqpbg8k5zq5jjbmln6g6ndfyy1nnxcf3gwm2y";
+    #};
+    #".local/share/nvim/site/pack/packer/start/packer.nvim".source = builtins.fetchGit {
+     # url = "https://github.com/wbthomason/packer.nvim";
+      #rev = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3";
+    #};
   };
 
   xdg.configFile = {
