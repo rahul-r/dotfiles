@@ -8,7 +8,7 @@ return {
   },
   -- rainbow parentheses
   {
-    "p00f/nvim-ts-rainbow",
+    "HiPhish/rainbow-delimiters.nvim",
   },
   {
     "karb94/neoscroll.nvim",

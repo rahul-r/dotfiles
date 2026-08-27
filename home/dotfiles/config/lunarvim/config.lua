@@ -57,22 +57,22 @@ lvim.keys.normal_mode["<C-p>"] = "<cmd>Telescope fd<CR>"
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "P rojects" }
 lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+	name = "+Trouble",
+	r = { "<cmd>Trouble lsp_references<cr>", "References" },
+	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
 lvim.builtin.which_key.mappings["gh"] = {
-  name = "Diffview",
-  h = { "<cmd>DiffviewFileHistory %<cr>", "This file history" },
-  H = { "<cmd>DiffviewFileHistory<cr>", "All file history" },
-  q = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
-  t = { "<cmd>DiffviewToggleFiles<cr>", "Toggle file list" },
-  r = { "<cmd>DiffviewRefresh<cr>", "Refresh" },
+	name = "Diffview",
+	h = { "<cmd>DiffviewFileHistory %<cr>", "This file history" },
+	H = { "<cmd>DiffviewFileHistory<cr>", "All file history" },
+	q = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
+	t = { "<cmd>DiffviewToggleFiles<cr>", "Toggle file list" },
+	r = { "<cmd>DiffviewRefresh<cr>", "Refresh" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -90,30 +90,30 @@ lvim.builtin.project.patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn" } -- {
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "cpp",
-  "cmake",
-  "comment",
-  "css",
-  "dockerfile",
-  "go",
-  "html",
-  "javascript",
-  "json",
-  "lua",
-  "make",
-  "markdown",
-  "python",
-  "regex",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "toml",
-  "vim",
-  "java",
-  "yaml",
+	"bash",
+	"c",
+	"cpp",
+	"cmake",
+	"comment",
+	"css",
+	"dockerfile",
+	"go",
+	"html",
+	"javascript",
+	"json",
+	"lua",
+	"make",
+	"markdown",
+	"python",
+	"regex",
+	"typescript",
+	"tsx",
+	"css",
+	"rust",
+	"toml",
+	"vim",
+	"java",
+	"yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -124,8 +124,8 @@ lvim.builtin.treesitter.rainbow.enable = true
 
 -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
-  "lua_ls",
-  "jsonls",
+	"lua_ls",
+	"jsonls",
 }
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
@@ -197,224 +197,228 @@ lvim.lsp.installer.setup.ensure_installed = {
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-  -- show git blame
-  {
-    "f-person/git-blame.nvim",
-    event = "BufRead",
-    config = function()
-      vim.cmd "highlight default link gitblame SpecialComment"
-      vim.g.gitblame_message_template = "<author> • <date>"
-      vim.g.gitblame_message_when_not_committed = "Not commited!"
-    end,
-  },
-  -- git diff in a single tabpage
-  {
-    "sindrets/diffview.nvim",
-    event = "BufRead",
-  },
-  -- autoclose and autorename html tag
-  {
-    "windwp/nvim-ts-autotag",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
-  },
-  -- rainbow parentheses
-  {
-    "p00f/nvim-ts-rainbow",
-  },
-  -- smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    event = "WinScrolled",
-    config = function()
-      require('neoscroll').setup({
-        -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
-          '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        hide_cursor = true,          -- Hide cursor while scrolling
-        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing_function = nil,       -- Default easing function
-        pre_hook = nil,              -- Function to run before the scrolling animation starts
-        post_hook = nil,             -- Function to run after the scrolling animation ends
-      })
-    end
-  },
-  -- pick up where you left off
-  {
-    "ethanholz/nvim-lastplace",
-    event = "BufRead",
-    config = function()
-      require("nvim-lastplace").setup({
-        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-        lastplace_ignore_filetype = {
-          "gitcommit", "gitrebase", "svn", "hgcommit",
-        },
-        lastplace_open_folds = true,
-      })
-    end,
-  },
-  -- highlight and search for todo comments
-  {
-    "folke/todo-comments.nvim",
-    event = "BufRead",
-    config = function()
-      require("todo-comments").setup()
-    end,
-  },
-  -- Themes
-  { "olimorris/onedarkpro.nvim" },
-  { "Th3Whit3Wolf/space-nvim" },
-  { "tomasiser/vim-code-dark" },
-  {
-    "EdenEast/nightfox.nvim",
-    config = function()
-      require('nightfox').setup({
-        options = {
-          styles = {
-            comments = "italic",
-          }
-        },
-        groups = {
-          all = {
-            LineNr = { fg = "palette.bg4" },
-            CursorLineNr = { fg = "palette.fg2" },
-          }
-        }
-      })
-    end,
-  },
-  { "marko-cerovac/material.nvim" },
-  {
-    "navarasu/onedark.nvim",
-    config = function()
-      require("material").setup({
-        plugins = {
-          "dashboard",
-          "gitsigns",
-          "nvim-tree",
-          "nvim-web-devicons",
-          "telescope",
-          "trouble",
-          "which-key"
-        }
-      })
-    end,
-  },
-  { "ellisonleao/gruvbox.nvim",   priority = 1000 },
-  {
-    "rmagatti/auto-session",
-    config = function()
-      -- Couldn't get auto save working; as a workaround, run ":SaveSession" in neovim to save the current session
-      require("auto-session").setup {
-        log_level = "error",
-        auto_save_enabled = true,
-        auto_restore_enabled = true,
-      }
-    end
-  },
-  {
-    'nmac427/guess-indent.nvim',
-    config = function() require('guess-indent').setup {} end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    event = "InsertEnter",
-    dependencies = { "zbirenbaum/copilot.lua" },
-    config = function()
-      vim.defer_fn(function()
-        -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-        require("copilot").setup({
-          suggestion = {
-            auto_trigger = true,
-          }
-        })
-        -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-        require("copilot_cmp").setup()
-      end, 100)
-    end,
-  },
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = {
-      "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          local builtin = require("statuscol.builtin")
-          require("statuscol").setup({
-            relculright = true,
-            segments = {
-              { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-              { text = { "%s" },                  click = "v:lua.ScSa" },
-              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-            },
-          })
-        end,
-      },
-    },
-    event = "BufReadPost",
-    config = function()
-      vim.o.foldcolumn = "1"
-      vim.o.foldlevel = 99
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+	{
+		"folke/trouble.nvim",
+		cmd = "TroubleToggle",
+	},
+	-- show git blame
+	{
+		"f-person/git-blame.nvim",
+		event = "BufRead",
+		config = function()
+			vim.cmd("highlight default link gitblame SpecialComment")
+			vim.g.gitblame_message_template = "<author> • <date>"
+			vim.g.gitblame_message_when_not_committed = "Not commited!"
+		end,
+	},
+	-- git diff in a single tabpage
+	{
+		"sindrets/diffview.nvim",
+		event = "BufRead",
+	},
+	-- autoclose and autorename html tag
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
+	-- rainbow parentheses
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+	},
+	-- smooth scrolling
+	{
+		"karb94/neoscroll.nvim",
+		event = "WinScrolled",
+		config = function()
+			require("neoscroll").setup({
+				-- All these keys will be mapped to their corresponding default scrolling animation
+				mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+				hide_cursor = true, -- Hide cursor while scrolling
+				stop_eof = true, -- Stop at <EOF> when scrolling downwards
+				use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+				respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+				cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+				easing_function = nil, -- Default easing function
+				pre_hook = nil, -- Function to run before the scrolling animation starts
+				post_hook = nil, -- Function to run after the scrolling animation ends
+			})
+		end,
+	},
+	-- pick up where you left off
+	{
+		"ethanholz/nvim-lastplace",
+		event = "BufRead",
+		config = function()
+			require("nvim-lastplace").setup({
+				lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+				lastplace_ignore_filetype = {
+					"gitcommit",
+					"gitrebase",
+					"svn",
+					"hgcommit",
+				},
+				lastplace_open_folds = true,
+			})
+		end,
+	},
+	-- highlight and search for todo comments
+	{
+		"folke/todo-comments.nvim",
+		event = "BufRead",
+		config = function()
+			require("todo-comments").setup()
+		end,
+	},
+	-- Themes
+	{ "olimorris/onedarkpro.nvim" },
+	{ "Th3Whit3Wolf/space-nvim" },
+	{ "tomasiser/vim-code-dark" },
+	{
+		"EdenEast/nightfox.nvim",
+		config = function()
+			require("nightfox").setup({
+				options = {
+					styles = {
+						comments = "italic",
+					},
+				},
+				groups = {
+					all = {
+						LineNr = { fg = "palette.bg4" },
+						CursorLineNr = { fg = "palette.fg2" },
+					},
+				},
+			})
+		end,
+	},
+	{ "marko-cerovac/material.nvim" },
+	{
+		"navarasu/onedark.nvim",
+		config = function()
+			require("material").setup({
+				plugins = {
+					"dashboard",
+					"gitsigns",
+					"nvim-tree",
+					"nvim-web-devicons",
+					"telescope",
+					"trouble",
+					"which-key",
+				},
+			})
+		end,
+	},
+	{ "ellisonleao/gruvbox.nvim", priority = 1000 },
+	{
+		"rmagatti/auto-session",
+		config = function()
+			-- Couldn't get auto save working; as a workaround, run ":SaveSession" in neovim to save the current session
+			require("auto-session").setup({
+				log_level = "error",
+				auto_save_enabled = true,
+				auto_restore_enabled = true,
+			})
+		end,
+	},
+	{
+		"nmac427/guess-indent.nvim",
+		config = function()
+			require("guess-indent").setup({})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		event = "InsertEnter",
+		dependencies = { "zbirenbaum/copilot.lua" },
+		config = function()
+			vim.defer_fn(function()
+				-- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+				require("copilot").setup({
+					suggestion = {
+						auto_trigger = true,
+					},
+				})
+				-- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+				require("copilot_cmp").setup()
+			end, 100)
+		end,
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = {
+			"kevinhwang91/promise-async",
+			{
+				"luukvbaal/statuscol.nvim",
+				config = function()
+					local builtin = require("statuscol.builtin")
+					require("statuscol").setup({
+						relculright = true,
+						segments = {
+							{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+							{ text = { "%s" }, click = "v:lua.ScSa" },
+							{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+						},
+					})
+				end,
+			},
+		},
+		event = "BufReadPost",
+		config = function()
+			vim.o.foldcolumn = "1"
+			vim.o.foldlevel = 99
+			vim.o.foldlevelstart = 99
+			vim.o.foldenable = true
+			vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true
-      }
-      local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-      for _, ls in ipairs(language_servers) do
-        require('lspconfig')[ls].setup({
-          capabilities = capabilities
-        })
-      end
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
+			local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+			for _, ls in ipairs(language_servers) do
+				require("lspconfig")[ls].setup({
+					capabilities = capabilities,
+				})
+			end
 
-      local handler = function(virtText, lnum, endLnum, width, truncate)
-        local newVirtText = {}
-        local suffix = (' 󰁂 %d '):format(endLnum - lnum)
-        local sufWidth = vim.fn.strdisplaywidth(suffix)
-        local targetWidth = width - sufWidth
-        local curWidth = 0
-        for _, chunk in ipairs(virtText) do
-          local chunkText = chunk[1]
-          local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-          if targetWidth > curWidth + chunkWidth then
-            table.insert(newVirtText, chunk)
-          else
-            chunkText = truncate(chunkText, targetWidth - curWidth)
-            local hlGroup = chunk[2]
-            table.insert(newVirtText, { chunkText, hlGroup })
-            chunkWidth = vim.fn.strdisplaywidth(chunkText)
-            -- str width returned from truncate() may less than 2nd argument, need padding
-            if curWidth + chunkWidth < targetWidth then
-              suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
-            end
-            break
-          end
-          curWidth = curWidth + chunkWidth
-        end
-        table.insert(newVirtText, { suffix, 'MoreMsg' })
-        return newVirtText
-      end
+			local handler = function(virtText, lnum, endLnum, width, truncate)
+				local newVirtText = {}
+				local suffix = (" 󰁂 %d "):format(endLnum - lnum)
+				local sufWidth = vim.fn.strdisplaywidth(suffix)
+				local targetWidth = width - sufWidth
+				local curWidth = 0
+				for _, chunk in ipairs(virtText) do
+					local chunkText = chunk[1]
+					local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+					if targetWidth > curWidth + chunkWidth then
+						table.insert(newVirtText, chunk)
+					else
+						chunkText = truncate(chunkText, targetWidth - curWidth)
+						local hlGroup = chunk[2]
+						table.insert(newVirtText, { chunkText, hlGroup })
+						chunkWidth = vim.fn.strdisplaywidth(chunkText)
+						-- str width returned from truncate() may less than 2nd argument, need padding
+						if curWidth + chunkWidth < targetWidth then
+							suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+						end
+						break
+					end
+					curWidth = curWidth + chunkWidth
+				end
+				table.insert(newVirtText, { suffix, "MoreMsg" })
+				return newVirtText
+			end
 
-      require('ufo').setup({
-        fold_virt_text_handler = handler
-      })
-    end,
-  },
+			require("ufo").setup({
+				fold_virt_text_handler = handler,
+			})
+		end,
+	},
 }
 
 vim.opt.wrap = true
@@ -434,21 +438,21 @@ vim.opt.wrap = true
 -- })
 
 -- Prevent adding new line at end of files
-vim.cmd('set nofixeol')
-vim.cmd('set rnu')
+vim.cmd("set nofixeol")
+vim.cmd("set rnu")
 
 function COPY()
-  vim.opt.number = false
-  vim.opt.relativenumber = false
-  vim.cmd('set mouse=n')
-  vim.cmd('Gitsigns detach_all')
-  vim.cmd('startinsert')
+	vim.opt.number = false
+	vim.opt.relativenumber = false
+	vim.cmd("set mouse=n")
+	vim.cmd("Gitsigns detach_all")
+	vim.cmd("startinsert")
 end
 
 -- Remove the "How-to disable mouse" menu item and the separator above it
-vim.cmd('aunmenu PopUp.How-to\\ disable\\ mouse')
-vim.cmd('aunmenu PopUp.-1-')
+vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
+vim.cmd("aunmenu PopUp.-1-")
 
 if vim.g.neovide then
-  vim.o.guifont = "UbuntuMono Nerd Font:h13"
+	vim.o.guifont = "UbuntuMono Nerd Font:h13"
 end
