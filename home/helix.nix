@@ -50,7 +50,7 @@
     languages.language = [{
       name = "nix";
       auto-format = true;
-      formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
+      formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
     } {
       name = "rust";
       auto-format = true;

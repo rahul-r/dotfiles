@@ -9,9 +9,9 @@
 {
   home.packages = with pkgs; [
     neovim
-    # Language servers, linters, formetters, etc.
+    # Language servers, linters, formatters, etc.
     python312Packages.yamllint
-    python312Packages.black
+    #python312Packages.black
     python312Packages.flake8
     python312Packages.beautysh
     python312Packages.mdformat
@@ -20,22 +20,16 @@
     markdownlint-cli
     stylelint
     prettierd
-    nodePackages.eslint
-    nodePackages.neovim
+    
+    # FIX: nodePackages removed; these are now top-level attributes
+    eslint
+    neovim-node-client # Note: the node provider for neovim is mapped as neovim-node-client
   ];
 
+  # FIX: Restored native Out-Of-Store symlinking, as the Nix bug is fixed
   xdg.configFile = {
-    #"nvim".source = ./dotfiles/config/nvim; # My custom neovim config
-    "nvim".source = ./dotfiles/config/lazyvim;
-    "lvim".source = ./dotfiles/config/lunarvim;
-  };
-
-  home.activation = {
-    # This was using .config and mkOuOfStoreSymlink, but it is broken in recent nix
-    # see https://github.com/nix-community/home-manager/issues/4692
-    updateNeovimLinks = ''
-      CONFIG_DIR="${config.home.homeDirectory}/.dotfiles/home/dotfiles/config"
-      rm -f "''${XDG_CONFIG_HOME}/nvim" && ln -sf "''${CONFIG_DIR}/lazyvim" ''${XDG_CONFIG_HOME}/nvim
-    '';
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/dotfiles/config/lazyvim";
+    "lvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/dotfiles/config/lunarvim";
   };
 }
+
