@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Remove the Stow symlinks. Home Manager is NOT touched.
+# Remove the Stow symlinks.
 # Usage: scripts/uninstall.sh [--apply]
 # Without --apply this only prints and dry-runs the stow command.
 set -euo pipefail
@@ -50,7 +50,7 @@ stow "${stow_args[@]}" "${packages[@]}"
 
 cat <<'EOF'
 
-Stow links removed. Home Manager and its generation are untouched.
+Stow links removed.
 Left in place (remove manually only if you no longer want them):
   ~/.config/zsh/syntax-highlighting
   ~/.config/zsh/zsh-autosuggestions

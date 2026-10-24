@@ -1,14 +1,13 @@
 # Dotfiles (GNU Stow)
 
 This tree replaces the Home Manager-managed dotfiles with plain files and GNU
-Stow symlinks. Home Manager itself, the NixOS configuration, and the `shell/`
-dev-shell flakes are **not** removed; they remain usable for rollback and for
-the Nix-only pieces (dev shells, `nix-direnv`, optional `nixfmt`).
+Stow symlinks. The Nix flake, Home Manager modules, NixOS configuration, and
+`shell/` dev-shell flakes were removed on this branch; the repository now
+contains only the Stow implementation.
 
 Nothing here is applied automatically. The install script places symlinks in
 `$HOME`, fetches the pinned plugin assets, and copies `firefox/user.js` into an
-existing Firefox profile; it does not install packages, edit `/etc`, or touch
-Home Manager.
+existing Firefox profile; it does not install packages or edit `/etc`.
 
 ## Layout
 
@@ -35,7 +34,7 @@ firefox/user.js               deployed by scripts/install-firefox-userjs.sh
 scripts/install.sh            stow + bootstrap
 scripts/bootstrap.sh          pinned zsh plugins, TPM, zellij wasm plugins
 scripts/install-firefox-userjs.sh
-scripts/uninstall.sh          stow -D guidance (Home Manager untouched)
+scripts/uninstall.sh          stow -D guidance
 ```
 
 Every directory mirrors `$HOME`; the target is always `$HOME`. Paths that need
@@ -115,18 +114,17 @@ different checksum are left alone with a warning.
 
 ## Rollback
 
-The Home Manager generation was never changed by this repository.
-
 ```sh
 cd ~/.dotfiles
 scripts/uninstall.sh            # dry run: prints the command and simulates it
 scripts/uninstall.sh --apply    # removes the Stow symlinks
-home-manager switch --flake .#blackhole   # or #macbook / #work-wsl, if desired
+git checkout <commit>           # any earlier Stow commit, then reinstall
+scripts/install.sh
 ```
 
-`uninstall.sh` does not remove Home Manager, packages, clones, or caches. To go
-back to an earlier commit of these dotfiles, `git checkout` the desired commit
-before running the install script again.
+`uninstall.sh` does not remove packages, plugin clones, or caches. The old Home
+Manager configuration is not part of this branch; restoring it requires
+checking out a pre-cleanup commit.
 
 ## Removal
 
@@ -136,8 +134,7 @@ rm -rf ~/.dotfiles
 ```
 
 Optionally remove the bootstrap data listed at the end of `uninstall.sh`'s
-output. Home Manager still works if it was configured before; it only manages
-the paths listed in `machines/*.nix` and `home/*.nix`.
+output. No Nix or Home Manager files remain in this branch.
 
 ## Migrated, omitted, manual
 
@@ -155,8 +152,8 @@ Migrated as hand-written static files derived from the Home Manager settings:
 
 Intentionally omitted:
 
-- Home Manager, the flake, `nixos/`, and `shell/` (unchanged, kept for Nix-only
-  workflows and rollback).
+- Home Manager, the flake, `nixos/`, and `shell/` (omitted from the Stow
+  packages and removed from this branch).
 - `home/dotfiles/config/nvim/` (the legacy, never-deployed Neovim tree) and
   `home/dotfiles/vimrc` (not deployed by the old configuration).
 - `nix-switch`, nixGL wrappers, and the `/tmp/hyprland.desktop` activation
@@ -260,5 +257,6 @@ npm install -g markdownlint-cli stylelint @fsouza/prettierd eslint neovim
 ```
 
 `pynvim` must be visible to the Python interpreter Neovim uses. The Nix-only
-pieces (`nix-direnv`, the `shell/` flakes, `nixfmt` if you keep it under Nix)
-stay under Nix.
+pieces (`nix-direnv` and the `shell/` dev-shell flakes) are no longer in this
+repository; keep them in a separate Nix configuration if you still use them.
+`nixfmt` remains an optional external tool.

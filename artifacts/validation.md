@@ -480,3 +480,60 @@ none
 | TOML/YAML/git-config/JS parsing | PASS |
 | Hyprland semantic settings match | PASS (one Nix-only line omitted) |
 | Real `$HOME` / Home Manager modification | NOT PERFORMED |
+
+## Post-cleanup re-validation (Nix artifacts removed)
+
+Date: 2026-10-24
+Worktree: `/home/rahul/.dotfiles-stow` (branch `stow-migration`)
+
+After removing `flake.nix`, `flake.lock`, `home.nix`, `utils.nix`, `install.sh`,
+`machines/`, `home/`, `nixos/`, and `shell/`, the combined Stow dry run was
+repeated against a fresh empty sandbox. The flags and package list are the same
+as §2.2; only the sandbox path is new. Nothing was written into `$HOME`.
+
+```console
+$ nix run nixpkgs#stow -- --version
+stow (GNU Stow) version 2.4.1
+
+$ SB=$(mktemp -d /tmp/revalidate-stow.XXXXXX)
+$ echo "entries before: $(find "$SB" -mindepth 1 | wc -l)"
+entries before: 0
+$ cd /home/rahul/.dotfiles-stow
+$ nix run nixpkgs#stow -- -v -n -d /home/rahul/.dotfiles-stow/stow \
+    -t "$SB" zsh git editor tmux terminals lf hyprland bin
+LINK: .aliases => ../../home/rahul/.dotfiles-stow/stow/zsh/.aliases
+LINK: .bashrc => ../../home/rahul/.dotfiles-stow/stow/zsh/.bashrc
+LINK: .config => ../../home/rahul/.dotfiles-stow/stow/zsh/.config
+LINK: .hushlogin => ../../home/rahul/.dotfiles-stow/stow/zsh/.hushlogin
+LINK: .profile => ../../home/rahul/.dotfiles-stow/stow/zsh/.profile
+LINK: .zshenv => ../../home/rahul/.dotfiles-stow/stow/zsh/.zshenv
+UNLINK: .config (reverts previous action)
+MKDIR: .config
+LINK: .config/starship.toml => ../../../home/rahul/.dotfiles-stow/stow/zsh/.config/starship.toml
+LINK: .config/zsh => ../../../home/rahul/.dotfiles-stow/stow/zsh/.config/zsh
+LINK: .config/git => ../../../home/rahul/.dotfiles-stow/stow/git/.config/git
+LINK: .config/lazygit => ../../../home/rahul/.dotfiles-stow/stow/git/.config/lazygit
+LINK: .config/helix => ../../../home/rahul/.dotfiles-stow/stow/editor/.config/helix
+LINK: .config/lvim => ../../../home/rahul/.dotfiles-stow/stow/editor/.config/lvim
+LINK: .config/nvim => ../../../home/rahul/.dotfiles-stow/stow/editor/.config/nvim
+LINK: .config/tmux => ../../../home/rahul/.dotfiles-stow/stow/tmux/.config/tmux
+LINK: .config/alacritty => ../../../home/rahul/.dotfiles-stow/stow/terminals/.config/alacritty
+LINK: .config/wezterm => ../../../home/rahul/.dotfiles-stow/stow/terminals/.config/wezterm
+LINK: .config/zellij => ../../../home/rahul/.dotfiles-stow/stow/terminals/.config/zellij
+LINK: .screenrc => ../../home/rahul/.dotfiles-stow/stow/terminals/.screenrc
+LINK: .config/lf => ../../../home/rahul/.dotfiles-stow/stow/lf/.config/lf
+LINK: .config/hypr => ../../../home/rahul/.dotfiles-stow/stow/hyprland/.config/hypr
+LINK: .local => ../../home/rahul/.dotfiles-stow/stow/bin/.local
+WARNING: in simulation mode so not modifying filesystem.
+exit=0
+
+$ echo "entries after: $(find "$SB" -mindepth 1 | wc -l)"
+entries after: 0
+```
+
+The run produced the same 21 `LINK` lines, one `UNLINK`/`MKDIR` pair for the
+shared `.config` tree, and the simulation warning as the pre-cleanup run. Exit
+code `0`; the sandbox stayed empty, so this was a true dry run and the Stow
+package tree is intact after the cleanup.
+
+Result: **PASS**.
