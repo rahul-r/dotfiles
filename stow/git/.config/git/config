@@ -1,0 +1,36 @@
+# Static replacement for Home Manager's programs.git settings.
+# work-wsl used an empty user.email; see the WSL note in README.md.
+
+[user]
+	email = "jossb6cw@duck.com"
+	name = "rahul"
+
+[alias]
+	lg = "lazygit"
+
+[core]
+	editor = "vi"
+	pager = "delta"
+
+[interactive]
+	diffFilter = "delta --color-only"
+
+[delta]
+	navigate = true
+	features = "line-numbers"
+	features = "side-by-side"
+
+[merge]
+	conflictStyle = "diff3"
+
+[diff]
+	colorMoved = "default"
+
+[pull]
+	rebase = true
+
+[filter "lfs"]
+	clean = "git-lfs clean -- %f"
+	process = "git-lfs filter-process"
+	required = true
+	smudge = "git-lfs smudge -- %f"

@@ -1,0 +1,33 @@
+add_newline = false
+
+[character]
+error_symbol = "[➜](bold red)"
+success_symbol = "[➜](bold green)"
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
+
+[git_commit]
+disabled = true
+
+[git_status]
+disabled = true
+
+[hostname]
+detect_env_vars = ["!TMUX", "SSH_CONNECTION"]
+disabled = true
+format = "[$ssh_symbol](bold blue)[$hostname](bold red) "
+ssh_only = true
+
+[hostname.ssh]
+format = "[$hostname](bold yellow)"
+
+[line_break]
+disabled = true
+
+[username]
+disabled = true
+format = "[$user]($style)"

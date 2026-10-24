@@ -1,0 +1,56 @@
+theme = "gruvbox"
+
+[editor]
+auto-format = true
+auto-save = false
+bufferline = "multiple"
+cursorline = true
+insert-final-newline = false
+line-number = "relative"
+scroll-lines = 3
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+character = "│"
+render = true
+skip-levels = 1
+
+[editor.statusline]
+center = ["file-name"]
+left = ["mode", "spinner"]
+right = [
+    "diagnostics",
+    "selections",
+    "position",
+    "file-encoding",
+    "file-line-ending",
+    "file-type",
+]
+separator = "│"
+
+[editor.statusline.mode]
+insert = "INSERT"
+normal = "NORMAL"
+select = "SELECT"
+
+[keys.normal]
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+esc = ["collapse_selection", "keep_primary_selection"]
+
+[[language]]
+name = "nix"
+auto-format = true
+
+[language.formatter]
+command = "nixfmt"
+
+[[language]]
+name = "rust"
+auto-format = true
