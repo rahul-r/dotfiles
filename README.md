@@ -9,16 +9,16 @@ how packages, folding and ignore lists work.
 Nothing here is applied automatically. The install script installs `stow`,
 `git` and `curl` if they are missing (with apt-get, dnf or Homebrew), places
 symlinks in `$HOME`, fetches the pinned plugin assets, and copies
-`firefox/user.js` into an existing Firefox profile; it installs nothing else
-and does not edit `/etc`.
+`firefox/user.js` into an existing Firefox profile (skipped when Firefox is not
+installed); it installs nothing else and does not edit `/etc`.
 
 ## Install
 
 Prerequisites: `git`, `curl`, and GNU Stow. They are installed automatically on
 Ubuntu/Debian, Fedora and macOS; on any other distribution or platform the
 script exits with an error if any of them is missing, so install them first
-there. Everything else (`zsh`, `tmux`, `neovim`, fonts, …) still has to be
-installed manually with your package manager.
+there. Everything else (`zsh`, `tmux`, `neovim`, fonts, …) is installed
+separately by the package script below.
 
 ```sh
 git clone https://github.com/rahul-r/dotfiles ~/.dotfiles
@@ -30,6 +30,13 @@ scripts/install.sh --dry-run
 scripts/install.sh
 ```
 
+The applications these files expect are installed by
+`scripts/install-packages.sh` (apt, dnf or Homebrew; on Debian/Ubuntu it
+installs WezTerm and yazi from their upstream APT repositories, on Fedora from
+COPR, and on Linux it also installs the Ubuntu Mono and Droid Sans Mono Nerd
+Fonts). It also runs `git lfs install` to register the Git LFS filters and
+hooks. It prints anything it cannot install from the native repositories.
+
 If you prefer to run Stow by hand, create the runtime directories first (the
 install script does this), then use exactly:
 
@@ -37,7 +44,7 @@ install script does this), then use exactly:
 mkdir -p ~/.config/zsh ~/.config/tmux ~/.local/bin \
   ~/.local/share/zellij/plugins ~/.vim/undo
 cd ~/.dotfiles
-stow --restow --dir stow --target "$HOME" home zsh git editor terminals lf hyprland
+stow --restow --dir stow --target "$HOME" home zsh git editor terminals hyprland
 ```
 
 Without those directories Stow folds `~/.config/zsh` into one symlink, and the
@@ -94,34 +101,19 @@ output.
 
 ## Manual steps
 
-- **Fonts**: install `DroidSansMono Nerd Font` and `UbuntuMono Nerd Font`.
-  macOS: `brew install --cask font-droid-sans-mono-nerd-font
-  font-ubuntu-mono-nerd-font`. Linux: unpack the Nerd Fonts release into
-  `~/.local/share/fonts` and run `fc-cache -f`.
-- **Firefox extensions**: install uBlock Origin and Bitwarden from
-  addons.mozilla.org once. `user.js` cannot install extensions.
+- **Firefox extensions**: install Firefox if your distribution does not
+  provide it, then add uBlock Origin and Bitwarden from addons.mozilla.org
+  once. `user.js` cannot install extensions.
 - **WSL git email**: the static config contains the approved address. On WSL,
   override it once with `git config --global user.email ""`; Git reads
   `~/.gitconfig` after `~/.config/git/config`, so this wins without editing the
   stowed file. Use `git config --global user.email jossb6cw@duck.com` to set it
   back.
-- **fzf**: the rc files call `fzf-share` when available; distro packages may not
-  provide it. If completion/key bindings are missing, add
-  `source <(fzf --zsh)` / `source <(fzf --bash)` yourself.
-- **git-lfs**: install the `git-lfs` package and run `git lfs install` once per
-  machine. The filter settings are already in `~/.config/git/config`; the
-  command installs the per-repository hooks.
 - **Hyprland**: install Hyprland (and `waybar`, `swaybg`, `rofi`, `grimblast`,
   `nautilus`, `flatpak` with Brave) from your distro/COPR. The session entry is
   provided by the package under `/usr/share/wayland-sessions`.
-- **lf preview** needs `chafa`, `bat`, `glow` or `mdcat`, plus `lsix` for image
-  listings. `lsix` is a single upstream script; put it in `~/bin` or
-  `~/.local/bin`. Other preview branches need `ffmpegthumbnailer`, `pdftoppm`,
-  `exiftool`, etc. (install only what you use).
-- **nixfmt**: helix points at `nixfmt` on `PATH`. `cargo install nixfmt`.
-- **Neovim tooling**: install the language servers/formatters you use, e.g.
+- **Neovim tooling**: `pipx` and `npm` are installed; add the language
+  servers/formatters you use, e.g.
   `pipx install yamllint flake8 beautysh mdformat pynvim cmakelang` and
   `npm install -g markdownlint-cli stylelint @fsouza/prettierd eslint neovim`.
   `pynvim` must be visible to the Python interpreter Neovim uses.
-- **LazyVim**: first `nvim` run needs network access to download plugins.
-- **TPM**: if plugins are missing, run `prefix + I` inside tmux.

@@ -25,24 +25,11 @@ done
 REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 STOW_DIR="$REPO_ROOT/stow"
 
-# Set to "sudo" only when the prerequisite installer needs root for apt-get/dnf.
-SUDO=""
-
-run_privileged() {
-  if [[ -n "$SUDO" ]]; then
-    "$SUDO" "$@"
-  else
-    "$@"
-  fi
-}
-
-print_command() {
-  if [[ -n "$SUDO" ]]; then
-    printf '%s %s' "$SUDO" "$*"
-  else
-    printf '%s' "$*"
-  fi
-}
+# Shared helpers (SUDO default, run_privileged, print_command, announce_step,
+# run_step, sha256_of). The prerequisite installer below keeps its own
+# platform detection and sudo decision.
+# shellcheck source=SCRIPTDIR/lib/common.sh
+. "$REPO_ROOT/scripts/lib/common.sh"
 
 # Install stow, git and curl when they are missing. On platforms this script
 # does not know how to handle, exit only when something is actually missing.
@@ -158,7 +145,7 @@ fi
 
 # Packages to stow. Hyprland is only relevant on a native Linux desktop, not on
 # WSL. This list is also used by the conflict preflight below.
-packages=(home zsh git editor terminals lf)
+packages=(home zsh git editor terminals)
 case "$(uname -s)" in
   Linux)
     if ! grep -qi microsoft /proc/version 2>/dev/null; then

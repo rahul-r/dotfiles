@@ -50,9 +50,29 @@ PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 source ${XDG_CONFIG_HOME}/zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${XDG_CONFIG_HOME}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-if [ -n "${commands[fzf-share]}" ]; then
-  source "$(fzf-share)/key-bindings.zsh"
-  source "$(fzf-share)/completion.zsh"
+# The fzf shell scripts live in different directories per distribution, and
+# `fzf --zsh` exists only from fzf 0.48.
+if (( $+commands[fzf] )); then
+  if fzf --zsh >/dev/null 2>&1; then
+    source <(fzf --zsh)
+  else
+    for _fzf_shell_dir in \
+      /usr/share/doc/fzf/examples \
+      /usr/share/fzf \
+      /usr/share/fzf/shell \
+      /opt/homebrew/opt/fzf/shell \
+      /usr/local/opt/fzf/shell \
+      "$HOME/.fzf/shell"; do
+      if [[ -r "$_fzf_shell_dir/key-bindings.zsh" ]]; then
+        source "$_fzf_shell_dir/key-bindings.zsh"
+        if [[ -r "$_fzf_shell_dir/completion.zsh" ]]; then
+          source "$_fzf_shell_dir/completion.zsh"
+        fi
+        break
+      fi
+    done
+  fi
+  unset _fzf_shell_dir
 fi
 
 # Activate zoxide - this will replace the `cd` command

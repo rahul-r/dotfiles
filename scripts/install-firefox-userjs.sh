@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 # Deploy firefox/user.js into the default Firefox profile.
+# Skips with a note when no Firefox installation is found (firefox,
+# firefox-esr or /Applications/Firefox.app); an explicit FIREFOX_PROFILE_DIR
+# overrides both that check and the profile selection.
 # Probes profiles.ini; falls back to a *.default-release directory.
-# Set FIREFOX_PROFILE_DIR to override.
+# Set FIREFOX_PROFILE_DIR to override the profile selection.
 set -euo pipefail
 
 REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 SOURCE="$REPO_ROOT/firefox/user.js"
 FIREFOX_DIR="${FIREFOX_DIR:-$HOME/.mozilla/firefox}"
+
+if [[ -z "${FIREFOX_PROFILE_DIR:-}" ]] \
+  && ! command -v firefox >/dev/null 2>&1 \
+  && ! command -v firefox-esr >/dev/null 2>&1 \
+  && [[ ! -e /Applications/Firefox.app ]]; then
+  echo "note: Firefox is not installed; skipping user.js"
+  exit 0
+fi
 
 if [[ ! -f "$SOURCE" ]]; then
   echo "error: $SOURCE not found" >&2

@@ -97,9 +97,27 @@ set_title() {
 
 source ~/.aliases
 
-if command -v fzf-share >/dev/null; then
-	source "$(fzf-share)/key-bindings.bash"
-	source "$(fzf-share)/completion.bash"
+# The fzf shell scripts live in different directories per distribution, and
+# `fzf --bash` exists only from fzf 0.48. Bash completion is loaded from the
+# bash-completion directories, so only the key bindings are sourced here.
+if command -v fzf >/dev/null 2>&1; then
+	if fzf --bash >/dev/null 2>&1; then
+		source <(fzf --bash)
+	else
+		for fzf_shell_dir in \
+			/usr/share/doc/fzf/examples \
+			/usr/share/fzf \
+			/usr/share/fzf/shell \
+			/opt/homebrew/opt/fzf/shell \
+			/usr/local/opt/fzf/shell \
+			"$HOME/.fzf/shell"; do
+			if [ -r "$fzf_shell_dir/key-bindings.bash" ]; then
+				source "$fzf_shell_dir/key-bindings.bash"
+				break
+			fi
+		done
+	fi
+	unset fzf_shell_dir
 fi
 
 # Activate zoxide - this will replace the `cd` command

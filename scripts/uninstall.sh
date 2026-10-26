@@ -27,7 +27,7 @@ if ! command -v stow >/dev/null 2>&1; then
   exit 1
 fi
 
-packages=(home zsh git editor terminals lf)
+packages=(home zsh git editor terminals)
 case "$(uname -s)" in
   Linux)
     if ! grep -qi microsoft /proc/version 2>/dev/null; then

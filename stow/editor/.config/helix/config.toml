@@ -44,6 +44,8 @@ select = "SELECT"
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 esc = ["collapse_selection", "keep_primary_selection"]
 
+# nixfmt is not packaged by most distributions; install it with
+# `cargo install nixfmt` so Helix can format .nix files.
 [[language]]
 name = "nix"
 auto-format = true
