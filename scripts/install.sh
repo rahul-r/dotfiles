@@ -23,8 +23,129 @@ done
 REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 STOW_DIR="$REPO_ROOT/stow"
 
+# Set to "sudo" only when the prerequisite installer needs root for apt-get/dnf.
+SUDO=""
+
+run_privileged() {
+  if [[ -n "$SUDO" ]]; then
+    "$SUDO" "$@"
+  else
+    "$@"
+  fi
+}
+
+print_command() {
+  if [[ -n "$SUDO" ]]; then
+    printf '%s %s' "$SUDO" "$*"
+  else
+    printf '%s' "$*"
+  fi
+}
+
+# Install stow, git and curl when they are missing. On platforms this script
+# does not know how to handle, exit only when something is actually missing.
+ensure_prerequisites() {
+  local cmd
+  local missing=()
+
+  for cmd in stow git curl; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      missing+=("$cmd")
+    fi
+  done
+
+  if [[ ${#missing[@]} -eq 0 ]]; then
+    return 0
+  fi
+
+  local platform distro distro_lc manager install_args
+  platform=$(uname -s)
+
+  case "$platform" in
+    Darwin)
+      if ! command -v brew >/dev/null 2>&1; then
+        echo "error: missing prerequisites: ${missing[*]}; Homebrew is required to install them on macOS (see https://brew.sh)" >&2
+        exit 1
+      fi
+      manager="brew"
+      ;;
+    Linux)
+      distro=$(
+        if [[ -r /etc/os-release ]]; then
+          # shellcheck disable=SC1091
+          . /etc/os-release
+          printf '%s' "${ID:-}"
+          if [[ -n "${ID_LIKE:-}" ]]; then
+            printf ' %s' "$ID_LIKE"
+          fi
+        fi
+      )
+      distro_lc=$(printf '%s' "$distro" | tr '[:upper:]' '[:lower:]')
+      case "$distro_lc" in
+        *ubuntu*|*debian*)
+          manager="apt-get"
+          ;;
+        *fedora*)
+          manager="dnf"
+          ;;
+        *)
+          echo "error: unsupported Linux distribution '${distro:-unknown}': missing prerequisites: ${missing[*]}; install them manually (see README.md)" >&2
+          exit 1
+          ;;
+      esac
+      ;;
+    *)
+      echo "error: unsupported platform '$platform': missing prerequisites: ${missing[*]}; install them manually (see README.md)" >&2
+      exit 1
+      ;;
+  esac
+
+  if [[ "$manager" != "brew" && $EUID -ne 0 ]]; then
+    if ! command -v sudo >/dev/null 2>&1; then
+      echo "error: missing prerequisites: ${missing[*]}; sudo is required to install them with $manager and is not available" >&2
+      exit 1
+    fi
+    SUDO="sudo"
+  fi
+
+  install_args=(install)
+  if [[ "$manager" != "brew" ]]; then
+    install_args+=(-y)
+  fi
+
+  if [[ $DRY_RUN -eq 1 ]]; then
+    echo "missing prerequisites: ${missing[*]} (would use $manager)"
+    if [[ "$manager" == "apt-get" ]]; then
+      printf 'would run: %s\n' "$(print_command apt-get update)"
+    fi
+    printf 'would install: %s\n' "$(print_command "$manager" "${install_args[@]}" "${missing[@]}")"
+    return 0
+  fi
+
+  echo "installing missing prerequisites: ${missing[*]} (using $manager)"
+  if [[ "$manager" == "apt-get" ]]; then
+    printf 'running: %s\n' "$(print_command apt-get update)"
+    run_privileged apt-get update
+  fi
+  printf 'running: %s\n' "$(print_command "$manager" "${install_args[@]}" "${missing[@]}")"
+  run_privileged "$manager" "${install_args[@]}" "${missing[@]}"
+
+  local still_missing=()
+  for cmd in "${missing[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      still_missing+=("$cmd")
+    fi
+  done
+  if [[ ${#still_missing[@]} -ne 0 ]]; then
+    echo "error: prerequisites still missing after install: ${still_missing[*]}" >&2
+    exit 1
+  fi
+}
+
+ensure_prerequisites
+
 if ! command -v stow >/dev/null 2>&1; then
-  echo "error: GNU Stow is not installed (install the 'stow' package, see README.md)" >&2
+  echo "error: GNU Stow is not installed; re-run without --dry-run to install it, or install it manually (see README.md)" >&2
   exit 1
 fi
 
@@ -48,11 +169,8 @@ else
   mkdir -p "${dirs[@]}"
 fi
 
-packages=(zsh git editor tmux terminals lf)
+packages=(home zsh git editor terminals lf)
 case "$(uname -s)" in
-  Darwin)
-    packages+=(bin)
-    ;;
   Linux)
     # Hyprland is only relevant on a native Linux desktop, not on WSL.
     if ! grep -qi microsoft /proc/version 2>/dev/null; then
@@ -91,5 +209,5 @@ Next steps:
   - tmux: press prefix + I if the plugins were not installed automatically
   - Firefox: install uBlock Origin and Bitwarden manually
   - first nvim start downloads LazyVim plugins
-  - fonts and remaining native packages: see README.md
+  - fonts and remaining setup steps: see README.md
 EOF

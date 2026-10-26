@@ -1,4 +1,3 @@
-// Static replacement for Home Manager's programs.firefox settings.
 // Deployed into the default profile by scripts/install-firefox-userjs.sh.
 
 user_pref("browser.disableResetPrompt", true);

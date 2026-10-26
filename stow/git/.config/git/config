@@ -1,5 +1,4 @@
-# Static replacement for Home Manager's programs.git settings.
-# work-wsl used an empty user.email; see the WSL note in README.md.
+# WSL: see the WSL git email note in README.md.
 
 [user]
 	email = "jossb6cw@duck.com"

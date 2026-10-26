@@ -27,9 +27,8 @@ if ! command -v stow >/dev/null 2>&1; then
   exit 1
 fi
 
-packages=(zsh git editor tmux terminals lf)
+packages=(home zsh git editor terminals lf)
 case "$(uname -s)" in
-  Darwin) packages+=(bin) ;;
   Linux)
     if ! grep -qi microsoft /proc/version 2>/dev/null; then
       packages+=(hyprland)

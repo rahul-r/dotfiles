@@ -74,7 +74,7 @@ find_files() {
         # Check if the file is a text file
         if file --mime-type "$selected" | grep -q text/
         then
-            lvim "$selected"
+            nvim "$selected"
         else
             # If it's not a text file, open it with the default program
             xdg-open "$selected"

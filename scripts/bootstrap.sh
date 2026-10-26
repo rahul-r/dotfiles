@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fetch the assets that Home Manager used to pull from Nix:
+# Fetch the pinned plugin assets:
 #   - zsh-syntax-highlighting and zsh-autosuggestions at pinned revisions
 #   - TPM (tmux plugin manager)
 #   - zellij wasm plugins
