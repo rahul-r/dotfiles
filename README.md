@@ -43,9 +43,9 @@ stow --restow --dir stow --target "$HOME" home zsh git editor terminals lf hyprl
 Without those directories Stow folds `~/.config/zsh` into one symlink, and the
 bootstrap clones would be written into this repository.
 
-A target path that is already present must be backed up or removed
-individually before re-running (for example `~/.config/git/config` is a
-symlink); `--adopt` is never used here.
+The install script checks for conflicting paths before touching anything and
+lists them with the exact `mv` commands. Re-run with `--backup-conflicts` to
+move them to `~/dotfile-backup` and continue; `--adopt` is never used.
 
 After installing, open a new shell, start `nvim` once (LazyVim downloads its
 plugins), and use `prefix + I` in tmux if TPM did not install the plugins
