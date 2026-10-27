@@ -30,6 +30,9 @@ scripts/install.sh --dry-run
 scripts/install.sh
 ```
 
+Run `scripts/install.sh` as the user who owns `$HOME`, not with `sudo` or `su`
+from another account: the script refuses to run otherwise.
+
 The applications these files expect are installed by
 `scripts/install-packages.sh` (apt, dnf or Homebrew; on Debian/Ubuntu it
 installs WezTerm and yazi from their upstream APT repositories, on Fedora from

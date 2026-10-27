@@ -26,10 +26,14 @@ REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 STOW_DIR="$REPO_ROOT/stow"
 
 # Shared helpers (SUDO default, run_privileged, print_command, announce_step,
-# run_step, sha256_of). The prerequisite installer below keeps its own
-# platform detection and sudo decision.
+# run_step, sha256_of, check_install_user). The prerequisite installer below
+# keeps its own platform detection and sudo decision.
 # shellcheck source=SCRIPTDIR/lib/common.sh
 . "$REPO_ROOT/scripts/lib/common.sh"
+
+# Refuse to write into another user's home before any prerequisite or preflight
+# work can change anything.
+check_install_user "$REPO_ROOT"
 
 # Install stow, git and curl when they are missing. On platforms this script
 # does not know how to handle, exit only when something is actually missing.

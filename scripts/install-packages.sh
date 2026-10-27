@@ -8,6 +8,8 @@ PACKAGES_FILE="$SCRIPT_DIR/packages.list"
 # shellcheck source=SCRIPTDIR/lib/common.sh
 . "$SCRIPT_DIR/lib/common.sh"
 
+check_install_user "$SCRIPT_DIR"
+
 # Package names and their per-platform overrides live in packages.list; the
 # loader below turns them into PACKAGES and CASKS for the detected manager.
 PACKAGES=()
