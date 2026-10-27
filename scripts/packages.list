@@ -1,0 +1,98 @@
+# Package lists for scripts/install-packages.sh: one application per line,
+# grouped by purpose.
+#
+# The first field is the application name and is used on every platform unless
+# overridden. apt=, dnf= and brew= override the package name for that platform;
+# "-" means the package manager does not install it there; brew=cask means a
+# macOS Homebrew cask whose token is the application name. A comma-separated
+# value expands to several packages. Comment out a line (leading "#") to skip
+# that application without deleting it. Text after " #" is an inline comment.
+#
+# Apps from install-packages.d are still listed when Homebrew provides them,
+# with apt/dnf set to "-". Firefox is deliberately absent: it comes from the
+# distribution or Homebrew.
+
+# Version control
+git
+git-lfs
+git-delta
+lazygit
+
+# Shell, prompt and navigation
+zsh
+starship
+direnv
+fzf
+zoxide
+ripgrep
+fd                              apt=fd-find dnf=fd-find
+
+# Terminals and multiplexers
+herdr                           apt=- dnf=-
+wezterm                         apt=- dnf=- brew=cask
+#tmux
+#zellij
+
+# Editors
+neovim
+helix
+neovide                         apt=- dnf=-
+
+# File managers
+yazi                            apt=- dnf=-
+
+# Files, archives and media previews.
+# Debian 12 and Ubuntu 24.04 ship ImageMagick 6, so there is no `magick` binary
+# and font/HEIC preview is degraded there. macOS ships file and zip/unzip, so
+# those rows apply to Linux only.
+file                            brew=-
+zip                             brew=-
+unzip                           brew=-
+7zip                            brew=sevenzip
+poppler                         apt=poppler-utils dnf=poppler-utils
+exiftool                        apt=libimage-exiftool-perl dnf=perl-Image-ExifTool
+chafa
+lsix                            apt=- dnf=-
+ffmpeg                          dnf=ffmpeg-free
+jq
+imagemagick                     dnf=ImageMagick
+
+# Languages and package managers
+node                            apt=nodejs dnf=nodejs
+npm                             dnf=- brew=-
+python                          apt=- dnf=- brew=python@3.12
+pipx
+
+# Build tools and static analysis
+#build-tools                    apt=build-essential dnf=gcc,gcc-c++,make brew=-
+#clang-tools                    apt=clang-tools dnf=clang-tools-extra brew=-
+#cppcheck
+#binutils                       brew=-
+#llvm                           apt=- dnf=-
+
+# Containers and virtualisation
+#podman
+#podman-compose                 dnf=python3-podman-compose
+#qemu                           apt=- dnf=-
+# The upstream README prefers the jesseduffield/lazydocker/lazydocker tap for
+# more frequent updates; this uses the core formula.
+lazydocker                      apt=- dnf=-
+btrfs-assistant                 brew=-
+
+# CLI utilities
+# xdg-utils and xsel are Linux-only in this setup.
+bat
+eza
+duf
+htop
+tree
+curl
+man-db                          brew=-
+coreutils                       apt=- dnf=-
+xdg-utils                       brew=-
+xsel                            brew=-
+
+# Fonts
+fontconfig                      brew=-
+font-droid-sans-mono-nerd-font  apt=- dnf=- brew=cask
+font-ubuntu-mono-nerd-font      apt=- dnf=- brew=cask

@@ -4,61 +4,14 @@
 set -euo pipefail
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+PACKAGES_FILE="$SCRIPT_DIR/packages.list"
 # shellcheck source=SCRIPTDIR/lib/common.sh
 . "$SCRIPT_DIR/lib/common.sh"
 
-# Packages with the same name on every platform live in COMMON; each manager
-# adds only what differs. Debian calls Node.js nodejs and the fd binary fd-find,
-# needs npm and build-essential, and names ExifTool libimage-exiftool-perl;
-# Fedora ships the compose helper as python3-podman-compose, the extra clang
-# tools as clang-tools-extra and ExifTool as perl-Image-ExifTool; Homebrew uses
-# node, fd, python@3.12 and exiftool, and installs the GUI applications as
-# casks. man, binutils, zip/unzip and file ship with macOS, so they are listed
-# only for Linux. Each list is installed as a batch; names a manager does not
-# know are retried individually.
-COMMON_PACKAGES=(
-  git git-lfs git-delta tmux zsh curl
-  fzf zoxide bat direnv chafa ranger
-  podman htop eza duf neovim cppcheck ripgrep
-  tree starship lazygit helix zellij pipx
-)
-
-APT_PACKAGES=(
-  "${COMMON_PACKAGES[@]}"
-  nodejs npm podman-compose fd-find clang-tools xsel
-  btrfs-assistant
-  build-essential file xdg-utils zip unzip man-db binutils fontconfig poppler-utils
-  libimage-exiftool-perl
-  # yazi's preview helpers. Debian 12 and Ubuntu 24.04 ship ImageMagick 6, so
-  # there is no `magick` binary and font/HEIC preview is degraded there.
-  ffmpeg 7zip jq imagemagick
-)
-
-DNF_PACKAGES=(
-  "${COMMON_PACKAGES[@]}"
-  nodejs python3-podman-compose fd-find clang-tools-extra xsel
-  btrfs-assistant
-  gcc gcc-c++ make file xdg-utils zip unzip man-db binutils fontconfig poppler-utils
-  perl-Image-ExifTool
-  # yazi's preview helpers.
-  ffmpeg-free 7zip jq ImageMagick
-)
-
-BREW_FORMULAS=(
-  "${COMMON_PACKAGES[@]}"
-  node podman-compose fd python@3.12 llvm qemu coreutils
-  # The upstream README prefers the jesseduffield/lazydocker/lazydocker tap for
-  # more frequent updates; this uses the core formula.
-  exiftool lsix neovide lazydocker
-  # yazi and its preview helpers; `file` ships with macOS.
-  yazi poppler ffmpeg sevenzip jq imagemagick
-)
-
-# Firefox is expected from the distribution or Homebrew and is not installed here.
-BREW_CASKS=(
-  wezterm
-  font-droid-sans-mono-nerd-font font-ubuntu-mono-nerd-font
-)
+# Package names and their per-platform overrides live in packages.list; the
+# loader below turns them into PACKAGES and CASKS for the detected manager.
+PACKAGES=()
+CASKS=()
 
 # Deliberately not installed on Linux: the Hyprland desktop and tools that have
 # no distribution package. One line per group, printed as a closing note.
@@ -129,6 +82,140 @@ platform_label() {
     dnf) printf 'Linux (%s; dnf)' "$DISTRO" ;;
     *) printf 'macOS (brew)' ;;
   esac
+}
+
+# Read packages.list into PACKAGES and CASKS for the detected manager. The file
+# is line-oriented: the first field is the application name, apt=, dnf= and
+# brew= override it for that platform, "-" skips the application, "cask" (brew
+# only) adds it to CASKS, and commas separate several packages. Parsing happens
+# in bash so the script needs no extra interpreter.
+load_package_lists() {
+  local manager name line token key value platform_value package i
+  local line_number=0 produced=0 apt dnf brew
+  local before_space before_tab
+  local -a fields=()
+
+  if [ ! -r "$PACKAGES_FILE" ]; then
+    echo "error: cannot read $PACKAGES_FILE" >&2
+    exit 1
+  fi
+
+  case "$MANAGER" in
+    apt-get) manager=apt ;;
+    dnf) manager=dnf ;;
+    brew) manager=brew ;;
+    *)
+      echo "error: unsupported package manager '$MANAGER'" >&2
+      exit 1
+      ;;
+  esac
+
+  while IFS= read -r line || [ -n "$line" ]; do
+    line_number=$((line_number + 1))
+
+    # Strip an inline comment at the first " #" or tab followed by "#".
+    before_space=$line
+    before_tab=$line
+    case "$line" in
+      *" #"*) before_space=${line%%" #"*} ;;
+    esac
+    case "$line" in
+      *$'\t#'*) before_tab=${line%%$'\t#'*} ;;
+    esac
+    if [ "${#before_space}" -lt "${#before_tab}" ]; then
+      line=$before_space
+    else
+      line=$before_tab
+    fi
+
+    # Trim leading and trailing whitespace.
+    line=${line#"${line%%[![:space:]]*}"}
+    line=${line%"${line##*[![:space:]]}"}
+
+    [ -n "$line" ] || continue
+    case "$line" in
+      '#'*) continue ;;
+    esac
+
+    fields=()
+    read -r -a fields <<< "$line"
+    name=${fields[0]}
+    if [ -z "$name" ]; then
+      echo "error: $PACKAGES_FILE: empty application name on line $line_number" >&2
+      exit 1
+    fi
+
+    apt=$name
+    dnf=$name
+    brew=$name
+    i=1
+    while [ "$i" -lt "${#fields[@]}" ]; do
+      token=${fields[$i]}
+      i=$((i + 1))
+
+      case "$token" in
+        *=*) ;;
+        *)
+          echo "error: $PACKAGES_FILE: malformed field '$token' on line $line_number" >&2
+          exit 1
+          ;;
+      esac
+
+      key=${token%%=*}
+      value=${token#*=}
+      case "$key" in
+        apt|dnf|brew) ;;
+        *)
+          echo "error: $PACKAGES_FILE: unknown key '$key' on line $line_number" >&2
+          exit 1
+          ;;
+      esac
+      if [ -z "$value" ]; then
+        echo "error: $PACKAGES_FILE: empty value for '$key' on line $line_number" >&2
+        exit 1
+      fi
+      if [ "$value" = "cask" ] && [ "$key" != "brew" ]; then
+        echo "error: $PACKAGES_FILE: 'cask' is only valid for brew on line $line_number" >&2
+        exit 1
+      fi
+
+      case "$key" in
+        apt) apt=$value ;;
+        dnf) dnf=$value ;;
+        brew) brew=$value ;;
+      esac
+    done
+
+    case "$manager" in
+      apt) platform_value=$apt ;;
+      dnf) platform_value=$dnf ;;
+      brew) platform_value=$brew ;;
+    esac
+
+    if [ "$platform_value" = "-" ]; then
+      continue
+    fi
+    if [ "$platform_value" = "cask" ]; then
+      CASKS+=("$name")
+      produced=$((produced + 1))
+      continue
+    fi
+
+    while [ -n "$platform_value" ]; do
+      package=${platform_value%%,*}
+      PACKAGES+=("$package")
+      produced=$((produced + 1))
+      case "$platform_value" in
+        *,*) platform_value=${platform_value#*,} ;;
+        *) platform_value="" ;;
+      esac
+    done
+  done < "$PACKAGES_FILE"
+
+  if [ "$produced" -eq 0 ]; then
+    echo "error: $PACKAGES_FILE: no packages for $manager; check the file" >&2
+    exit 1
+  fi
 }
 
 configure_sudo() {
@@ -268,6 +355,7 @@ print_manual_note() {
 }
 
 detect_platform
+load_package_lists
 configure_sudo
 
 if [[ $DRY_RUN -eq 1 ]]; then
@@ -275,14 +363,14 @@ if [[ $DRY_RUN -eq 1 ]]; then
   case "$MANAGER" in
     apt-get)
       printf 'would run: %s\n' "$(print_command apt-get update)"
-      printf 'would run: %s\n' "$(print_command apt-get install -y "${APT_PACKAGES[@]}")"
+      printf 'would run: %s\n' "$(print_command apt-get install -y "${PACKAGES[@]}")"
       ;;
     dnf)
-      printf 'would run: %s\n' "$(print_command dnf install -y "${DNF_PACKAGES[@]}")"
+      printf 'would run: %s\n' "$(print_command dnf install -y "${PACKAGES[@]}")"
       ;;
     brew)
-      printf 'would run: %s\n' "$(print_command brew install "${BREW_FORMULAS[@]}")"
-      printf 'would run: %s\n' "$(print_command brew install --cask "${BREW_CASKS[@]}")"
+      printf 'would run: %s\n' "$(print_command brew install "${PACKAGES[@]}")"
+      printf 'would run: %s\n' "$(print_command brew install --cask "${CASKS[@]}")"
       ;;
   esac
   install_extra_apps
@@ -297,14 +385,14 @@ case "$MANAGER" in
   apt-get)
     printf 'running: %s\n' "$(print_command apt-get update)"
     run_privileged apt-get update
-    install_batch "packages" apt-get install -y :: "${APT_PACKAGES[@]}"
+    install_batch "packages" apt-get install -y :: "${PACKAGES[@]}"
     ;;
   dnf)
-    install_batch "packages" dnf install -y :: "${DNF_PACKAGES[@]}"
+    install_batch "packages" dnf install -y :: "${PACKAGES[@]}"
     ;;
   brew)
-    install_batch "packages" brew install :: "${BREW_FORMULAS[@]}"
-    install_batch "casks" brew install --cask :: "${BREW_CASKS[@]}"
+    install_batch "packages" brew install :: "${PACKAGES[@]}"
+    install_batch "casks" brew install --cask :: "${CASKS[@]}"
     ;;
 esac
 

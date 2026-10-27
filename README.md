@@ -34,8 +34,10 @@ The applications these files expect are installed by
 `scripts/install-packages.sh` (apt, dnf or Homebrew; on Debian/Ubuntu it
 installs WezTerm and yazi from their upstream APT repositories, on Fedora from
 COPR, and on Linux it also installs the Ubuntu Mono and Droid Sans Mono Nerd
-Fonts). It also runs `git lfs install` to register the Git LFS filters and
-hooks. It prints anything it cannot install from the native repositories.
+Fonts). Its package names live in `scripts/packages.list`, one application per
+line; comment a line out to skip that application. It also runs `git lfs install`
+to register the Git LFS filters and hooks. It prints anything it cannot install
+from the native repositories.
 
 If you prefer to run Stow by hand, create the runtime directories first (the
 install script does this), then use exactly:
