@@ -91,11 +91,50 @@ path_owner_uid() {
   return 1
 }
 
-# Exit when $HOME or a set XDG directory exists but is owned by another uid.
+# Print the deepest ancestor of a path that exists, starting with the path
+# itself. A dangling symlink counts as existing. Callers use this to find the
+# closest directory they can inspect when the configured path does not exist
+# yet. Returns non-zero if no component along the chain can be inspected, as
+# for a normal user under another user's unreadable home.
+nearest_existing_path() {
+  local path=$1
+  while :; do
+    if [[ -e "$path" || -L "$path" ]]; then
+      printf '%s\n' "$path"
+      return 0
+    fi
+    case "$path" in
+      /) return 1 ;;
+      */*) path=${path%/*}; [[ -n "$path" ]] || path=/ ;;
+      *) return 1 ;;
+    esac
+  done
+}
+
+# Report a directory variable that is set but unusable and exit. The reason is
+# shown in parentheses after the variable and path.
+exit_inaccessible_path() {
+  local var=$1 path=$2 reason=$3 advice
+  if [[ "$var" == HOME ]]; then
+    advice="set HOME to a directory this user can write"
+  else
+    advice="unset the variable"
+  fi
+  cat >&2 <<EOF
+error: \$$var points at $path, which is set but not accessible ($reason).
+       The installer and git would use it, so run as the user who owns it, or
+       $advice (a login shell via \`su -\` avoids this).
+EOF
+  exit 1
+}
+
+# Exit when $HOME or a set XDG directory is owned by another uid, or does not
+# exist under an ancestor that is. A configured path that cannot be inspected
+# at all fails too, because the installer and git would use it.
 # A repository root owned by another uid is only a warning: the install still
 # works, but git commands run inside it (git lfs install) may not.
 check_install_user() {
-  local repo_root=${1:-} current_uid path uid var
+  local repo_root=${1:-} current_uid path uid var nearest
   current_uid=$(id -u)
 
   for var in HOME XDG_CONFIG_HOME XDG_DATA_HOME; do
@@ -105,18 +144,32 @@ check_install_user() {
       XDG_DATA_HOME) path=${XDG_DATA_HOME:-} ;;
     esac
     [[ -n "$path" ]] || continue
-    if ! uid=$(path_owner_uid "$path"); then
-      continue
-    fi
-    if [[ "$uid" != "$current_uid" ]]; then
-      cat >&2 <<EOF
+
+    if [[ -e "$path" || -L "$path" ]]; then
+      if ! uid=$(path_owner_uid "$path"); then
+        exit_inaccessible_path "$var" "$path" "it could not be inspected"
+      fi
+      if [[ "$uid" != "$current_uid" ]]; then
+        cat >&2 <<EOF
 error: \$$var ($path) is owned by uid $uid but this script runs as uid $current_uid.
        The installer writes into \$HOME, so it must run as the user who owns these
        paths. Do not use sudo or su from another account: \`sudo\` keeps the caller's
        HOME and \`su\` without \`-\` keeps the caller's environment, which points the
        installer at another user's home.
 EOF
-      exit 1
+        exit 1
+      fi
+      continue
+    fi
+
+    if ! nearest=$(nearest_existing_path "$path"); then
+      exit_inaccessible_path "$var" "$path" "no parent directory could be inspected"
+    fi
+    if ! uid=$(path_owner_uid "$nearest"); then
+      exit_inaccessible_path "$var" "$path" "its nearest existing parent $nearest could not be inspected"
+    fi
+    if [[ "$uid" != "$current_uid" ]]; then
+      exit_inaccessible_path "$var" "$path" "it belongs to uid $uid"
     fi
   done
 
