@@ -362,7 +362,9 @@ if [[ $DRY_RUN -eq 0 ]]; then
   fi
 
   if [[ -d "$HOME/.mozilla/firefox" ]]; then
-    "$REPO_ROOT/scripts/install-firefox-userjs.sh"
+    if ! "$REPO_ROOT/scripts/install-firefox-userjs.sh"; then
+      echo "warning: firefox user.js setup failed; continuing" >&2
+    fi
   else
     echo "note: Firefox profile directory not found; skipping user.js (see README.md)"
   fi

@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Deploy firefox/user.js into the default Firefox profile.
 # Skips with a note when no Firefox installation is found (firefox,
-# firefox-esr or /Applications/Firefox.app); an explicit FIREFOX_PROFILE_DIR
-# overrides both that check and the profile selection.
+# firefox-esr or /Applications/Firefox.app) or when no usable profile is
+# found (no Default=1 entry in profiles.ini, no *.default-release directory).
 # Probes profiles.ini; falls back to a *.default-release directory.
-# Set FIREFOX_PROFILE_DIR to override the profile selection.
+# An explicit FIREFOX_PROFILE_DIR overrides both that check and the
+# profile selection.
 set -euo pipefail
 
 REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
@@ -38,8 +39,8 @@ elif [[ -f "$FIREFOX_DIR/profiles.ini" ]]; then
     END { if (!done && in_profile && is_default && path != "") print path }
   ' "$FIREFOX_DIR/profiles.ini")
   if [[ -z "$profile_path" ]]; then
-    echo "error: no Default=1 profile found in $FIREFOX_DIR/profiles.ini" >&2
-    exit 1
+    echo "note: no Default=1 profile in $FIREFOX_DIR/profiles.ini; skipping user.js"
+    exit 0
   fi
   profile_dir="$FIREFOX_DIR/$profile_path"
 else
@@ -47,8 +48,8 @@ else
 fi
 
 if [[ -z "${profile_dir:-}" || ! -d "$profile_dir" ]]; then
-  echo "error: no Firefox profile found under $FIREFOX_DIR (start Firefox once first)" >&2
-  exit 1
+  echo "note: no Firefox profile found under $FIREFOX_DIR (start Firefox once first); skipping user.js"
+  exit 0
 fi
 
 if [[ -f "$profile_dir/user.js" ]] && ! cmp -s "$SOURCE" "$profile_dir/user.js"; then
