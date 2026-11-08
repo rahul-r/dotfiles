@@ -1,22 +1,24 @@
 #!/usr/bin/env bash
 # Install the dotfiles with GNU Stow.
-# Usage: scripts/install.sh [--dry-run] [--no-bootstrap] [--backup-conflicts]
+# Usage: scripts/install.sh [--dry-run] [--no-bootstrap] [--backup-conflicts] [--packages]
 set -euo pipefail
 
 DRY_RUN=0
 BOOTSTRAP=1
 BACKUP_CONFLICTS=0
+INSTALL_PACKAGES=0
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY_RUN=1 ;;
     --no-bootstrap) BOOTSTRAP=0 ;;
     --backup-conflicts) BACKUP_CONFLICTS=1 ;;
+    --packages) INSTALL_PACKAGES=1 ;;
     -h|--help)
       sed -n '2,3p' "$0"
       exit 0
       ;;
     *)
-      echo "usage: $0 [--dry-run] [--no-bootstrap] [--backup-conflicts]" >&2
+      echo "usage: $0 [--dry-run] [--no-bootstrap] [--backup-conflicts] [--packages]" >&2
       exit 2
       ;;
   esac
@@ -369,6 +371,57 @@ if [[ $DRY_RUN -eq 0 ]]; then
     echo "note: Firefox profile directory not found; skipping user.js (see README.md)"
   fi
 fi
+
+# Applications are a separate, opt-in phase: the package script needs root
+# (apt-get/dnf), installs GUI applications on macOS, registers the git lfs
+# filters, needs a network connection and can take a long time. Offering it here
+# keeps a fresh machine from looking provisioned while those applications are
+# missing, without making a failed optional phase fail the install.
+install_packages_phase() {
+  local packages_script reply
+  packages_script="$REPO_ROOT/scripts/install-packages.sh"
+
+  if [[ $DRY_RUN -eq 1 ]]; then
+    if [[ $INSTALL_PACKAGES -eq 1 ]]; then
+      printf 'would run: %s\n' "$packages_script"
+    else
+      echo "dry run: would offer to install applications with scripts/install-packages.sh"
+    fi
+    return 0
+  fi
+
+  if [[ $INSTALL_PACKAGES -eq 0 ]]; then
+    if [[ ! -t 0 ]]; then
+      echo "note: applications are not installed by this script; run scripts/install-packages.sh to install them"
+      return 0
+    fi
+
+    echo "The applications these configs expect (starship, zoxide, direnv, fzf, ripgrep,"
+    echo "fonts, ...) are not installed by this script. Installing them needs a network"
+    echo "connection and can take a long time."
+    read -r -p "Install them now with scripts/install-packages.sh? [y/N] " reply || reply=""
+    case "$reply" in
+      y|Y|yes|YES|Yes) ;;
+      *)
+        echo "skipped; run scripts/install-packages.sh later"
+        return 0
+        ;;
+    esac
+  fi
+
+  if [[ ! -x "$packages_script" ]]; then
+    echo "warning: $packages_script is missing or not executable; skipping application install" >&2
+    return 0
+  fi
+
+  printf 'running: %s\n' "$packages_script"
+  if ! "$packages_script"; then
+    echo "warning: scripts/install-packages.sh failed; the dotfiles are still linked, re-run it later" >&2
+  fi
+  return 0
+}
+
+install_packages_phase
 
 cat <<'EOF'
 

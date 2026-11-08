@@ -10,7 +10,9 @@ Nothing here is applied automatically. The install script installs `stow`,
 `git` and `curl` if they are missing (with apt-get, dnf or Homebrew), places
 symlinks in `$HOME`, fetches the pinned plugin assets, and copies
 `firefox/user.js` into an existing Firefox profile (skipped when Firefox is not
-installed); it installs nothing else and does not edit `/etc`.
+installed); it installs no other applications itself, does not edit `/etc`, and
+only installs the applications listed below when it asks and you accept (or when
+you pass `--packages`).
 
 ## Install
 
@@ -29,6 +31,10 @@ scripts/install.sh --dry-run
 
 scripts/install.sh
 ```
+
+At the end, when stdin is a terminal, `scripts/install.sh` asks whether to run
+`scripts/install-packages.sh` (see below); pass `--packages` to run it without
+asking. A `--dry-run` or a non-interactive stdin only prints what it would do.
 
 Run `scripts/install.sh` as the user who owns `$HOME`, not with `sudo` or `su`
 from another account: the script refuses to run otherwise.
