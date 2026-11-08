@@ -64,7 +64,11 @@ download_pinned() {
     return
   fi
   run mkdir -p "$(dirname "$dest")"
-  run curl --fail --location --silent --show-error --output "$dest.tmp" "$url"
+  if ! run curl --fail --location --silent --show-error --output "$dest.tmp" "$url"; then
+    rm -f "$dest.tmp"
+    echo "warning: could not download $url to $dest (not created); re-run scripts/bootstrap.sh to retry" >&2
+    return 0
+  fi
   if [[ "$(sha256_of "$dest.tmp")" != "$expected" ]]; then
     rm -f "$dest.tmp"
     echo "error: checksum mismatch for $url" >&2
