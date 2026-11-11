@@ -1,0 +1,6 @@
+# Hide the "direnv: export ..." env-diff line on load.
+# Also: for direnv 2.36.0-2.38.0 (issue #1418), the mere existence of this
+# file makes direnv honor an empty DIRENV_LOG_FORMAT (set in .zshrc/.bashrc),
+# which silences the "direnv: loading ..." line. Fixed upstream in 2.38.1.
+[global]
+hide_env_diff = true
